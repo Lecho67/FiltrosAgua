@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5F6675">
+
+    <!-- Tarjeta -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardSaneamiento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#AEB5C0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saneamiento"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:paddingBottom="8dp"/>
+
+            <!-- 1) ¿Cuenta con sanitario (taza)? -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cuenta con sanitario (taza)?"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="12dp">
+
+                <CheckBox
+                    android:id="@+id/cbSanitarioSi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sí"/>
+
+                <CheckBox
+                    android:id="@+id/cbSanitarioNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <!-- 2) ¿Cuenta con fosa séptica/pozo séptico/alcantarillado? -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cuenta con fosa séptica, pozo séptico o de alcantarillado?"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbSistemaSi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sí"/>
+
+                <CheckBox
+                    android:id="@+id/cbSistemaNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Barra inferior -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/cardSaneamiento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnteriorSaneamiento"
+            android:layout_width="120dp"
+            android:layout_height="44dp"
+            android:text="ANTERIOR"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="22dp"
+            app:backgroundTint="@android:color/holo_blue_dark"/>
+
+        <TextView
+            android:id="@+id/tvSeccionSaneamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Sección 10 de 12"
+            android:textColor="@android:color/white"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSiguienteSaneamiento"
+            android:layout_width="140dp"
+            android:layout_height="44dp"
+            android:text="SIGUIENTE"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="22dp"
+            app:backgroundTint="@android:color/holo_blue_dark"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

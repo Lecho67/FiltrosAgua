@@ -1,0 +1,32 @@
+<resources>
+    <string-array name="municipios_valle">
+        <item>Alcalá</item><item>Andalucía</item><item>Ansermanuevo</item><item>Argelia</item>
+        <item>Bolívar</item><item>Buenaventura</item><item>Buga</item><item>Bugalagrande</item>
+        <item>Caicedonia</item><item>Cali</item><item>Calima (El Darién)</item><item>Candelaria</item>
+        <item>Cartago</item><item>Dagua</item><item>El Águila</item><item>El Cairo</item>
+        <item>El Cerrito</item><item>El Dovio</item><item>Florida</item><item>Ginebra</item>
+        <item>Guacarí</item><item>Jamundí</item><item>La Cumbre</item><item>La Unión</item>
+        <item>La Victoria</item><item>Obando</item><item>Palmira</item><item>Pradera</item>
+        <item>Restrepo</item><item>Riofrío</item><item>Roldanillo</item><item>San Pedro</item>
+        <item>Sevilla</item><item>Toro</item><item>Trujillo</item><item>Tuluá</item>
+        <item>Ulloa</item><item>Versalles</item><item>Vijes</item><item>Yotoco</item>
+        <item>Yumbo</item><item>Zarzal</item>
+    </string-array>
+
+    <string-array name="corregimientos_cali">
+        <item>Pance</item><item>La Buitrera</item><item>Villa Carmelo</item><item>La Leonera</item>
+        <item>Pichindé</item><item>Felidia</item><item>Los Andes</item><item>El Saladito</item>
+        <item>La Elvira</item><item>Golondrinas</item><item>Montebello</item><item>Navarro</item>
+        <item>El Hormiguero</item>
+    </string-array>
+
+    <string-array name="corregimientos_palmira">
+        <item>Rozo</item><item>Amaime</item><item>Aguaclara</item>
+        <item>La Buitrera (Palmira)</item><item>El Bolo</item><item>El Bolo San Isidro</item>
+    </string-array>
+
+    <string-array name="corregimientos_jamundi">
+        <item>Potrerito</item><item>Robles</item><item>Quinamayó</item>
+        <item>Guachinte</item><item>Villacolombia</item><item>Villa Paz</item>
+    </string-array>
+</resources>

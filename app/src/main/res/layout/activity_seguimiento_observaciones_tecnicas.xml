@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5F6675">
+
+    <!-- Tarjeta centrada con scroll y altura acotada -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardObsTec"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="#AEB5C0"
+        app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintHeight_max="560dp"
+        app:layout_constraintVertical_bias="0.45">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Observaciones Técnicas"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="8dp"/>
+
+                <!-- 1 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿El filtro está en un lugar estable y/o seguro?" />
+                <RadioGroup
+                    android:id="@+id/rgEstableSeguro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbEstableSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbEstableNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 2 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿El filtro está ensamblado y tapado?" />
+                <RadioGroup
+                    android:id="@+id/rgEnsambladoTapado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbEnsamSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbEnsamNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 3 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿El filtro está limpio en su parte externa?" />
+                <RadioGroup
+                    android:id="@+id/rgLimpioExterno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbLimpioSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbLimpioNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 4 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Hay lavado de manos previo a la manipulación del filtro?" />
+                <RadioGroup
+                    android:id="@+id/rgLavadoManos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbLavadoSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbLavadoNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 5 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Adecuada manipulación de la arcilla?" />
+                <RadioGroup
+                    android:id="@+id/rgManipArcilla"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbArcillaSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbArcillaNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 6 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Limpieza del tanque (presencia de sedimentos)?" />
+                <RadioGroup
+                    android:id="@+id/rgTanqueSedimentos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbTanqueSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbTanqueNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 7 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Limpieza de la vasija cerámica (presencia de sedimentos)?" />
+                <RadioGroup
+                    android:id="@+id/rgVasijaSedimentos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbVasijaSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbVasijaNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 8 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Se evidencian fisuras en la arcilla?" />
+                <RadioGroup
+                    android:id="@+id/rgFisurasArcilla"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbFisurasSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbFisurasNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 9 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿La vasija presenta niveles de agua que imposibiliten su manipulación?" />
+                <RadioGroup
+                    android:id="@+id/rgNivelAgua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbNivelSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbNivelNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 10 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Cuenta con alguna instalación para el lavado de manos?" />
+                <RadioGroup
+                    android:id="@+id/rgInstalacionLavado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbInstalacionSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbInstalacionNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+                <!-- 11 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Tiene disponibilidad de jabón para lavado de manos?" />
+                <RadioGroup
+                    android:id="@+id/rgJabonLavado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbJabonSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí" />
+                    <RadioButton
+                        android:id="@+id/rbJabonNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No" />
+                </RadioGroup>
+
+            </LinearLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Barra inferior -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnteriorObsTec"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:text="ANTERIOR"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/tvSeccionObsTec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Sección 5 de 6"
+            android:textColor="@android:color/white"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSiguienteObsTec"
+            android:layout_width="140dp"
+            android:layout_height="48dp"
+            android:text="Siguiente"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/holo_blue_dark"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

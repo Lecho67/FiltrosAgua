@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5F6675">
+
+    <!-- Tarjeta centrada con altura acotada y scroll -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardUbicacion"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="#AEB5C0"
+        app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintHeight_max="560dp"
+        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ubicación"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="10dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etUbicacionSeg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese dirección / referencia de la ubicación"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:minLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- espacio para crecer dentro de la tarjeta -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"/>
+            </LinearLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Barra inferior -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnteriorUbicacion"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:text="ANTERIOR"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/tvSeccionUbicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Sección 6 de 6"
+            android:textColor="@android:color/white"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEnviarEncuesta"
+            android:layout_width="160dp"
+            android:layout_height="48dp"
+            android:text="ENVIAR ENCUESTA"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@color/successGreen"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

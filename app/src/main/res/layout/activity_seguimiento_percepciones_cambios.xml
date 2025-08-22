@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5F6675">
+
+    <!-- TARJETA centrada con altura limitada y scroll interno -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardPercepciones"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="#AEB5C0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+
+        app:layout_constrainedHeight="true"
+        app:layout_constraintHeight_max="520dp"
+        app:layout_constraintVertical_bias="0.45">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Percepciones y Cambios"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="4dp"/>
+
+                <!-- ¿Qué cambios ha notado...? -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Qué cambios ha notado desde que está usando el filtro?"
+                    android:textSize="14sp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCambiosNotados"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="88dp"
+                        android:maxLines="4"
+                        android:gravity="top|start"
+                        android:inputType="textMultiLine"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Percepción del agua -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Cuál es la percepción del agua que está consumiendo después de recibir el filtro?"
+                    android:textSize="14sp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPercepcionAgua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Opinión del sabor -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="¿Qué opinas del sabor del agua?"
+                    android:textSize="14sp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSaborAgua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- El agua presenta color -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="¿El agua presenta color?"
+                    android:textSize="14sp"/>
+
+                <RadioGroup
+                    android:id="@+id/rgColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbColorSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbColorNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
+
+                <!-- El agua presenta olor -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="¿El agua presenta olor?"
+                    android:textSize="14sp"/>
+
+                <RadioGroup
+                    android:id="@+id/rgOlor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbOlorSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbOlorNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
+
+                <!-- Disminución de enfermedades -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="¿Han disminuido las enfermedades asociadas al agua después del uso del filtro?"
+                    android:textSize="14sp"/>
+
+                <RadioGroup
+                    android:id="@+id/rgEnfDisminuyen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbEnfSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbEnfNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
+
+                <!-- Disminución de gastos familiares -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="¿Han disminuido los gastos familiares para acceder a agua apta para el consumo?"
+                    android:textSize="14sp"/>
+
+                <RadioGroup
+                    android:id="@+id/rgGastosDisminuyen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbGastosSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbGastosNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
+
+                <!-- ¿Cuánto gasta actualmente? -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="¿Cuánto gasta actualmente?"
+                    android:textSize="14sp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etGastoActual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- BARRA INFERIOR -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnteriorSeg3"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:text="ANTERIOR"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tvSeccionSeg3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Sección 3 de 6"
+            android:textColor="@android:color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSiguienteSeg3"
+            android:layout_width="140dp"
+            android:layout_height="48dp"
+            android:text="SIGUIENTE"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/holo_blue_dark" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

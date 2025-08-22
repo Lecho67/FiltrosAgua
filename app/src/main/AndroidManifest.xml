@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FiltrosAgua">
+        <activity
+            android:name=".seguimiento.SeguimientoUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".seguimiento.SeguimientoObservacionesTecnicasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".seguimiento.SeguimientoMantenimientoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".seguimiento.SeguimientoPercepcionesCambiosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".seguimiento.SeguimientoAccesoAguaFiltroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".seguimiento.SeguimientoInfoBasicaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaSaludActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaHigieneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaSaneamientoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaContaminacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaAlmacenamientoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaDesplazamientoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaPercepcionAguaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaAccesoAguaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaDemografiaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaBeneficiarioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrimeraVisitaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.FiltrosAgua" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5F6675">
+
+    <!-- Tarjeta centrada con altura limitada y scroll -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardMantenimiento"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="#AEB5C0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintHeight_max="520dp"
+        app:layout_constraintVertical_bias="0.45">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mantenimiento"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="8dp"/>
+
+                <!-- Cada cuánto mantenimiento -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Cada cuánto realiza el mantenimiento del filtro?"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFrecuenciaMantenimiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ej.: semanal / mensual"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Productos limpieza (arcilla) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="¿Qué productos emplea para la limpieza del componente de arcilla?"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etProductosArcilla"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Productos limpieza (plástico) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="¿Qué productos emplea para la limpieza del componente de plástico?"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etProductosPlastico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Conoce vida útil de la arcilla -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="¿Conoce el tiempo de vida útil de la arcilla?"/>
+                <RadioGroup
+                    android:id="@+id/rgVidaUtil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbVidaSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbVidaNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
+
+                <!-- Sabe dónde conseguir repuestos -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="¿Sabe dónde conseguir las piezas de repuesto para el filtro?"/>
+                <RadioGroup
+                    android:id="@+id/rgRepuestos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbRepSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbRepNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Barra inferior -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnteriorSeg4"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:text="ANTERIOR"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tvSeccionSeg4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Sección 4 de 6"
+            android:textColor="@android:color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSiguienteSeg4"
+            android:layout_width="140dp"
+            android:layout_height="48dp"
+            android:text="Siguiente"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/holo_blue_dark" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

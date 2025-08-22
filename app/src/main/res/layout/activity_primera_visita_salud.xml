@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5F6675">
+
+    <!-- Tarjeta -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardSalud"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#AEB5C0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salud"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:paddingBottom="8dp"/>
+
+            <!-- 1) Dolor de estómago (Sí/No) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Los niños han presentado dolores de estómago?"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <CheckBox
+                    android:id="@+id/cbDolorSi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sí"/>
+
+                <CheckBox
+                    android:id="@+id/cbDolorNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <!-- 2) Enfermedades de origen hídrico (múltiple + 'Ninguna') -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Se ha presentado enfermedades de origen hídrico? (Opción múltiple)"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbEnfDiarrea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diarrea"/>
+
+                <CheckBox
+                    android:id="@+id/cbEnfHepatitis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hepatitis"
+                    android:layout_marginStart="16dp"/>
+
+                <CheckBox
+                    android:id="@+id/cbEnfOtro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Otro"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="6dp"
+                android:paddingBottom="8dp">
+
+                <CheckBox
+                    android:id="@+id/cbEnfVomito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vómito"/>
+
+                <CheckBox
+                    android:id="@+id/cbEnfParasitosis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parasitosis"
+                    android:layout_marginStart="16dp"/>
+
+                <CheckBox
+                    android:id="@+id/cbEnfColera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cólera"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cbEnfNinguna"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ninguna"/>
+
+            <!-- Observaciones -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observaciones:"
+                android:layout_marginTop="8dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:boxBackgroundMode="outline"
+                app:boxBackgroundColor="@android:color/white"
+                app:boxStrokeColor="@android:color/darker_gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etObservaciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minLines="3"
+                    android:gravity="top|start"
+                    android:hint="Escriba comentarios u observaciones"
+                    android:inputType="textMultiLine"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Barra inferior -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/cardSalud"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnteriorSalud"
+            style="@style/PillButton.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="ANTERIOR"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:id="@+id/tvSeccionSalud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sección 12 de 12"
+            android:textColor="@color/white"
+            android:layout_marginEnd="16dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEnviarEncuesta"
+            style="@style/PillButton.Success"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="ENVIAR ENCUESTA"/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

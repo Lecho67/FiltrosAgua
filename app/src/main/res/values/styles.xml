@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Título dentro de la tarjeta -->
+    <style name="App.Form.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- Tarjeta gris con borde sutil -->
+    <style name="App.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/card</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="strokeColor">#33FFFFFF</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="useCompatPadding">true</item>
+    </style>
+
+    <!-- TextInputLayout blanco, redondeado -->
+    <style name="App.TextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">@dimen/space_12</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeColor">#B0B0B0</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="hintTextColor">#7A7A7A</item>
+    </style>
+
+    <!-- Botón primario de navegación -->
+    <style name="App.Button.Nav" parent="Widget.MaterialComponents.Button">
+        <item name="android:minWidth">120dp</item>
+        <item name="android:height">48dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="backgroundTint">@color/primaryBlue</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="rippleColor">#33000000</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
+
+        <!-- Botón azul tipo ‘pill’ -->
+    <style name="PillButton.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">24dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="backgroundTint">@color/primaryBlue</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+        <!-- Botón verde para Enviar -->
+    <style name="PillButton.Success" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">24dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="backgroundTint">@color/successGreen</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+
+
+</resources>

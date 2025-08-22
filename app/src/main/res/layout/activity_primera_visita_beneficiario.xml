@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <!-- Contenedor principal -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentHolder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <!-- Tarjeta centrada -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardBeneficiario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/card"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:text="Información del Beneficiario"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+                <!-- Tipo de beneficiario -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tipo de beneficiario"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@android:color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTipoBeneficiario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Grupo Poblacional -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Grupo Poblacional"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@android:color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etGrupoPoblacional"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Nombre -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Nombre del Beneficiario"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@android:color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNombreBeneficiario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Cédula -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Cédula"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@android:color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCedulaBeneficiario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Teléfono -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Teléfono"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@android:color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTelefonoBeneficiario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Barra de navegación inferior -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardBeneficiario">
+
+            <!-- Botón Anterior -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAnterior"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anterior"
+                android:textColor="@android:color/white"
+                app:cornerRadius="12dp"
+                app:backgroundTint="@android:color/holo_blue_dark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Texto centrado -->
+            <TextView
+                android:id="@+id/tvSeccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sección 2 de 12"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toEndOf="@id/btnAnterior"
+                app:layout_constraintEnd_toStartOf="@id/btnSiguiente"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" />
+
+            <!-- Botón Siguiente -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSiguiente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Siguiente"
+                android:textColor="@android:color/white"
+                app:cornerRadius="12dp"
+                app:backgroundTint="@android:color/holo_blue_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

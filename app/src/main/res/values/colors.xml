@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#6B7280</color>           <!-- fondo gris -->
+    <color name="topBar">#E0E0E0</color>       <!-- franja clara superior -->
+    <color name="card">#9CA3AF</color>         <!-- tarjeta -->
+    <color name="primaryBlue">#1976D2</color>  <!-- azul botones -->
+    <color name="accentGreen">#2E7D32</color>  <!-- verde compartir -->
+    <color name="white">#FFFFFF</color>
+    <color name="text_primary">#111111</color>
+    <color name="successGreen">#2E7D32</color>
+</resources>

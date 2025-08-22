@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5F6675">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardContaminacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="14dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#AEB5C0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contaminación y Protección"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:paddingBottom="8dp"/>
+
+            <!-- 1. Contacto con fuentes de contaminación (múltiple) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Antes de llegar a su casa o lugar de uso, ¿El agua tiene contacto con fuentes de contaminación? (Opción múltiple)"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbContAnimales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Animales"/>
+
+                <CheckBox
+                    android:id="@+id/cbContAguasRes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aguas Residuales"
+                    android:layout_marginStart="16dp"/>
+
+                <CheckBox
+                    android:id="@+id/cbContOtros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Otros"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="6dp"
+                android:paddingBottom="8dp">
+
+                <CheckBox
+                    android:id="@+id/cbContBasuras"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Basuras"/>
+
+                <CheckBox
+                    android:id="@+id/cbContQuimicos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Químicos"
+                    android:layout_marginStart="16dp"/>
+
+                <CheckBox
+                    android:id="@+id/cbContNinguno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ninguno"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <!-- 2. ¿Fuente protegida? (Sí/No exclusivos) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿La fuente donde se toma el agua está protegida?"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <CheckBox
+                    android:id="@+id/cbProtegidaSi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sí"/>
+
+                <CheckBox
+                    android:id="@+id/cbProtegidaNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <!-- 3. ¿Es importante consumir agua potable/de calidad? (Sí/No) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Considera que consumir agua potable o de calidad es importante?"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <CheckBox
+                    android:id="@+id/cbImportanciaSi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sí"/>
+
+                <CheckBox
+                    android:id="@+id/cbImportanciaNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <!-- 4. Beneficios de consumir agua potable (múltiple) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Cuáles cree que son los beneficios que trae consumir agua potable o de calidad? (Opción múltiple)"
+                android:paddingBottom="6dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbBenMejorSalud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mejor Salud"/>
+
+                <CheckBox
+                    android:id="@+id/cbBenMejorSabor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mejor Sabor"
+                    android:layout_marginStart="16dp"/>
+
+                <CheckBox
+                    android:id="@+id/cbBenOtro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Otro"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="6dp">
+
+                <CheckBox
+                    android:id="@+id/cbBenMenosEnfermedades"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menos enfermedades"/>
+
+                <CheckBox
+                    android:id="@+id/cbBenAhorroEconomico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ahorro Económico"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Barra inferior -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/cardContaminacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnteriorContaminacion"
+            android:layout_width="120dp"
+            android:layout_height="44dp"
+            android:text="ANTERIOR"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="22dp"
+            app:backgroundTint="@android:color/holo_blue_dark"/>
+
+        <TextView
+            android:id="@+id/tvSeccionContaminacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Sección 9 de 12"
+            android:textColor="@android:color/white"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSiguienteContaminacion"
+            android:layout_width="140dp"
+            android:layout_height="44dp"
+            android:text="SIGUIENTE"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            app:cornerRadius="22dp"
+            app:backgroundTint="@android:color/holo_blue_dark"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
