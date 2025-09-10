@@ -2,126 +2,167 @@ package com.example.filtrosagua;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.filtrosagua.util.Prefs;
+import com.example.filtrosagua.util.SessionCsvPrimera;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.Normalizer;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class PrimeraVisitaUbicacionActivity extends AppCompatActivity {
 
-    private static final String TAG = "UbicacionActivity";
+    private MaterialAutoCompleteTextView acDepartamento, acMunicipio, acVereda;
+    private MaterialButton btnAnterior, btnSiguiente;
 
-    /** Normaliza: quita tildes, pasa a minúsculas y recorta */
-    private String normalize(String s) {
-        if (s == null) return "";
-        String n = Normalizer.normalize(s, Normalizer.Form.NFD)
-                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-        return n.toLowerCase().trim();
-    }
+    private static final String K_DEP = "pv_ubi_departamento";
+    private static final String K_MUN = "pv_ubi_municipio";
+    private static final String K_VER = "pv_ubi_vereda";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_primera_visita_ubicacion);
 
-        TextInputEditText etDepartamento = findViewById(R.id.etDepartamento);
-        MaterialAutoCompleteTextView acMunicipio = findViewById(R.id.acMunicipio);
-        MaterialAutoCompleteTextView acVereda    = findViewById(R.id.acVereda);
-        TextInputLayout tilVereda                = findViewById(R.id.tilVereda);
-        MaterialButton btnAnterior               = findViewById(R.id.btnAnterior);
-        MaterialButton btnSiguiente              = findViewById(R.id.btnSiguiente);
+        acDepartamento = findViewById(R.id.acDepartamento);
+        acMunicipio    = findViewById(R.id.acMunicipio);
+        acVereda       = findViewById(R.id.acVereda);
+        btnAnterior    = findViewById(R.id.btnPvAnterior);
+        btnSiguiente   = findViewById(R.id.btnPvSiguiente);
 
-        // Departamento fijo
-        etDepartamento.setText("Valle del Cauca");
-        etDepartamento.setEnabled(false);
+        // 1) Departamento: por defecto "Valle del Cauca"
+        String depSaved = Prefs.get(this, K_DEP);
+        if (depSaved.isEmpty()) depSaved = "Valle del Cauca";
+        acDepartamento.setText(depSaved, false);
 
-        // MUNICIPIOS
-        ArrayAdapter<String> municipiosAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.municipios_valle)
-        );
-        acMunicipio.setAdapter(municipiosAdapter);
-        acMunicipio.setThreshold(0); // mostrar sugerencias sin escribir
-        acMunicipio.setOnClickListener(v -> acMunicipio.showDropDown());
-        acMunicipio.setOnFocusChangeListener((v, hasFocus) -> { if (hasFocus) acMunicipio.showDropDown(); });
+        // Cargar municipios para Valle del Cauca (siempre usa municipios_valle)
+        loadMunicipiosValle();
 
-        // VEREDAS: estado inicial
-        acVereda.setText("");
-        acVereda.setThreshold(0);
-        // Por defecto mostramos la flecha; si no hay lista la ocultamos
-        tilVereda.setEndIconMode(TextInputLayout.END_ICON_DROPDOWN_MENU);
-        acVereda.setOnClickListener(v -> {
-            if (tilVereda.getEndIconMode() == TextInputLayout.END_ICON_DROPDOWN_MENU) {
-                acVereda.showDropDown();
-            }
-        });
-        acVereda.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus && tilVereda.getEndIconMode() == TextInputLayout.END_ICON_DROPDOWN_MENU) {
-                acVereda.showDropDown();
-            }
-        });
+        // 2) Restaurar municipio/vereda si existen
+        String munSaved = Prefs.get(this, K_MUN);
+        String verSaved = Prefs.get(this, K_VER);
 
-        // MAPA municipio -> arreglo de veredas (usa claves normalizadas)
-        Map<String, Integer> mapVeredas = new HashMap<>();
-        mapVeredas.put(normalize("Cali"),    R.array.corregimientos_cali);
-        mapVeredas.put(normalize("Palmira"), R.array.corregimientos_palmira);
-        mapVeredas.put(normalize("Jamundí"), R.array.corregimientos_jamundi);
-        // Agrega más: mapVeredas.put(normalize("Tuluá"), R.array.corregimientos_tulua);
+        if (!munSaved.isEmpty()) {
+            acMunicipio.setText(munSaved, false);
+            loadCorregimientosFor(munSaved);
+        }
+        if (!verSaved.isEmpty()) {
+            acVereda.setText(verSaved, false);
+        }
 
-        // Cuando elijan MUNICIPIO:
-        acMunicipio.setOnItemClickListener((parent, view, position, id) -> {
-            String muni   = (String) parent.getItemAtPosition(position);
-            String key    = normalize(muni);
-            Integer resId = mapVeredas.get(key);
+        // 3) Autosave
+        addAutosave(acDepartamento, K_DEP);
+        addAutosave(acMunicipio,    K_MUN);
+        addAutosave(acVereda,       K_VER);
 
-            Log.d(TAG, "Municipio seleccionado: " + muni + "  (key=" + key + "), resId=" + resId);
-            Toast.makeText(this,
-                    resId != null ? "Municipio con lista: " + muni : "Municipio sin lista: " + muni,
-                    Toast.LENGTH_SHORT).show();
-
-            if (resId != null) {
-                // HAY LISTA → Modo dropdown
-                ArrayAdapter<String> veredasAdapter = new ArrayAdapter<>(
-                        this, android.R.layout.simple_list_item_1,
-                        getResources().getStringArray(resId)
-                );
-                acVereda.setAdapter(veredasAdapter);
-                acVereda.setText("", false);
-
-                tilVereda.setEndIconMode(TextInputLayout.END_ICON_DROPDOWN_MENU);
-                acVereda.setInputType(InputType.TYPE_NULL); // evita teclado
-                acVereda.clearFocus();
-                acVereda.post(acVereda::showDropDown); // asegura apertura
-            } else {
-                // SIN LISTA → Campo editable
-                acVereda.setAdapter(null);
-                acVereda.setText("", false);
-
-                tilVereda.setEndIconMode(TextInputLayout.END_ICON_NONE); // oculta flecha
-                acVereda.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-                acVereda.requestFocus();
-            }
+        // 4) Encadenado
+        acDepartamento.setOnItemClickListener((p, v, pos, id) -> {
+            Prefs.put(this, K_DEP, acDepartamento.getText().toString());
+            acMunicipio.setText("", false);
+            acVereda.setText("", false);
+            Prefs.put(this, K_MUN, "");
+            Prefs.put(this, K_VER, "");
+            loadMunicipiosValle(); // siempre usa municipios_valle
         });
 
-        // Navegación
+        acMunicipio.setOnItemClickListener((p, v, pos, id) -> {
+            String municipio = acMunicipio.getText().toString();
+            Prefs.put(this, K_MUN, municipio);
+            acVereda.setText("", false);
+            Prefs.put(this, K_VER, "");
+            loadCorregimientosFor(municipio);
+        });
+
+        // 5) Navegación
         btnAnterior.setOnClickListener(v -> {
+            saveSectionNow();
             startActivity(new Intent(this, PrimeraVisitaBeneficiarioActivity.class));
             finish();
         });
+
         btnSiguiente.setOnClickListener(v -> {
+            saveSectionNow();
             startActivity(new Intent(this, PrimeraVisitaDemografiaActivity.class));
             finish();
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveSectionNow();
+    }
+
+    /* ================== Helpers ================== */
+
+    private void addAutosave(MaterialAutoCompleteTextView v, String key) {
+        v.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
+            @Override public void onTextChanged(CharSequence s, int st, int b, int c) {}
+            @Override public void afterTextChanged(Editable s) {
+                Prefs.put(PrimeraVisitaUbicacionActivity.this, key, s.toString());
+            }
+        });
+    }
+
+    private void setAdapterFromArray(MaterialAutoCompleteTextView view, int arrayResId) {
+        String[] items = (arrayResId == 0) ? new String[]{} : getResources().getStringArray(arrayResId);
+        view.setAdapter(new ArrayAdapter<>(this, R.layout.list_item_dropdown, items));
+    }
+
+    /** MUNICIPIOS: usa SIEMPRE R.array.municipios_valle */
+    private void loadMunicipiosValle() {
+        int resId = getResources().getIdentifier("municipios_valle", "array", getPackageName());
+        setAdapterFromArray(acMunicipio, resId);
+        if (resId == 0) {
+            Toast.makeText(this, "No se encontró el array municipios_valle", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** CORREGIMIENTOS: busca R.array.corregimientos_<slug_municipio> */
+    private void loadCorregimientosFor(String municipio) {
+        String slug = slug(municipio); // p. ej. "cali", "la_buitrera_palmira"
+        int resId = getResources().getIdentifier("corregimientos_" + slug, "array", getPackageName());
+        setAdapterFromArray(acVereda, resId);
+        if (resId == 0) {
+            // Si no hay array, dejamos vacío el listado (no es error grave)
+            acVereda.setText("", false);
+            Toast.makeText(this, "Sin corregimientos para: " + municipio, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void saveSectionNow() {
+        try {
+            Map<String, String> data = new LinkedHashMap<>();
+            data.put("departamento",         text(acDepartamento));
+            data.put("municipio",            text(acMunicipio));
+            data.put("vereda_corregimiento", text(acVereda));
+            SessionCsvPrimera.saveSection(this, "ubicacion", data);
+        } catch (Exception ignored) {}
+    }
+
+    private String text(MaterialAutoCompleteTextView v) {
+        return v.getText() == null ? "" : v.getText().toString().trim();
+    }
+
+    /** slug: minúsculas, sin acentos, paréntesis y símbolos; espacios -> '_' */
+    private String slug(String s) {
+        if (s == null) return "";
+        String n = Normalizer.normalize(s, Normalizer.Form.NFD)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        n = n.toLowerCase(Locale.ROOT).trim();
+        n = n.replaceAll("[()]", "");               // quita paréntesis
+        n = n.replaceAll("[^a-z0-9\\s_\\-]", "");   // deja letras/números/espacios/guiones
+        n = n.replaceAll("\\s+", "_");
+        return n;
     }
 }

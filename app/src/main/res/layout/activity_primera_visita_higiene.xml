@@ -6,121 +6,114 @@
     android:layout_height="match_parent"
     android:background="#5F6675">
 
-    <!-- Tarjeta -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardHigiene"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:cardCornerRadius="14dp"
         app:cardUseCompatPadding="true"
-        app:cardElevation="2dp"
         app:cardBackgroundColor="#AEB5C0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomBar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constrainedHeight="true"
+        app:layout_constraintHeight_max="520dp"
+        app:layout_constraintVertical_bias="0.45">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Título -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Higiene y Capacitación"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"
-                android:paddingBottom="8dp"/>
-
-            <!-- Q1: ¿Ha tenido capacitación? (Sí/No) -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¿Ha tenido alguna vez capacitación en prácticas de higiene?"
-                android:paddingBottom="6dp"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="12dp">
-
-                <CheckBox
-                    android:id="@+id/cbCapacitacionSi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sí"/>
-
-                <CheckBox
-                    android:id="@+id/cbCapacitacionNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No"
-                    android:layout_marginStart="16dp"/>
-            </LinearLayout>
-
-            <!-- Q2: Prácticas de higiene (múltiple) -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¿Qué prácticas de higiene desarrolla en su día a día? (Opción múltiple)"
-                android:paddingBottom="6dp"/>
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="12dp">
 
-                <CheckBox
-                    android:id="@+id/cbLavadoManos"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lavado de manos"/>
+                    android:text="Higiene y Capacitación"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="6dp"/>
 
-                <CheckBox
-                    android:id="@+id/cbLimpiezaHogar"
+                <!-- Capacitacion Si/No -->
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Limpieza del hogar"
-                    android:layout_marginStart="16dp"/>
+                    android:text="¿Ha tenido alguna vez capacitación en prácticas de higiene?"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp">
+                    <CheckBox
+                        android:id="@+id/cbCapSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <CheckBox
+                        android:id="@+id/cbCapNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="No"/>
+                </LinearLayout>
+
+                <!-- Prácticas múltiples -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="¿Qué prácticas de higiene desarrolla en su día a día? (Opción múltiple)"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="4dp">
+
+                    <CheckBox
+                        android:id="@+id/cbLavadoManos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lavado de manos"/>
+
+                    <CheckBox
+                        android:id="@+id/cbLimpiezaHogar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Limpieza del hogar"/>
+
+                    <CheckBox
+                        android:id="@+id/cbCepillado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cepillado de dientes"/>
+
+                    <CheckBox
+                        android:id="@+id/cbOtro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Otro"/>
+
+                    <CheckBox
+                        android:id="@+id/cbBanoDiario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Baño diario"/>
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="6dp">
-
-                <CheckBox
-                    android:id="@+id/cbCepillado"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cepillado de dientes"/>
-
-                <CheckBox
-                    android:id="@+id/cbOtro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Otro"
-                    android:layout_marginStart="16dp"/>
-            </LinearLayout>
-
-            <CheckBox
-                android:id="@+id/cbBanoDiario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Baño diario"
-                android:layout_marginTop="6dp"/>
-
-        </LinearLayout>
+        </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Barra inferior -->
+    <!-- Bottom bar -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="0dp"
@@ -130,39 +123,37 @@
         android:layout_marginBottom="12dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/cardHigiene"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAnteriorHigiene"
+            android:id="@+id/btnAnteriorPv11"
             android:layout_width="120dp"
-            android:layout_height="44dp"
+            android:layout_height="48dp"
             android:text="ANTERIOR"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            app:cornerRadius="22dp"
-            app:backgroundTint="@android:color/holo_blue_dark"/>
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/tvSeccionHigiene"
+            android:id="@+id/tvSeccionPv11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="Sección 11 de 12"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSiguienteHigiene"
+            android:id="@+id/btnSiguientePv11"
             android:layout_width="140dp"
-            android:layout_height="44dp"
+            android:layout_height="48dp"
             android:text="SIGUIENTE"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            app:cornerRadius="22dp"
-            app:backgroundTint="@android:color/holo_blue_dark"/>
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/holo_blue_dark" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

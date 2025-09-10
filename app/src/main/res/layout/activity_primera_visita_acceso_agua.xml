@@ -4,222 +4,200 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:background="#5F6675">
 
-    <!-- Tarjeta -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardAccesoAgua"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/card"
-        app:cardCornerRadius="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="14dp"
         app:cardUseCompatPadding="true"
-        app:strokeColor="#33FFFFFF"
-        app:strokeWidth="1dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="#AEB5C0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
-        app:layout_constraintVertical_bias="0.30">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintHeight_max="560dp"
+        app:layout_constraintVertical_bias="0.45">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <TextView
-                android:id="@+id/tvTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Acceso al Agua"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:paddingBottom="8dp"/>
-
-            <!-- Pregunta 1 -->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Tiene agua disponible para sus actividades diarias?"
-                android:textColor="@color/text_primary"/>
+                android:orientation="vertical"
+                android:padding="12dp">
 
-            <RadioGroup
-                android:id="@+id/rgAguaDisponible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp">
-
-                <RadioButton
-                    android:id="@+id/rbAguaSi"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sí"/>
+                    android:text="Acceso al Agua"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="6dp"/>
 
-                <RadioButton
-                    android:id="@+id/rbAguaNo"
+                <!-- ¿Tiene agua disponible? -->
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="No"/>
-            </RadioGroup>
+                    android:text="¿Tiene agua disponible para sus actividades diarias?"/>
+                <RadioGroup
+                    android:id="@+id/rgDisponeAgua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbDispSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbDispNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
 
-            <!-- Pregunta 2 -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="¿De dónde toma el agua?"
-                android:textColor="@color/text_primary"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilFuenteAgua"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundMode="outline"
-                app:boxBackgroundColor="@color/white">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFuenteAgua"
+                <!-- ¿De dónde toma el agua? -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="¿De dónde toma el agua?"/>
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Fuente / respuesta"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:minLines="2"
-                    android:gravity="top|start"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFuenteAgua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="88dp"
+                        android:maxLines="4"
+                        android:gravity="top|start"
+                        android:hint="Fuente / respuesta"
+                        android:inputType="textMultiLine"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Pregunta 3 -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="¿Utiliza otra fuente de agua?"
-                android:textColor="@color/text_primary"/>
-
-            <RadioGroup
-                android:id="@+id/rgOtraFuente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp">
-
-                <RadioButton
-                    android:id="@+id/rbOtraFuenteSi"
+                <!-- ¿Utiliza otra fuente? -->
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sí"/>
-
-                <RadioButton
-                    android:id="@+id/rbOtraFuenteNo"
+                    android:layout_marginTop="8dp"
+                    android:text="¿Utiliza otra fuente de agua?"/>
+                <RadioGroup
+                    android:id="@+id/rgOtraFuente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="No"/>
-            </RadioGroup>
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbOtraSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbOtraNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
 
-            <!-- Pregunta 4 -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="En caso de contar con acueducto, ¿quién administra el servicio?"
-                android:textColor="@color/text_primary"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilAdminAcueducto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundMode="outline"
-                app:boxBackgroundColor="@color/white">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etAdminAcueducto"
+                <!-- Administrador -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="En caso de contar con acueducto, ¿quién administra el servicio?"/>
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Administrador / entidad"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:minLines="2"
-                    android:gravity="top|start"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etAdministrador"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Administrador / entidad"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Pregunta 5 -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="¿Cuántas horas al día cuenta con disponibilidad de agua?"
-                android:textColor="@color/text_primary"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilHorasAgua"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundMode="outline"
-                app:boxBackgroundColor="@color/white">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etHorasAgua"
+                <!-- Horas/día -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="¿Cuántas horas al día cuenta con disponibilidad de agua?"/>
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Horas/día"
-                    android:inputType="number"
-                    android:digits="0123456789"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etHorasDia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Horas/día"
+                        android:inputType="numberDecimal"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Barra inferior -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- BOTTOM BAR -->
+    <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAnterior"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="48dp"
-            android:text="Anterior"
+            android:text="ANTERIOR"
+            android:textAllCaps="true"
             android:textColor="@android:color/white"
-            app:backgroundTint="@color/primaryBlue"
-            app:cornerRadius="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/tvSeccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:text="Sección 5 de 12"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toEndOf="@id/btnAnterior"
-            app:layout_constraintEnd_toStartOf="@id/btnSiguiente"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"/>
+            android:textColor="@android:color/white" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSiguiente"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="48dp"
-            android:text="Siguiente"
+            android:text="SIGUIENTE"
+            android:textAllCaps="true"
             android:textColor="@android:color/white"
-            app:backgroundTint="@color/primaryBlue"
-            app:cornerRadius="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/holo_blue_dark" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

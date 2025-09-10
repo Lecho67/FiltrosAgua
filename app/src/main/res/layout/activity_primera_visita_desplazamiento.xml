@@ -6,117 +6,110 @@
     android:layout_height="match_parent"
     android:background="#5F6675">
 
-    <!-- Tarjeta (gris clara) centrada como en sección 7 -->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardDesplazamiento"
+        android:id="@+id/cardDespl"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:cardCornerRadius="14dp"
         app:cardUseCompatPadding="true"
-        app:cardElevation="2dp"
         app:cardBackgroundColor="#AEB5C0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomBar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constrainedHeight="true"
+        app:layout_constraintHeight_max="520dp"
+        app:layout_constraintVertical_bias="0.45">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <!-- Título -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Desplazamiento por Agua"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:paddingBottom="8dp" />
-
-            <!-- Pregunta principal -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¿Tiene que desplazarse para tener acceso a agua?"
-                android:paddingBottom="8dp" />
-
-            <RadioGroup
-                android:id="@+id/rgDesplazamiento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="8dp">
-
-                <RadioButton
-                    android:id="@+id/rbSi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sí" />
-
-                <RadioButton
-                    android:id="@+id/rbNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No"
-                    android:layout_marginStart="16dp" />
-            </RadioGroup>
-
-            <!-- Medio de transporte -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="En caso de tener que desplazarse por agua, ¿Qué medio utiliza?" />
-
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                app:boxBackgroundMode="outline"
-                app:boxBackgroundColor="@android:color/white"
-                app:boxStrokeColor="@android:color/darker_gray">
+                android:orientation="vertical"
+                android:padding="12dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etMedio"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Desplazamiento por Agua"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="6dp"/>
+
+                <!-- ¿Tiene que desplazarse? -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Tiene que desplazarse para tener acceso a agua?"/>
+                <RadioGroup
+                    android:id="@+id/rgDesplaza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbDesplazaSi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"/>
+                    <RadioButton
+                        android:id="@+id/rbDesplazaNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"/>
+                </RadioGroup>
+
+                <!-- Medio que utiliza -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="En caso de tener que desplazarse por agua, ¿Qué medio utiliza?"/>
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Comentario"
-                    android:minHeight="48dp"
-                    android:inputType="textCapSentences" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMedioDesplaza"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Transporte / medio"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Tiempo (min) -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="¿Cuánto tiempo se demora? (min):" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                app:boxBackgroundMode="outline"
-                app:boxBackgroundColor="@android:color/white"
-                app:boxStrokeColor="@android:color/darker_gray">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etMinutos"
+                <!-- Tiempo en minutos -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="¿Cuánto tiempo se demora? (min)"/>
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Comentario"
-                    android:minHeight="48dp"
-                    android:inputType="number"
-                    android:imeOptions="actionDone" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:boxStrokeColor="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTiempoMin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Minutos"
+                        android:inputType="number"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Barra inferior (idéntica a Sección 7) -->
+    <!-- BOTTOM BAR -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="0dp"
@@ -126,48 +119,38 @@
         android:layout_marginBottom="12dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/cardDesplazamiento"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAnteriorDesplazamiento"
-            style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/btnAnterior"
             android:layout_width="120dp"
-            android:layout_height="44dp"
+            android:layout_height="48dp"
             android:text="ANTERIOR"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="14sp"
-            app:cornerRadius="22dp"
-            app:backgroundTint="#1976D2" />
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/tvSeccionDesplazamiento"
+            android:id="@+id/tvSeccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="Sección 6 de 12"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:fontFamily="sans-serif-medium" />
+            android:textColor="@android:color/white" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSiguienteDesplazamiento"
-            style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/btnSiguiente"
             android:layout_width="140dp"
-            android:layout_height="44dp"
+            android:layout_height="48dp"
             android:text="SIGUIENTE"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="14sp"
-            app:cornerRadius="22dp"
-            app:backgroundTint="#1976D2" />
+            app:cornerRadius="24dp"
+            app:backgroundTint="@android:color/holo_blue_dark" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
