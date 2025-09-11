@@ -76,10 +76,10 @@ public class PrimeraVisitaPercepcionAguaActivity extends AppCompatActivity {
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            data.put("percepcion_agua.percepcion", t(etPercepcion));
-            data.put("percepcion_agua.sabor",      t(etSabor));
-            data.put("percepcion_agua.aspecto",    t(etClaridad)); // clara/oscura/por temporada
-            data.put("percepcion_agua.olor",       getRadioSiNo());
+            data.put("percepcion", t(etPercepcion));
+            data.put("sabor",      t(etSabor));
+            data.put("aspecto",    t(etClaridad)); // clara/oscura/por temporada
+            data.put("olor",       getRadioSiNo());
 
             SessionCsvPrimera.saveSection(this, "percepcion_agua", data);
         } catch (Exception e) {

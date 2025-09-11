@@ -83,9 +83,9 @@ public class PrimeraVisitaDesplazamientoActivity extends AppCompatActivity {
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            data.put("desplazamiento.necesita_desplazarse", getRadioSiNo(rgDesplaza)); // "Si"/"No"
-            data.put("desplazamiento.medio_utiliza",        t(etMedioDesplaza));
-            data.put("desplazamiento.tiempo_min",           t(etTiempoMin));
+            data.put("necesita_desplazarse", getRadioSiNo(rgDesplaza)); // "Si"/"No"
+            data.put("medio_utiliza",        t(etMedioDesplaza));
+            data.put("tiempo_min",           t(etTiempoMin));
 
             SessionCsvPrimera.saveSection(this, "desplazamiento", data);
         } catch (Exception e) {

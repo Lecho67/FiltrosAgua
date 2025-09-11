@@ -95,11 +95,11 @@ public class PrimeraVisitaAccesoAguaActivity extends AppCompatActivity {
             Map<String, String> data = new LinkedHashMap<>();
 
             // ⚠️ Claves canónicas que espera el unificador
-            data.put("acceso_agua.tiene_agua",        getRadioSiNo(rgDispone));  // "Si" / "No"
-            data.put("acceso_agua.fuente_respuesta",  t(etFuente));              // texto libre
-            data.put("acceso_agua.usa_otra_fuente",   getRadioSiNo(rgOtra));     // "Si" / "No" (opcional)
-            data.put("acceso_agua.administra_servicio", t(etAdmin));             // texto
-            data.put("acceso_agua.horas_dia",         t(etHoras));               // "8"...
+            data.put("tiene_agua",        getRadioSiNo(rgDispone));  // "Si" / "No"
+            data.put("fuente_respuesta",  t(etFuente));              // texto libre
+            data.put("usa_otra_fuente",   getRadioSiNo(rgOtra));     // "Si" / "No" (opcional)
+            data.put("administra_servicio", t(etAdmin));             // texto
+            data.put("horas_dia",         t(etHoras));               // "8"...
 
             // Sección: "acceso_agua" (el campo va con el prefijo como acordamos)
             SessionCsvPrimera.saveSection(this, "acceso_agua", data);
