@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.filtrosagua.R;
 import com.example.filtrosagua.util.Prefs;
-import com.example.filtrosagua.util.SessionCsv;
+import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 
 import java.text.SimpleDateFormat;
@@ -105,7 +105,7 @@ public class SeguimientoInfoBasicaActivity extends AppCompatActivity {
         long now = System.currentTimeMillis();
         if (now - lastSaveMs < 300) return; // anti-rebote opcional
         lastSaveMs = now;
-        try { SessionCsv.saveSection(this, "info_basica", buildData()); } catch (Exception ignored) {}
+        try { SessionCsvSeguimiento.saveSection(this, "info_basica", buildData()); } catch (Exception ignored) {}
     }
 
     private void attachAutosave(EditText et, String key) {

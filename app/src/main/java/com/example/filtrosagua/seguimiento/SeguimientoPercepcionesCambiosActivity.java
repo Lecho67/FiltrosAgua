@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.filtrosagua.R;
 import com.example.filtrosagua.util.Prefs;
-import com.example.filtrosagua.util.SessionCsv;
+import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.LinkedHashMap;
@@ -145,10 +145,8 @@ public class SeguimientoPercepcionesCambiosActivity extends AppCompatActivity {
     /** Upsert de la sección en seguimiento.csv (sin duplicados). */
     private void saveSectionNow() {
         try {
-            SessionCsv.saveSection(this, "percepciones_cambios", buildData());
-        } catch (Exception ignored) {
-            // evitamos crasheos por IO momentáneo
-        }
+            SessionCsvSeguimiento.saveSection(this, "percepciones_cambios", buildData());
+        } catch (Exception ignored) {}
     }
 
     private void autosaveText(EditText et, String key) {

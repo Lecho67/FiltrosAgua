@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.filtrosagua.R;
 import com.example.filtrosagua.util.Prefs;
-import com.example.filtrosagua.util.SessionCsv;
+import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.LinkedHashMap;
@@ -112,7 +112,7 @@ public class SeguimientoMantenimientoActivity extends AppCompatActivity {
             data.put("sabe_donde_conseguir_repuestos", selected(rgRepuestos));
 
             // Guarda/actualiza sin duplicar filas de esta sección
-            SessionCsv.saveSection(this, "mantenimiento", data);
+            SessionCsvSeguimiento.saveSection(this, "mantenimiento", data);
 
         } catch (Exception ignored) {
             // evita crasheos por IO momentáneo

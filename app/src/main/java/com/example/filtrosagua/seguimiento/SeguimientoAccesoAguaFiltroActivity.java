@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.filtrosagua.R;
 import com.example.filtrosagua.util.Prefs;
-import com.example.filtrosagua.util.SessionCsv;
+import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 
 import java.text.SimpleDateFormat;
@@ -113,7 +113,7 @@ public class SeguimientoAccesoAguaFiltroActivity extends AppCompatActivity {
 
     private void saveSectionNow() {
         try {
-            SessionCsv.saveSection(this, "acceso_agua_filtro", buildData());
+            SessionCsvSeguimiento.saveSection(this, "acceso_agua_filtro", buildData());
             // DEBUG útil: confirma que sí se escribió y muestra la ruta
             // (puedes comentarlo cuando verifiques que ya guarda bien)
             // Toast.makeText(this, "Guardado acceso_agua_filtro → " + SessionCsv.file(this).getAbsolutePath(), Toast.LENGTH_SHORT).show();

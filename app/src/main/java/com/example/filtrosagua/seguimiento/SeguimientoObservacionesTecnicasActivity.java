@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.filtrosagua.R;
 import com.example.filtrosagua.util.Prefs;
-import com.example.filtrosagua.util.SessionCsv;
+import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.LinkedHashMap;
@@ -118,7 +118,7 @@ public class SeguimientoObservacionesTecnicasActivity extends AppCompatActivity 
             data.put("niveles_agua_impiden_manipulacion",    selected(rgNivelesAgua));
             data.put("instalacion_lavado_manos",             selected(rgInstLavadoManos));
             data.put("disp_jabon_lavado_manos",              selected(rgJabon));
-            SessionCsv.saveSection(this, "observaciones_tecnicas", data);
+            SessionCsvSeguimiento.saveSection(this, "observaciones_tecnicas", data);
         } catch (Exception ignored) {}
     }
 

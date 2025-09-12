@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.filtrosagua.MainActivity;
 import com.example.filtrosagua.R;
 import com.example.filtrosagua.util.Prefs;
-import com.example.filtrosagua.util.SessionCsv;
+import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.LinkedHashMap;
@@ -55,11 +55,11 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
             try {
                 // 1) Guardar sección
                 saveSectionNow();
-                // 2) Consolidar seguimiento.csv -> master.csv
-                SessionCsv.commitToMaster(this);
+                // 2) Consolidar seguimiento.csv -> seguimiento_master_wide.csv
+                SessionCsvSeguimiento.commitToMasterWide(this);
 
                 // 3) Mostrar ruta del maestro
-                java.io.File m = SessionCsv.masterFile(this);
+                java.io.File m = SessionCsvSeguimiento.fMasterWide(this);
                 if (m != null) {
                     Toast.makeText(
                             this,
@@ -69,7 +69,7 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
                 }
 
                 // 4) Limpiar archivo de sesión para la próxima encuesta (opcional pero recomendado)
-                SessionCsv.clearSession(this);
+                SessionCsvSeguimiento.clearSession(this);
 
             } catch (Exception e) {
                 Toast.makeText(this, "Error al enviar: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -94,7 +94,7 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
         try {
             Map<String, String> data = new LinkedHashMap<>();
             data.put("direccion_referencias", t(etUbicacion));
-            SessionCsv.saveSection(this, "ubicacion", data);
+            SessionCsvSeguimiento.saveSection(this, "ubicacion", data);
         } catch (Exception ignored) {}
     }
 
