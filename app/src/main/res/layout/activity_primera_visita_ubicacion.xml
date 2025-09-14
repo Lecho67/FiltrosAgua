@@ -53,7 +53,9 @@
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
                         android:id="@+id/acDepartamento"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Municipio -->
@@ -67,7 +69,10 @@
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
                         android:id="@+id/acMunicipio"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Vereda/Corregimiento -->
@@ -81,7 +86,9 @@
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
                         android:id="@+id/acVereda"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>

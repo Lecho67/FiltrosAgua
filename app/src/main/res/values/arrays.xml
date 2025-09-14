@@ -1,32 +1,3163 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="municipios_valle">
-        <item>Alcalá</item><item>Andalucía</item><item>Ansermanuevo</item><item>Argelia</item>
-        <item>Bolívar</item><item>Buenaventura</item><item>Buga</item><item>Bugalagrande</item>
-        <item>Caicedonia</item><item>Cali</item><item>Calima (El Darién)</item><item>Candelaria</item>
-        <item>Cartago</item><item>Dagua</item><item>El Águila</item><item>El Cairo</item>
-        <item>El Cerrito</item><item>El Dovio</item><item>Florida</item><item>Ginebra</item>
-        <item>Guacarí</item><item>Jamundí</item><item>La Cumbre</item><item>La Unión</item>
-        <item>La Victoria</item><item>Obando</item><item>Palmira</item><item>Pradera</item>
-        <item>Restrepo</item><item>Riofrío</item><item>Roldanillo</item><item>San Pedro</item>
-        <item>Sevilla</item><item>Toro</item><item>Trujillo</item><item>Tuluá</item>
-        <item>Ulloa</item><item>Versalles</item><item>Vijes</item><item>Yotoco</item>
-        <item>Yumbo</item><item>Zarzal</item>
+        <item>Alcalá</item>
+        <item>Andalucía</item>
+        <item>Ansermanuevo</item>
+        <item>Argelia</item>
+        <item>Bolívar</item>
+        <item>Buenaventura</item>
+        <item>Buga</item>
+        <item>Bugalagrande</item>
+        <item>Caicedonia</item>
+        <item>Cali</item>
+        <item>Calima (El Darién)</item>
+        <item>Candelaria</item>
+        <item>Cartago</item>
+        <item>Dagua</item>
+        <item>El Águila</item>
+        <item>El Cairo</item>
+        <item>El Cerrito</item>
+        <item>El Dovio</item>
+        <item>Florida</item>
+        <item>Ginebra</item>
+        <item>Guacarí</item>
+        <item>Jamundí</item>
+        <item>La Cumbre</item>
+        <item>La Unión</item>
+        <item>La Victoria</item>
+        <item>Obando</item>
+        <item>Palmira</item>
+        <item>Pradera</item>
+        <item>Restrepo</item>
+        <item>Riofrío</item>
+        <item>Roldanillo</item>
+        <item>San Pedro</item>
+        <item>Sevilla</item>
+        <item>Toro</item>
+        <item>Trujillo</item>
+        <item>Tuluá</item>
+        <item>Ulloa</item>
+        <item>Versalles</item>
+        <item>Vijes</item>
+        <item>Yotoco</item>
+        <item>Yumbo</item>
+        <item>Zarzal</item>
     </string-array>
 
-    <string-array name="corregimientos_cali">
-        <item>Pance</item><item>La Buitrera</item><item>Villa Carmelo</item><item>La Leonera</item>
-        <item>Pichindé</item><item>Felidia</item><item>Los Andes</item><item>El Saladito</item>
-        <item>La Elvira</item><item>Golondrinas</item><item>Montebello</item><item>Navarro</item>
-        <item>El Hormiguero</item>
+    <string-array name="alcala">
+        <item>ARCILA</item>
+        <item>BALSA I</item>
+        <item>BALSA II</item>
+        <item>BELLAVISTA</item>
+        <item>BOLIVAR</item>
+        <item>CENTRO</item>
+        <item>EL PORVENIR</item>
+        <item>EL PROGRESO</item>
+        <item>INVASION</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>LA ESTACION</item>
+        <item>LA FLORESTA</item>
+        <item>LA PLAZUELA</item>
+        <item>LAS BRISAS</item>
+        <item>LAS DELICIAS I</item>
+        <item>LAS DELICIAS II</item>
+        <item>LAS FLORES</item>
+        <item>LAS PALMAS</item>
+        <item>LOS SAUCES</item>
+        <item>NO SE REGISTRA EN EL ACTA.</item>
+        <item>PORVENIR ALTO</item>
+        <item>SAMAN I</item>
+        <item>SAMAN II</item>
+        <item>URBANIZACION TRES ESQUINAS</item>
+        <item>CoV-VEREDA BELGICA</item>
+        <item>CoV-VEREDA EL CONGAL</item>
+        <item>CoV-VEREDA EL DINDE</item>
+        <item>CoV-VEREDA EL EDEN</item>
+        <item>CoV-VEREDA EL HIGUERÓN</item>
+        <item>CoV-VEREDA LA CUCHILLA</item>
+        <item>CoV-VEREDA LA ESTRELLA</item>
+        <item>CoV-VEREDA LA FLORESTA</item>
+        <item>CoV-VEREDA LA POLONIA</item>
+        <item>CoV-VEREDA LOS SAUCES</item>
+        <item>CoV-VEREDA MARAVELEZ</item>
+        <item>CoV-VEREDA PIEDRAS DE MOLER</item>
+        <item>CoV-VEREDA SAN FELIPE</item>
+        <item>CoV-VEREDA TRINCHERAS</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLA FERNANDA</item>
+        <item>VILLA SAMANTHA</item>
     </string-array>
 
-    <string-array name="corregimientos_palmira">
-        <item>Rozo</item><item>Amaime</item><item>Aguaclara</item>
-        <item>La Buitrera (Palmira)</item><item>El Bolo</item><item>El Bolo San Isidro</item>
+    <string-array name="andalucia">
+        <item>CoV-ALTAFLOR</item>
+        <item>ALTAMIRA</item>
+        <item>CoV-BOQUEMONTE</item>
+        <item>CoV-CAMPOALEGRE</item>
+        <item>CENTENARIO</item>
+        <item>CENTRO</item>
+        <item>CoV-EL ORIENTE</item>
+        <item>CoV-EL PLACER</item>
+        <item>CoV-EL SALTO</item>
+        <item>CoV-EL TARUGO</item>
+        <item>ESTADIO</item>
+        <item>FLORESTA II</item>
+        <item>LA ALIANZA</item>
+        <item>LA ESTACION</item>
+        <item>LA FLORESTA I</item>
+        <item>LA ISABELA</item>
+        <item>LA ISLA</item>
+        <item>CoV-LA LIONERA</item>
+        <item>LA PAZ</item>
+        <item>LA PRADERA</item>
+        <item>CoV-LA PRADERA</item>
+        <item>CoV-LA VIRGEN</item>
+        <item>CoV-LAS PIEDRAS</item>
+        <item>CoV-LOS ALPES</item>
+        <item>CoV-MADRE VIEJA</item>
+        <item>CoV-MONTE HERMOSO</item>
+        <item>CoV-PARAISO</item>
+        <item>CoV-PARDO ALTO</item>
+        <item>CoV-PARDO BAJO</item>
+        <item>CoV-PAZ</item>
+        <item>PEŃON ALTO</item>
+        <item>CoV-PEŃON ALTO</item>
+        <item>PEŃON BAJO</item>
+        <item>CoV-PEŃON BAJO</item>
+        <item>CoV-POTRERILLO</item>
+        <item>PROVIVIENDA</item>
+        <item>CoV-QUEBRADA SECA</item>
+        <item>RETORNO</item>
+        <item>REUBICACION</item>
+        <item>RICAURTE</item>
+        <item>SAN VICENTE</item>
+        <item>SOL Y LUNA</item>
+        <item>CoV-TAMBORAL</item>
+        <item>CoV-UNION CASCAJEROS</item>
+        <item>URBANIZACION ALTAMIRA</item>
+        <item>URBANIZACION EL CENTENARIO</item>
+        <item>URBANIZACION EL PARAISO</item>
+        <item>URBANIZACION EL PORVENIR</item>
+        <item>URBANIZACION LA COLINA</item>
+        <item>URBANIZACION MARIA JULIANA</item>
+        <item>URBANIZACION RANCHO CHICO</item>
+        <item>CoV-VOLADEREOS</item>
+        <item>CoV-ZABALETAS</item>
+        <item>CoV-ZANJON DE PIEDRAS</item>
     </string-array>
 
-    <string-array name="corregimientos_jamundi">
-        <item>Potrerito</item><item>Robles</item><item>Quinamayó</item>
-        <item>Guachinte</item><item>Villacolombia</item><item>Villa Paz</item>
+    <string-array name="ansermanuevo">
+        <item>ALTO BONITO</item>
+        <item>BOLIVAR</item>
+        <item>CALLE DEL ALGARROBO</item>
+        <item>CALLE DEL HOSPITAL</item>
+        <item>CALLE REAL</item>
+        <item>CENTRO</item>
+        <item>CHAPINEROS</item>
+        <item>CoV-CORREGIMIENTO SAN AGUSTIN</item>
+        <item>CoV-CORREGIMIENTO ANACARO</item>
+        <item>CoV-CORREGIMIENTO EL ROBLE</item>
+        <item>CoV-CORREGIMIENTO EL VERGEL</item>
+        <item>CoV-CORREGIMIENTO EL VILLAR</item>
+        <item>CoV-CORREGIMIENTO GRAMALOTE</item>
+        <item>CoV-CORREGIMIENTO LA DIAMANTINA</item>
+        <item>CoV-CORREGIMIENTO LA POPALITA</item>
+        <item>CoV-CORREGIMIENTO LA QUIEBRA DEL ROBLE</item>
+        <item>CoV-CORREGIMIENTO TRES ESQUINAS</item>
+        <item>EL COLUMPIO</item>
+        <item>EL CRUCERO</item>
+        <item>EL PILOTO</item>
+        <item>EL PRADO</item>
+        <item>EL REPOSO</item>
+        <item>INVASION POTRERILLO</item>
+        <item>LA CEIBA ALTA Y BAJA</item>
+        <item>LA ESPERANZA</item>
+        <item>LA INMACULADA</item>
+        <item>LA MISCELANEA</item>
+        <item>LA PLAYA</item>
+        <item>LA POPALITA</item>
+        <item>LAS COLINAS</item>
+        <item>LAURELES</item>
+        <item>LOS ALMENDROS</item>
+        <item>LOS MANGUITOS</item>
+        <item>LOS TANQUES</item>
+        <item>MATADERO</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>NUEVO HORIZONTE</item>
+        <item>NUEVO SOL</item>
+        <item>PALERMO</item>
+        <item>PLAZA VIEJA</item>
+        <item>PROTECHO</item>
+        <item>PROVIVIENDA</item>
+        <item>PUEBLO NUEVO</item>
+        <item>SALAZAR ALTO Y BAJO</item>
+        <item>SAN LORENZO ANGEL</item>
+        <item>SECTOR LA BOMBA</item>
+        <item>TROCADEROS</item>
+        <item>CoV-VEREDA ALTO TIGRE.</item>
+        <item>CoV-VEREDA BAJO TIGRE.</item>
+        <item>CoV-VEREDA CALABAZAS</item>
+        <item>CoV-VEREDA EL CASTILLO</item>
+        <item>CoV-VEREDA EL DIAMANTE</item>
+        <item>CoV-VEREDA EL PLACER</item>
+        <item>CoV-VEREDA EL REAL BRILLANTE</item>
+        <item>CoV-VEREDA LA CABAŃA</item>
+        <item>CoV-VEREDA LA DIVISA</item>
+        <item>CoV-VEREDA LA ESPERANZA</item>
+        <item>CoV-VEREDA LA FLORIDA</item>
+        <item>CoV-VEREDA LA HERRADURA</item>
+        <item>CoV-VEREDA LA HONDURA</item>
+        <item>CoV-VEREDA LA MANUELA</item>
+        <item>CoV-VEREDA LA PEDRERA</item>
+        <item>CoV-VEREDA LA PUERTA</item>
+        <item>CoV-VEREDA LAS PALOMAS</item>
+        <item>CoV-VEREDA LUCITANIA</item>
+        <item>CoV-VEREDA PALO NEGRO</item>
+        <item>CoV-VEREDA PEDRERA</item>
+        <item>CoV-VEREDA POTRERILLO</item>
+        <item>CoV-VEREDA SANTA BARBARA</item>
+        <item>VIA PUBLICA.</item>
+        <item>VILLA COLOMBIA</item>
+        <item>VILLA SAN JUAN</item>
+        <item>VIVIENDA OBRERA</item>
+        <item>VUELTA DEL DIABLO</item>
     </string-array>
+
+    <string-array name="argelia">
+        <item>APARICIO</item>
+        <item>ARBOLEDA</item>
+        <item>BALASTRERA</item>
+        <item>CENTRO</item>
+        <item>CoV-CORREGIMIENTO DE MARACAIBO</item>
+        <item>EL TRIANGULO</item>
+        <item>LA BOMBA</item>
+        <item>LA FLORESTA</item>
+        <item>LA GALERIA</item>
+        <item>LA PISTA</item>
+        <item>LAS COLINAS</item>
+        <item>MONSERRATE</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>SAN CARLOS</item>
+        <item>CoV-VEREDA CAJONES</item>
+        <item>CoV-VEREDA CALENTADEROS</item>
+        <item>CoV-VEREDA COLONES</item>
+        <item>CoV-VEREDA EL RAIZAL</item>
+        <item>CoV-VEREDA LA AURORA</item>
+        <item>CoV-VEREDA LA BELLA</item>
+        <item>CoV-VEREDA LA CRISTALINA</item>
+        <item>CoV-VEREDA LA ESTRELLA</item>
+        <item>CoV-VEREDA LA MARINA</item>
+        <item>CoV-VEREDA LA PALMA</item>
+        <item>CoV-VEREDA LA PAZ</item>
+        <item>CoV-VEREDA LA PRIMAVERA</item>
+        <item>CoV-VEREDA LA SOLEDA</item>
+        <item>CoV-VEREDA LA TEBAIDA</item>
+        <item>CoV-VEREDA LAS BRISAS DE LA ARGELIA</item>
+        <item>CoV-VEREDA LAS MARGARITAS</item>
+        <item>CoV-VEREDA LOS PITOS</item>
+        <item>CoV-VEREDA TARRITOS</item>
+        <item>CoV-VEREDA VILLA ROSA</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLA DEL SOL</item>
+        <item>VILLA NUBIA</item>
+        <item>VILLA NUEVA</item>
+    </string-array>
+
+    <string-array name="bolivar">
+        <item>CoV-AGUAS LINDAS</item>
+        <item>CoV-BETANIA</item>
+        <item>CoV-BOLIVAR</item>
+        <item>BRISAS DE LOS ALAMOS</item>
+        <item>CoV-BRISAS DEL PESCADOR</item>
+        <item>CoV-BUENAVISTA</item>
+        <item>BUENOS AIRES</item>
+        <item>CoV-BUENOS AIRES</item>
+        <item>CoV-CABAŃA ALTA</item>
+        <item>CoV-CABAŃA BAJA</item>
+        <item>CoV-CALICHE</item>
+        <item>CoV-CALLEJONES</item>
+        <item>CENTRO</item>
+        <item>CoV-CERRO AZUL</item>
+        <item>CHIMINANGOS</item>
+        <item>CIUDAD BOLIVAR</item>
+        <item>CoV-CRISTALES</item>
+        <item>CoV-DOSQUEBRADAS</item>
+        <item>CoV-EL BOSQUE</item>
+        <item>CoV-EL BURRO</item>
+        <item>CoV-EL CABUYAL</item>
+        <item>EL CAMELLON</item>
+        <item>CoV-EL CATRE</item>
+        <item>CoV-EL FUSIL</item>
+        <item>EL JARDIN</item>
+        <item>CoV-EL MESTIZO</item>
+        <item>CoV-EL ORO</item>
+        <item>CoV-EL PAVERO</item>
+        <item>CoV-EL PORVENIR</item>
+        <item>CoV-EL RETIRO</item>
+        <item>CoV-EL SILENCIO</item>
+        <item>ESPAŃA</item>
+        <item>GUABINERO</item>
+        <item>CoV-GUACAS</item>
+        <item>CoV-GUARE</item>
+        <item>CoV-GUAVINERO</item>
+        <item>CoV-LA AGUADA</item>
+        <item>CoV-LA ALDANA</item>
+        <item>CoV-LA HERRADURA</item>
+        <item>CoV-LA LLANADA</item>
+        <item>CoV-LA MARIA</item>
+        <item>LA PAZ</item>
+        <item>CoV-LA PEŃA</item>
+        <item>CoV-LA PLAZUELA</item>
+        <item>LA QUINTA</item>
+        <item>CoV-LA SOLEDAD</item>
+        <item>CoV-LA TULIA</item>
+        <item>CoV-LA TULIA PORVENIR</item>
+        <item>MIRAFLORES</item>
+        <item>CoV-MONTAŃUELA</item>
+        <item>CoV-MORABITO</item>
+        <item>CoV-NARANJAL</item>
+        <item>NUEVO HORIZONTE</item>
+        <item>CoV-PLAZA VIEJA</item>
+        <item>PRIMAVERA</item>
+        <item>CoV-PRIMAVERA</item>
+        <item>PUERTA DEL SOL</item>
+        <item>CoV-PUERTO</item>
+        <item>CoV-PUNTA LARGA</item>
+        <item>QUINTAS DE LAS ACACIAS</item>
+        <item>CoV-RICAURTE</item>
+        <item>SAMANES</item>
+        <item>CoV-SAN FERNANDO</item>
+        <item>CoV-SAN ISIDRO</item>
+        <item>SAN JOSE</item>
+        <item>SANTA ANA</item>
+        <item>CoV-VARIANTE</item>
+        <item>VILLA DEL SOL</item>
+    </string-array>
+
+    <string-array name="buenaventura">
+        <item>BELLAVISTA</item>
+        <item>CENTRO</item>
+        <item>EL GALEÓN</item>
+        <item>EL JORGE</item>
+        <item>JUAN XXIII</item>
+        <item>KENNEDY</item>
+        <item>LAS MERCEDES</item>
+        <item>NARANJITO</item>
+        <item>SAN BUENAVENTURA</item>
+        <item>TRANSFORMACIÓN</item>
+    </string-array>
+
+    <string-array name="buga">
+        <item>ACUARELAS DEL VALLE</item>
+        <item>CoV-ALASKA</item>
+        <item>ALBORES DE SANJUANITO</item>
+        <item>ALTAMIRA</item>
+        <item>ALTO DE GUADALAJARA</item>
+        <item>ALTO DE GUADALAJARA II</item>
+        <item>ALTOBONITO</item>
+        <item>ANA MARIA</item>
+        <item>AURES</item>
+        <item>BALBOA</item>
+        <item>BALCONES DEL NORTE</item>
+        <item>BELLO HORIZONTE</item>
+        <item>BRISAS DEL NORTE</item>
+        <item>CARACOLI</item>
+        <item>CARMELO</item>
+        <item>CoV-CHAMBIMBAL</item>
+        <item>CIUDADELA COMFENALCO</item>
+        <item>CONCORDIA</item>
+        <item>COOVIPROB</item>
+        <item>CoV-CRUCERO NOGALES</item>
+        <item>DIVINO NIŃO</item>
+        <item>EL ALBERGUE</item>
+        <item>CoV-EL BOSQUE</item>
+        <item>EL EDEN</item>
+        <item>CoV-EL JANEIRO</item>
+        <item>CoV-EL MANANTIAL</item>
+        <item>CoV-EL PLACER</item>
+        <item>CoV-EL PORVENIR</item>
+        <item>CoV-EL ROSARIO</item>
+        <item>CoV-EL SALADO</item>
+        <item>CoV-EL VINCULO</item>
+        <item>ENTRE VALLES</item>
+        <item>ENTRE VALLES 2</item>
+        <item>CoV-FRISOLES</item>
+        <item>FUENMAYOR</item>
+        <item>GIRASOLES</item>
+        <item>CoV-GUADUALEJO</item>
+        <item>JARDIN</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>JOSE MARIA CABAL</item>
+        <item>CoV-LA CAMPIŃA</item>
+        <item>LA ESPERANZA</item>
+        <item>CoV-LA FLORIDA</item>
+        <item>CoV-LA GRANJITA</item>
+        <item>CoV-LA HABANA</item>
+        <item>LA HONDA</item>
+        <item>LA JULIA</item>
+        <item>CoV-LA MAGDALENA</item>
+        <item>CoV-LA MARIA</item>
+        <item>LA MERCED</item>
+        <item>CoV-LA MESA RIOLORO</item>
+        <item>CoV-LA PALOMERA</item>
+        <item>CoV-LA PLANTA</item>
+        <item>CoV-LA PLAYA DEL BUEY</item>
+        <item>LA REVOLUCION</item>
+        <item>CoV-LA UNIDAD</item>
+        <item>LA VENTURA</item>
+        <item>LAS PALMITAS</item>
+        <item>LOS ALMENDROS</item>
+        <item>LOS ANGELES</item>
+        <item>CoV-LOS BANCOS</item>
+        <item>LOS ROSALES</item>
+        <item>MARIA LUISA DE LA ESPADA</item>
+        <item>CoV-MIRAFLORES</item>
+        <item>MOLINO</item>
+        <item>MONTELLANO</item>
+        <item>CoV-MONTERREY</item>
+        <item>PALO BLANCO</item>
+        <item>POPULAR</item>
+        <item>PORTALES DEL RIO</item>
+        <item>PRADOS DE LA JULIA</item>
+        <item>PRADOS DE ORIENTE</item>
+        <item>PRADOS DEL SUR</item>
+        <item>CoV-PUEBLO NUEVO</item>
+        <item>CoV-PUERTO BERTIN</item>
+        <item>CoV-QUEBRADASECA</item>
+        <item>RICAUTE</item>
+        <item>SAN ANTONIO</item>
+        <item>CoV-SAN ANTONIO</item>
+        <item>SAN JERONIMO I</item>
+        <item>SAN JERONIMO II</item>
+        <item>SAN JOSE DE LAS PALMAS</item>
+        <item>SAN JOSE OBRERO</item>
+        <item>SAN MARINO</item>
+        <item>SAN VICENTE</item>
+        <item>SANTA BARBARA</item>
+        <item>SANTA RITA</item>
+        <item>SANTIAGO VERGARA CRESPO</item>
+        <item>SEŃOR DE LOS MILAGROS</item>
+        <item>STAMBUL</item>
+        <item>SUCRE</item>
+        <item>UNINORTE</item>
+        <item>URBANIZACION ALAMEDA</item>
+        <item>URBANIZACION CAPRI</item>
+        <item>URBANIZACION CLUB DE LEONES</item>
+        <item>URBANIZACION EL SAMAN</item>
+        <item>VALLE REAL</item>
+        <item>VILLA PACHITA</item>
+        <item>CoV-ZANJON HONDO</item>
+    </string-array>
+
+    <string-array name="bugalagrande">
+        <item>CoV-ALMENDRONAL</item>
+        <item>CoV-ALTA FLOR</item>
+        <item>CoV-ALTO BONITO</item>
+        <item>ANTONIO NARIŃO</item>
+        <item>CoV-BAJO CHORRERAS</item>
+        <item>BRISAS DEL RIO</item>
+        <item>CoV-CALLEJON GUAYABAL</item>
+        <item>CoV-CAMPOALEGRE ALTO</item>
+        <item>CAŃAVERAL</item>
+        <item>CoV-CANOAS</item>
+        <item>CENTRO</item>
+        <item>CoV-CEYLAN</item>
+        <item>CoV-CHICORAL</item>
+        <item>CoV-CHICORAL ALTO</item>
+        <item>CoV-CHICORAL BAJO</item>
+        <item>CoV-CHORRERAS</item>
+        <item>COCICOIMPA</item>
+        <item>EL EDEN</item>
+        <item>CoV-EL GUAYABO</item>
+        <item>EL JARDIN</item>
+        <item>CoV-EL JARDIN</item>
+        <item>CoV-EL OVERO</item>
+        <item>CoV-EL OVERO SECTOR LA MARIA</item>
+        <item>CoV-EL OVERO SECTOR POBLADO</item>
+        <item>CoV-EL PLACER</item>
+        <item>CoV-EL PORVENIR</item>
+        <item>CoV-EL ROCIO</item>
+        <item>CoV-EL ROCIO BAJO</item>
+        <item>CoV-ESMERALDA ALTA</item>
+        <item>CoV-ESMERALDA BAJA</item>
+        <item>CoV-GALICIA</item>
+        <item>JOSE ANTONIO GALAN</item>
+        <item>CoV-LA COLINA</item>
+        <item>CoV-LA COLONIA</item>
+        <item>CoV-LA ESMERALDA</item>
+        <item>LA ESMERALDA II</item>
+        <item>LA ESPERANZA</item>
+        <item>LA ISABELA</item>
+        <item>LA MARIA</item>
+        <item>CoV-LA MARIA</item>
+        <item>LA MARIA 2DA ETAPA</item>
+        <item>CoV-LA MORENA</item>
+        <item>LA PAZ</item>
+        <item>LA PLANTA</item>
+        <item>CoV-LA URIBE</item>
+        <item>LOS LAURELES</item>
+        <item>LOS MARMOLES</item>
+        <item>CoV-MESTIZAL</item>
+        <item>MINOBRAS</item>
+        <item>MONACO</item>
+        <item>MUNICIPAL</item>
+        <item>OBRERO</item>
+        <item>PABLO VI</item>
+        <item>PABLO VI SEGUNDA ETAPA</item>
+        <item>CoV-PAILA ARRIBA</item>
+        <item>PORTALES</item>
+        <item>CoV-PORVENIR</item>
+        <item>PRADOS DE SAN BERNABE</item>
+        <item>PRIMERO DE MAYO</item>
+        <item>RICAURTE</item>
+        <item>CoV-SAN ANTONIO</item>
+        <item>SAN BERNABE</item>
+        <item>CoV-SAN ISIDRO</item>
+        <item>SAN LUIS</item>
+        <item>CoV-TETILLAL</item>
+        <item>CoV-TETILLAL ALTO</item>
+        <item>CoV-TETILLAL BAJO</item>
+        <item>TORRES DE SAN BERNABE</item>
+        <item>URBANIZACION PRADOS DE SAN BERNABE</item>
+        <item>VILLA ISABELA</item>
+        <item>WALCOCHE</item>
+    </string-array>
+
+    <string-array name="caicedonia">
+        <item>CoV-AURES</item>
+        <item>CoV-AURES Y DABEIBA</item>
+        <item>CoV-BARRAGAN</item>
+        <item>CoV-BARRAGAN ALTO</item>
+        <item>CoV-BARRAGAN BAJO</item>
+        <item>CoV-BELLA VISTA</item>
+        <item>CoV-BOLIVIA</item>
+        <item>CoV-BOSQUE ALTO</item>
+        <item>CoV-BOSQUE BAJO</item>
+        <item>BRISAS DEL NORTE</item>
+        <item>CoV-BURILAS</item>
+        <item>CoV-CAMPO AZUL</item>
+        <item>CANADA</item>
+        <item>CARMELITA</item>
+        <item>CENTENARIO</item>
+        <item>CENTRO</item>
+        <item>CIPRES</item>
+        <item>COVIPRO</item>
+        <item>CoV-DELFINA</item>
+        <item>CoV-EL BOSQUE</item>
+        <item>CoV-EL BRILLANTE</item>
+        <item>EL CARMEN</item>
+        <item>EL CRUCERO</item>
+        <item>CoV-EL CRUCERO</item>
+        <item>CoV-EL FRONTINO</item>
+        <item>CoV-EL PARAISO</item>
+        <item>EL PROGRESO</item>
+        <item>EL RECREO</item>
+        <item>CoV-EL SALADO</item>
+        <item>CoV-FRONTINO EL CRUCERO</item>
+        <item>FUNDADORES</item>
+        <item>GUADUALES</item>
+        <item>GUTIERREZ Y ARANGO</item>
+        <item>KENNEDY</item>
+        <item>LA CAMELIA</item>
+        <item>CoV-LA CAMELIA</item>
+        <item>LA CEIBA</item>
+        <item>LA CIUDADELA</item>
+        <item>LA ESPERANZA</item>
+        <item>CoV-LA GAVIOTA</item>
+        <item>LA GERENCIA</item>
+        <item>LA GUYANA</item>
+        <item>CoV-LA INDEPENDENCIA</item>
+        <item>LA ISABELA</item>
+        <item>CoV-LA PAVA</item>
+        <item>CoV-LA RIVERA</item>
+        <item>CoV-LA RIVERA LA LEONA</item>
+        <item>CoV-LA RIVERA LA TESALIA</item>
+        <item>LAS AMERICAS</item>
+        <item>CoV-LAS CARMELITAS</item>
+        <item>LAS DELICIAS</item>
+        <item>CoV-LAS DELICIAS</item>
+        <item>LIMONAR</item>
+        <item>CoV-LIMONES</item>
+        <item>LLERAS</item>
+        <item>MARIA INMACULADA</item>
+        <item>MARIA MERCEDES</item>
+        <item>CoV-MONTEGRANDE</item>
+        <item>CoV-MONTEGRANDE KARARE</item>
+        <item>NUEVO HORIZONTE</item>
+        <item>OBRERO</item>
+        <item>PORVENIR</item>
+        <item>CoV-PUERTO RICO</item>
+        <item>CoV-QUINCE LETRAS</item>
+        <item>CoV-RISARALDA</item>
+        <item>ROSAL</item>
+        <item>SAMANES</item>
+        <item>CoV-SAMARIA</item>
+        <item>CoV-SAN GERARDO ALTO</item>
+        <item>CoV-SAN ISIDRO</item>
+        <item>SANTANDER</item>
+        <item>CoV-SUIZA</item>
+        <item>SURCO</item>
+        <item>VALLE DEL CAUCA</item>
+        <item>ZUŃIGA</item>
+    </string-array>
+
+    <string-array name="cali">
+        <item>ALAMEDA</item>
+        <item>ALFONSO BONILLA ARAGON</item>
+        <item>ALFONSO LÓPEZ</item>
+        <item>BASE AEREA</item>
+        <item>BELLA SUIZA</item>
+        <item>BOCHALEMA</item>
+        <item>BRETAŃA</item>
+        <item>BUENOS AIRES</item>
+        <item>CALDAS</item>
+        <item>CALIMA</item>
+        <item>CAMINO REAL</item>
+        <item>CAŃAS GORDAS</item>
+        <item>CAPRI</item>
+        <item>CENTENARIO</item>
+        <item>CHAMPAŃAT</item>
+        <item>CHAPINERO</item>
+        <item>CHIPICHAPE</item>
+        <item>CIUDAD JARDÍN</item>
+        <item>COLSEGUROS</item>
+        <item>CUARTO DE LEGUA</item>
+        <item>DEPARTAMENTAL</item>
+        <item>EL CEDRO</item>
+        <item>EL INGENIO</item>
+        <item>EL LIDO</item>
+        <item>EL LIMONAR</item>
+        <item>EL MORICHAL</item>
+        <item>EL PRADO</item>
+        <item>EL REFUGIO</item>
+        <item>EL RETIRO</item>
+        <item>EL SENA</item>
+        <item>EL TEMPLETE</item>
+        <item>EUCARISTICO</item>
+        <item>GRANADA</item>
+        <item>LA BASE</item>
+        <item>LA FLORA</item>
+        <item>LA FLORESTA</item>
+        <item>LA FOTALEZA</item>
+        <item>LA HACIENDA</item>
+        <item>LA INDEPENDENCIA</item>
+        <item>LA MERCED</item>
+        <item>LOS ANDES</item>
+        <item>LOS CAMBULOS</item>
+        <item>LOS CRISTALES</item>
+        <item>LOS LIBERTADORES</item>
+        <item>MELENDEZ</item>
+        <item>MULTICENTRO</item>
+        <item>MUNICIPAL</item>
+        <item>NAPOLES</item>
+        <item>PAMPALINDA</item>
+        <item>PANAMERICANO</item>
+        <item>PANCE</item>
+        <item>POBLADO I</item>
+        <item>POPULAR</item>
+        <item>PRADOS DEL NORTE</item>
+        <item>PRADOS DEL SUR</item>
+        <item>PRIMERO DE MAYO</item>
+        <item>QUINTAS DE DON SIMON</item>
+        <item>REPÚBLICA DE ISRAEL</item>
+        <item>SALOMIA</item>
+        <item>SAN ANTONIO</item>
+        <item>SAN CRISTOBAL</item>
+        <item>SAN FERNANDO</item>
+        <item>SAN FERNANDO NUEVO</item>
+        <item>SAN FRANCISCO</item>
+        <item>SAN NICOLAS</item>
+        <item>SAN VICENTE</item>
+        <item>SANTA ANITA</item>
+        <item>SANTA ELENA</item>
+        <item>SANTA MONICA</item>
+        <item>SANTA MÓNICA RESIDENCIAL</item>
+        <item>SANTA TERESITA</item>
+        <item>TEQUENDAMA</item>
+        <item>TORRES DE COMFANDI</item>
+        <item>VALLE DEL LILI</item>
+        <item>VALLEGRANDE</item>
+        <item>VERSALLES</item>
+        <item>VILLA DEL SUR</item>
+        <item>VILLACOLOMBIA</item>
+        <item>VIPASA</item>
+    </string-array>
+
+    <string-array name="calima">
+        <item>CoV-ALTO BOLEO</item>
+        <item>CoV-ALTO DE LOS CEDROS</item>
+        <item>ALTOS DEL CALIMA</item>
+        <item>CoV-BELLA VISTA</item>
+        <item>BELLAVISTA</item>
+        <item>CoV-BERLIN</item>
+        <item>CoV-CALLEJON MOZANBIQUE</item>
+        <item>CANADA</item>
+        <item>CENTRO</item>
+        <item>CINCUENTENARIO</item>
+        <item>DOS QUEBRADAS</item>
+        <item>EL CARMEN</item>
+        <item>CoV-EL DIAMANTE</item>
+        <item>CoV-EL GUADUAL</item>
+        <item>CoV-EL LLANITO</item>
+        <item>CoV-EL REMOLINO</item>
+        <item>CoV-EL VERGEL</item>
+        <item>CoV-EL VERGEL 2</item>
+        <item>CoV-ENTRADA 5</item>
+        <item>CoV-FLORENCIA</item>
+        <item>FUNDADORES</item>
+        <item>GUAYACANES</item>
+        <item>GUAYACANES 2</item>
+        <item>CoV-HOLANDA</item>
+        <item>CoV-JIGUALES</item>
+        <item>CoV-LA CAMELIA</item>
+        <item>CoV-LA CECILIA</item>
+        <item>CoV-LA CHIVERA</item>
+        <item>LA CIUDADELA</item>
+        <item>CoV-LA CRISTALINA</item>
+        <item>CoV-LA CRUZ</item>
+        <item>LA ESPERANZA</item>
+        <item>CoV-LA FLORIDA</item>
+        <item>CoV-LA FLORIDA ALTA</item>
+        <item>CoV-LA GAVIOTA</item>
+        <item>CoV-LA GAVIOTA ALTA</item>
+        <item>CoV-LA GAVIOTA BAJA</item>
+        <item>CoV-LA GUAIRA</item>
+        <item>CoV-LA ITALIA</item>
+        <item>LA PALMA</item>
+        <item>CoV-LA PLAYITA</item>
+        <item>CoV-LA PRIMAVERA</item>
+        <item>CoV-LA TRIBUNA</item>
+        <item>CoV-LA UNION</item>
+        <item>LA VIRGEN</item>
+        <item>CoV-LADERAS DEL LAGO</item>
+        <item>CoV-LAS BRISAS</item>
+        <item>CoV-LLANITOS</item>
+        <item>LOS ALMENDROS</item>
+        <item>CoV-LOS CALIMA</item>
+        <item>CoV-MADROŃAL</item>
+        <item>CoV-MIRADOR</item>
+        <item>OBRERO</item>
+        <item>CoV-PALERMO</item>
+        <item>CoV-PARCELACION FLORESTA</item>
+        <item>CoV-PARCELACION LA HOLANDA PUENTE TIERRA</item>
+        <item>CoV-PARCELACION LLANITOS</item>
+        <item>CoV-PUENTE TIERRA</item>
+        <item>CoV-QUEBRADA SECA</item>
+        <item>CoV-REFUGIOS DE CALIMA</item>
+        <item>CoV-REMOLINO</item>
+        <item>CoV-REMOLINO ALTO</item>
+        <item>CoV-REMOLINO BAJO</item>
+        <item>CoV-RIO BRAVO</item>
+        <item>CoV-RIO GRANDE</item>
+        <item>CoV-RUBI</item>
+        <item>SAN ANTONIO</item>
+        <item>SAN JORGE</item>
+        <item>SAN JOSE</item>
+        <item>CoV-SAN JOSE</item>
+        <item>CoV-SAN JUAN</item>
+        <item>SAN VICENTE</item>
+        <item>CoV-SANTA ELENA</item>
+    </string-array>
+
+    <string-array name="candelaria">
+        <item>ALDEA CAMPESTRE</item>
+        <item>ARBOLEDA CAMPESTRE</item>
+        <item>ARMANDO VASQUEZ</item>
+        <item>BELÉN</item>
+        <item>BELLAVISTA</item>
+        <item>CoV-BOSQUES DE CANDELARIA</item>
+        <item>BRISAS DEL RIO</item>
+        <item>CoV-BUCHITOLO</item>
+        <item>CoV-CABUYAL</item>
+        <item>CALLEJON LOS JUZMAN</item>
+        <item>CAŃA MIEL</item>
+        <item>CANTALAMOTA</item>
+        <item>CENTRO</item>
+        <item>CIUDADELA LOS ANGELES</item>
+        <item>EL CABUYAL</item>
+        <item>EL CARMELO</item>
+        <item>CoV-EL CARMELO</item>
+        <item>EL LLANITO</item>
+        <item>EL PRADO</item>
+        <item>EL SAMÁN</item>
+        <item>EL SOCORRO</item>
+        <item>EL TIPLE</item>
+        <item>CoV-EL TIPLE</item>
+        <item>FATIMA I</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>CoV-JUANCHITO</item>
+        <item>LA CRUZ</item>
+        <item>LA MARIA</item>
+        <item>LA PAZ</item>
+        <item>LOS GUZMANES</item>
+        <item>MANZANARES</item>
+        <item>MARÍA AUXILIADORA</item>
+        <item>MUNICIPAL</item>
+        <item>OBRERO</item>
+        <item>PANAMERICANO</item>
+        <item>POBLADO CAMPESTRE</item>
+        <item>CoV-POBLADO CAMPESTRE</item>
+        <item>PORVENIR</item>
+        <item>SAN CRISTOBAL</item>
+        <item>SAN JOAQUIN</item>
+        <item>CoV-SAN JOAQUIN</item>
+        <item>URBANIZACION LA ZAFRA</item>
+        <item>URBANIZACION SANTA ANA</item>
+        <item>VALLE DEL BATARA</item>
+        <item>VEINTE DE JULIO</item>
+        <item>CoV-VILLA GORGONA</item>
+        <item>VILLAGORGONA</item>
+    </string-array>
+
+    <string-array name="cartago">
+        <item>AGRARIO (ZARAGOZA)</item>
+        <item>ALAMEDA</item>
+        <item>ALTICOS DE SANTA MONICA</item>
+        <item>ANTONIO NARIŃO</item>
+        <item>ARGOS</item>
+        <item>BALCONES DE LAS COLINAS</item>
+        <item>BALCONES DE SANTA MARIA</item>
+        <item>BELLAVISTA</item>
+        <item>BERLIN</item>
+        <item>BOLIVAR</item>
+        <item>BOTERO OBYRNE</item>
+        <item>BRISAS DEL NORTE</item>
+        <item>BRISAS DEL RIO</item>
+        <item>BUENOS AIRES</item>
+        <item>BULEVAR DE LAS PALMAS</item>
+        <item>BULEVAR DE LAS VILLAS</item>
+        <item>CAMELLON DEL QUINDIO</item>
+        <item>CAMILO TORRES</item>
+        <item>CAMPO ALEGRE</item>
+        <item>CANTABRIA</item>
+        <item>CARACOLI</item>
+        <item>CARLOS HOLMES TRUJILLO</item>
+        <item>CASCABELES</item>
+        <item>CASIERRA (ZARAGOZA)</item>
+        <item>CENTRO</item>
+        <item>CERROS DE PUERTO ASIS</item>
+        <item>CHAVARRIAGA WILKIN</item>
+        <item>CHIMINANGOS</item>
+        <item>CIUDAD JARDIN</item>
+        <item>CIUDADELA COMFANDI</item>
+        <item>CIUDADELA DE PAZ</item>
+        <item>CIUDADELA LOS ANGELES</item>
+        <item>COLLAREJO</item>
+        <item>CONDOMINIO ALTAMAR CLUB</item>
+        <item>CONDOMINIO BALCONES DE SANTA LUCIA</item>
+        <item>CONDOMINIO BOSQUES LOS LAGOS</item>
+        <item>CONDOMINIO CAMPESTRE LOS POTRILLOS</item>
+        <item>CONDOMINIO CIUDAD JARDIN</item>
+        <item>CONDOMINIO EL CARMEN</item>
+        <item>CONDOMINIO EL HIGUERON</item>
+        <item>CONDOMINIO EL POLO</item>
+        <item>CONDOMINIO EL RETIRO</item>
+        <item>CONDOMINIO FLAMINGO CLUB</item>
+        <item>CONDOMINIO IPANEMA</item>
+        <item>CONDOMINIO LA ISABELA</item>
+        <item>CONDOMINIO LA MILAGROSA</item>
+        <item>CONDOMINIO LAS AMERICAS</item>
+        <item>CONDOMINIO LIMONAR (ZARAGOZA)</item>
+        <item>CONDOMINIO LOS ALAMOS</item>
+        <item>CONDOMINIO LOS CRISTALES</item>
+        <item>CONDOMINIO LOS LAGOS</item>
+        <item>CONDOMINIO LOS LAGUITOS</item>
+        <item>CONDOMINIO LOS SAMANES</item>
+        <item>CONDOMINIO MARBELLA</item>
+        <item>CONDOMINIO MULTIFAMILIAR BARCELONA</item>
+        <item>CONDOMINIO PINARES DEL RIO</item>
+        <item>CONDOMINIO PORTAL DE ALAMOS II</item>
+        <item>CONDOMINIO PORTAL DE LAS COMETAS</item>
+        <item>CONDOMINIO PORTICO</item>
+        <item>CONDOMINIO QUINTAS DE ESTEBAN</item>
+        <item>CONDOMINIO QUINTAS DE NAVARRA</item>
+        <item>CONDOMINIO SAN MARCOS</item>
+        <item>CONDOMINIO SANTA ANA DE LOS CABALLEROS</item>
+        <item>CONDOMINIO SANTA BARBARA</item>
+        <item>CONDOMINIO TERRAZAS DEL LLANO</item>
+        <item>CONDOMINIO TORRE MOLINOS</item>
+        <item>CONDOMINIO TORRES DEL SOL</item>
+        <item>CONDOMINIO VILLA CAMPESTRE</item>
+        <item>CONDOMINIO VILLA DEL RIO</item>
+        <item>CONDOMINIO VILLA DEL ROBLE</item>
+        <item>CONDOMINIO VILLA MARTHA</item>
+        <item>CONDOMINIO VILLAS DE SANTA MARIA</item>
+        <item>CONDOMINIO VILLAS DEL SOL</item>
+        <item>COOPERATIVO</item>
+        <item>COOTEMCA</item>
+        <item>CORALIN</item>
+        <item>DIVINO NIŃO</item>
+        <item>EL BULEVAR</item>
+        <item>EL CARMEN</item>
+        <item>EL CENTRO (ZARAGOZA)</item>
+        <item>EL CIPRES</item>
+        <item>EL CRUCERO (ZARAGOZA)</item>
+        <item>EL DANUBIO</item>
+        <item>EL GUADUAL</item>
+        <item>EL JARDIN</item>
+        <item>EL JAZMIN</item>
+        <item>EL JUBILEO</item>
+        <item>EL LIBERTADOR</item>
+        <item>EL LIMONAR</item>
+        <item>EL LLANO</item>
+        <item>EL PALATINO</item>
+        <item>EL PARAISO</item>
+        <item>EL PLACER (ZARAGOZA)</item>
+        <item>EL POBLADO</item>
+        <item>EL PORVENIR</item>
+        <item>EL PRADO</item>
+        <item>EL ROBLE</item>
+        <item>EL ROSARIO</item>
+        <item>EL SAMAN</item>
+        <item>EL TREBOL</item>
+        <item>EL VERDUM</item>
+        <item>EMAUS</item>
+        <item>EMPRESAS MUNICIPALES</item>
+        <item>ENTRE RIOS</item>
+        <item>FABIO SALAZAR</item>
+        <item>FLOR DE DAMAS</item>
+        <item>GRUPO DE LOS 60</item>
+        <item>GUADALUPE</item>
+        <item>GUAYABAL SANTA ANA</item>
+        <item>GUAYACANES</item>
+        <item>HORIZONTE</item>
+        <item>JARDINES DE SANTA MARIA</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>JOSE GABRIEL CALDERON</item>
+        <item>JUAN XXIII (ZARAGOZA)</item>
+        <item>JUAN XXIII 1ER ETAPA</item>
+        <item>JUAN XXIII 2DA ETAPA</item>
+        <item>LA ARENERA</item>
+        <item>LA AURORA</item>
+        <item>LA CABAŃA</item>
+        <item>LA CAMPIŃA</item>
+        <item>LA CAROLINA(ZARAGOZA)</item>
+        <item>LA CASCADA</item>
+        <item>LA CASTELLANA</item>
+        <item>LA CRISTINA</item>
+        <item>LA EPIFANIA I ETAPA</item>
+        <item>LA EPIFANIA II ETAPA</item>
+        <item>LA EPIFANIA III ETAPA</item>
+        <item>LA ESPAŃOLA</item>
+        <item>LA ESPERANZA</item>
+        <item>LA ESPUMA (ZARAGOZA)</item>
+        <item>LA FLORESTA</item>
+        <item>LA FRESNEDA I</item>
+        <item>LA FRESNEDA II ETAPA</item>
+        <item>LA FRESNEDA III ETAPA</item>
+        <item>LA FRESNEDA IV ETAPA</item>
+        <item>LA INDEPENDENCIA</item>
+        <item>LA INMACULADA</item>
+        <item>LA ISABELA</item>
+        <item>LA ISLETA</item>
+        <item>LA LIBERTAD</item>
+        <item>LA LINDA</item>
+        <item>LA NUEVA ESPERANZA</item>
+        <item>LA PAZ</item>
+        <item>LA PLATANERA</item>
+        <item>LA PLAYA</item>
+        <item>LA PLAZUELA</item>
+        <item>LA PRADERA</item>
+        <item>LA PRIMAVERA (INVASION)</item>
+        <item>LA TRINIDAD</item>
+        <item>LA VALENCIANA</item>
+        <item>LA VIŃA</item>
+        <item>LAS ACACIAS</item>
+        <item>LAS COLINAS</item>
+        <item>LAS ORQUIDEAS</item>
+        <item>LAS PALMAS</item>
+        <item>LAS PALMAS (ZARAGOZA)</item>
+        <item>LAS VERANERAS</item>
+        <item>LOS ALAMOS</item>
+        <item>LOS ALCAZARES</item>
+        <item>LOS ALPES</item>
+        <item>LOS ANGELES</item>
+        <item>LOS CAMBULOS</item>
+        <item>LOS CAMINOS</item>
+        <item>LOS CHORROS</item>
+        <item>LOS CONQUISTADORES</item>
+        <item>LOS CORALES</item>
+        <item>LOS CRISTALES</item>
+        <item>LOS GIRASOLES (ZARAGOZA)</item>
+        <item>LOS LAURELES</item>
+        <item>LOS NARANJOS</item>
+        <item>LOS ROSALES</item>
+        <item>LOS SAMANES</item>
+        <item>LOS SAUCES</item>
+        <item>LUIS CARLOS GALAN</item>
+        <item>MARACAIBO (ZARAGOZA)</item>
+        <item>MARISCAL ROBLEDO</item>
+        <item>MELQUISEDEC QUINTERO</item>
+        <item>MILAN</item>
+        <item>MONTANAR</item>
+        <item>MONTE ESMERALDA</item>
+        <item>MONTE VERDE</item>
+        <item>NUESTRA SEŃORA DE LA POBREZA</item>
+        <item>NUEVA COLOMBIA</item>
+        <item>OBRERO DEPARTAMENTAL</item>
+        <item>ORTEZ</item>
+        <item>PAMPALINDA</item>
+        <item>PINARES</item>
+        <item>PINARES II</item>
+        <item>PORTAL DE ALAMOS I II III</item>
+        <item>PORTAL DE KYRENIA</item>
+        <item>PORTAL DE SANTA MARIA</item>
+        <item>PORTAL DE TORRE LA VEGA</item>
+        <item>PRADO ALTO</item>
+        <item>PRADO NORTE</item>
+        <item>PRADO OCCIDENTAL</item>
+        <item>PRADO VERDE</item>
+        <item>PRAGA</item>
+        <item>PRIMERO DE MAYO</item>
+        <item>PROVIVIENDA I - II (ZARAGOZA)</item>
+        <item>PROVIVIENDA III - IV (ZARAGOZA)</item>
+        <item>QUIRAMA</item>
+        <item>REPUBLICA DE FRANCIA</item>
+        <item>RESERVAS DE SANTA MARIA</item>
+        <item>RESERVAS DE TORRE LA VEGA</item>
+        <item>RESERVAS DEL SAMAN</item>
+        <item>RINCON DE LA LOMA</item>
+        <item>RINCON DEL SAMAN</item>
+        <item>ROBERTULIO LORA</item>
+        <item>RODRIGO LLOREDA (ZARAGOZA)</item>
+        <item>SAN AGUSTIN</item>
+        <item>SAN CARLOS</item>
+        <item>SAN FERNANDO</item>
+        <item>SAN FRANCISCO</item>
+        <item>SAN GABRIEL</item>
+        <item>SAN JERONIMO</item>
+        <item>SAN JOAQUIN</item>
+        <item>SAN JOSE</item>
+        <item>SAN JUAN DE LA CRUZ</item>
+        <item>SAN NICOLAS</item>
+        <item>SAN PABLO</item>
+        <item>SAN VICENTE</item>
+        <item>SANTA ANA</item>
+        <item>SANTA ANA NORTE</item>
+        <item>SANTA BARBARA (ZARAGOZA)</item>
+        <item>SANTA CATALINA</item>
+        <item>SANTA ISABEL</item>
+        <item>SANTA LUCIA</item>
+        <item>SANTA MARIA</item>
+        <item>SANTA MARIA REAL</item>
+        <item>SANTA MONICA</item>
+        <item>SANTA ROSA DE LIMA</item>
+        <item>SECTOR CONVIVIR</item>
+        <item>SECTOR CUCHARA LARGA</item>
+        <item>TERRAZAS DE LA CATORCE</item>
+        <item>TERRAZAS DE SANTA MARIA</item>
+        <item>TERRAZAS DEL LLANO</item>
+        <item>TORRE LA VEGA</item>
+        <item>URBANIZACION ALTOS DE LA 16</item>
+        <item>URBANIZACION ARGOS</item>
+        <item>URBANIZACION BELLAVISTA</item>
+        <item>URBANIZACION EL BOSQUE (ZARAGOZA)</item>
+        <item>URBANIZACION EL DIAMANTE</item>
+        <item>URBANIZACION EL JARDIN</item>
+        <item>URBANIZACION JUAN PABLO II (ZARAGOZA)</item>
+        <item>URBANIZACION LA ARBOLEDA</item>
+        <item>URBANIZACION LOS ANGELES</item>
+        <item>URBANIZACION LOS PINOS</item>
+        <item>URBANIZACION MARACAIBO (ZARAGOZA)</item>
+        <item>URBANIZACION MARBELLA</item>
+        <item>URBANIZACION PUEBLITO PAISA</item>
+        <item>URBANIZACION SAN DIEGO</item>
+        <item>URBANIZACION SAN FERNANDO II</item>
+        <item>URBANIZACION SANTA BARBARA(ZARAGOZA)</item>
+        <item>URBANIZACION SANTA ELENA</item>
+        <item>URBANIZACION SANTA LAURA</item>
+        <item>URBANIZACION SANTA MONICA (ZARAGOZA)</item>
+        <item>URBANIZACION SUIZO</item>
+        <item>URBANIZACION TORRES DEL SOL</item>
+        <item>URBANIZACION VILLA MARCELA</item>
+        <item>URBANIZACION VILLAS DEL SAMAN</item>
+        <item>URBANIZACION VITRA (ZARAGOZA)</item>
+        <item>VERACRUZ</item>
+        <item>VERONA</item>
+        <item>VILLA ALICIA</item>
+        <item>VILLA AMALIA</item>
+        <item>VILLA CAROLINA</item>
+        <item>VILLA COMUNERA</item>
+        <item>VILLA DANIELA (ZARAGOZA)</item>
+        <item>VILLA DEL MAR</item>
+        <item>VILLA DEL SOL</item>
+        <item>VILLA ESPERANZA</item>
+        <item>VILLA HELENA</item>
+        <item>VILLA HERMOSA</item>
+        <item>VILLA JULIANA</item>
+        <item>VILLA LORENA</item>
+        <item>VILLA LUCIANA</item>
+        <item>VILLA MONICA</item>
+        <item>VILLA PAULINA</item>
+        <item>VILLA VIVIANA</item>
+        <item>ZARAGOZA</item>
+    </string-array>
+
+    <string-array name="dagua">
+        <item>CoV-ALTO DE LAS TORTOLAS</item>
+        <item>ALTOS DE DAGUA</item>
+        <item>CoV-AMBICHINTE</item>
+        <item>CoV-ATUNCELA</item>
+        <item>CoV-BAHONDO</item>
+        <item>CoV-BAJO TIGRE</item>
+        <item>BELLAVISTA</item>
+        <item>CoV-BELLAVISTA</item>
+        <item>CoV-BENHUR</item>
+        <item>CoV-BOLIVIA</item>
+        <item>CoV-BORRERO AYERBE</item>
+        <item>BUENOS AIRES</item>
+        <item>CALOTO</item>
+        <item>CAMPO BELLO</item>
+        <item>CoV-CAMPO BELLO</item>
+        <item>CoV-CENTELLA</item>
+        <item>CENTRAL</item>
+        <item>CHAPINERO</item>
+        <item>CHIMINANGOS</item>
+        <item>CoV-CHIPRE</item>
+        <item>CoV-CISNEROS</item>
+        <item>COREA</item>
+        <item>CoV-DIGUA</item>
+        <item>CoV-EL AGUACATE</item>
+        <item>EL CANEY</item>
+        <item>CoV-EL CARMEN</item>
+        <item>CoV-EL CAUCHAL</item>
+        <item>CoV-EL CHILCAL</item>
+        <item>CoV-EL DANUBIO</item>
+        <item>CoV-EL DIVISO</item>
+        <item>CoV-EL JORDAN</item>
+        <item>CoV-EL LIMONAR</item>
+        <item>EL LLANITO</item>
+        <item>CoV-EL NARANJO</item>
+        <item>CoV-EL PALMAR</item>
+        <item>CoV-EL PALMARCITO</item>
+        <item>CoV-EL PIŃAL</item>
+        <item>CoV-EL PLACER</item>
+        <item>CoV-EL PORTAL</item>
+        <item>EL PORVENIR</item>
+        <item>CoV-EL QUEREMAL</item>
+        <item>CoV-EL TIGRE</item>
+        <item>CoV-EL TRAPICHE</item>
+        <item>CoV-EL VERGEL</item>
+        <item>FATIMA</item>
+        <item>CoV-FATIMA</item>
+        <item>FATIMA I</item>
+        <item>FATIMA II</item>
+        <item>CoV-GUINEA BAJA</item>
+        <item>CoV-JIGUALES</item>
+        <item>CoV-JORDANCITO</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>JUAN XXIII</item>
+        <item>CoV-JUNTAS</item>
+        <item>CoV-KILOMETRO 18</item>
+        <item>CoV-KILOMETRO 30</item>
+        <item>CoV-KM 28</item>
+        <item>CoV-KM 30</item>
+        <item>CoV-KM 34</item>
+        <item>LA CABAŃA</item>
+        <item>CoV-LA CASCADA</item>
+        <item>CoV-LA CLORINDA</item>
+        <item>CoV-LA COLONIA</item>
+        <item>CoV-LA DELFINA</item>
+        <item>CoV-LA ELSA</item>
+        <item>CoV-LA ESMERALDA</item>
+        <item>LA ESTACION</item>
+        <item>CoV-LA GARZA</item>
+        <item>LA GRAN COLOMBIA</item>
+        <item>LA MARÍA</item>
+        <item>LA PAZ</item>
+        <item>CoV-LA PUERTA</item>
+        <item>CoV-LA REINA</item>
+        <item>CoV-LA ROSITA</item>
+        <item>CoV-LA VIRGEN</item>
+        <item>CoV-LA ZULIA</item>
+        <item>CoV-LAS BRISAS</item>
+        <item>LAS CAMELIAS</item>
+        <item>CoV-LAS CAMELIAS</item>
+        <item>CoV-LAS COLINAS</item>
+        <item>LAS DELICIAS</item>
+        <item>CoV-LAS DELICIAS</item>
+        <item>CoV-LAS GARZAS</item>
+        <item>CoV-LOBOGUERRERO</item>
+        <item>CoV-LOMA ALTA</item>
+        <item>LOS ALAMOS</item>
+        <item>CoV-LOS ALPES</item>
+        <item>CoV-LOS COLORADOS</item>
+        <item>LOS MANGOS</item>
+        <item>LOS PINOS</item>
+        <item>LOS REMEDIOS</item>
+        <item>LUCERITO</item>
+        <item>LUIS CARLOS GALAN</item>
+        <item>CoV-MACHADO</item>
+        <item>MONTEREDONDO</item>
+        <item>CoV-MONTERICO</item>
+        <item>NUEVO RENACER</item>
+        <item>CoV-PALO ALTO</item>
+        <item>PANAMERICANO</item>
+        <item>CoV-PATIO BONITO</item>
+        <item>PRIMERO DE MAYO</item>
+        <item>CoV-PROVIDENCIA</item>
+        <item>PROVIVIENDA</item>
+        <item>CoV-PUEBLO NUEVO</item>
+        <item>CoV-PUERTO DAGUA</item>
+        <item>RICAURTE</item>
+        <item>CoV-SAN BERNARDO</item>
+        <item>CoV-SAN JOAQUIN</item>
+        <item>CoV-SAN JOSE DEL SALADO</item>
+        <item>SAN LUIS</item>
+        <item>CoV-SAN MIGEL</item>
+        <item>CoV-SAN VICENTE</item>
+        <item>CoV-SANTAMARIA</item>
+        <item>CoV-SENDO</item>
+        <item>SINDICAL</item>
+        <item>CoV-TOCOTA</item>
+        <item>CoV-VILLAHERMOSA</item>
+        <item>CoV-VISTA HERMOSA</item>
+        <item>CoV-YERBABUENA</item>
+        <item>CoV-YOLOMBA</item>
+        <item>CoV-ZABALETAS</item>
+        <item>CoV-ZELANDIA</item>
+    </string-array>
+
+    <string-array name="el_aguila">
+        <item>ASPRODICA</item>
+        <item>BOMBEROS</item>
+        <item>CENTRO</item>
+        <item>CoV-CORREGIMIENTO LA ESPARTA</item>
+        <item>CoV-CORREGIMIENTO LA MARIA</item>
+        <item>CoV-CORREGIMIENTO SAN PEDRO</item>
+        <item>CoV-CORREGIMIENTO SANTA ELENA</item>
+        <item>CoV-CORREGIMIENTO VILLANUEVA</item>
+        <item>EL DUMBAR</item>
+        <item>LA CUARENTA</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>PUNTA BRAVA</item>
+        <item>SAN VICENTE</item>
+        <item>SECTOR HOSPITAL</item>
+        <item>SECTOR PARQUE RECREACIONAL</item>
+        <item>CoV-VEREDA ALBANIA</item>
+        <item>CoV-VEREDA BUENOS AIRES</item>
+        <item>CoV-VEREDA CAŃAVERAL</item>
+        <item>CoV-VEREDA EL COFRE</item>
+        <item>CoV-VEREDA EL CORAZON</item>
+        <item>CoV-VEREDA EL DIAMANTE</item>
+        <item>CoV-VEREDA EL EMBAL</item>
+        <item>CoV-VEREDA EL GUAYABO</item>
+        <item>CoV-VEREDA EL NARANJO</item>
+        <item>CoV-VEREDA EL PITAL</item>
+        <item>CoV-VEREDA EL RIO</item>
+        <item>CoV-VEREDA EL SALADO</item>
+        <item>CoV-VEREDA EL ZORRO</item>
+        <item>CoV-VEREDA LA CEDALIA</item>
+        <item>CoV-VEREDA LA ESTRELLA</item>
+        <item>CoV-VEREDA LA GUERRA</item>
+        <item>CoV-VEREDA LA JUDEA ALTA</item>
+        <item>CoV-VEREDA LA JUDEA BAJA</item>
+        <item>CoV-VEREDA LA LIBERTAD</item>
+        <item>CoV-VEREDA LA LINEA</item>
+        <item>CoV-VEREDA LA MIRLA</item>
+        <item>CoV-VEREDA LA QUIEBRA DE SAN PABLO</item>
+        <item>CoV-VEREDA LA TRIBUNA</item>
+        <item>CoV-VEREDA LLANO GRANDE</item>
+        <item>CoV-VEREDA SAN JOSE</item>
+        <item>CoV-VEREDA SAN MARTIN</item>
+        <item>CoV-VEREDA SANTA ELENA BAJA</item>
+        <item>CoV-VEREDA SANTA ISABEL</item>
+        <item>CoV-VEREDA SANTA MARTHA</item>
+        <item>CoV-VEREDA SANTA RITA</item>
+    </string-array>
+
+    <string-array name="el_cairo">
+        <item>ALTO DE LA CRUZ</item>
+        <item>BELISARIO</item>
+        <item>CALLE DE LOS LLANOS</item>
+        <item>CALLE DE LOS PEREZ</item>
+        <item>CENTRO</item>
+        <item>CoV-CORREGIMIENTO BELLAVISTA</item>
+        <item>CoV-CORREGIMIENTO DE ALBAN</item>
+        <item>CoV-CORREGIMIENTO LA CARBONERA</item>
+        <item>CoV-CORREGIMIENTO LA GUARDIA</item>
+        <item>CoV-CORREGIMIENTO SALMELIA</item>
+        <item>CoV-CORREGIMIENTO SAN JOSE</item>
+        <item>EL CRUCERO</item>
+        <item>EL RECREO</item>
+        <item>LA PLAZUELA</item>
+        <item>LA QUIEBRA</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>SALIDA ALBAN</item>
+        <item>SAN VICENTE</item>
+        <item>SECTOR CAFETERO</item>
+        <item>SECTOR PARQUE RECREACIONAL</item>
+        <item>SILVIO ARBELAEZ</item>
+        <item>TROCADERO</item>
+        <item>CoV-VEREDA ALTO BONITO</item>
+        <item>CoV-VEREDA BUENOS AIRES</item>
+        <item>CoV-VEREDA CAMELLONES</item>
+        <item>CoV-VEREDA EL BRILLANTE</item>
+        <item>CoV-VEREDA EL DIAMANTE</item>
+        <item>CoV-VEREDA EL EDEN</item>
+        <item>CoV-VEREDA EL JARDIN</item>
+        <item>CoV-VEREDA EL MADROŃO</item>
+        <item>CoV-VEREDA EL PACIFICO</item>
+        <item>CoV-VEREDA EL PIŃUELO</item>
+        <item>CoV-VEREDA GUADUALITO</item>
+        <item>CoV-VEREDA LA ALEJANDRIA</item>
+        <item>CoV-VEREDA LA ESTRELLA</item>
+        <item>CoV-VEREDA LA GUAJIRA</item>
+        <item>CoV-VEREDA LA LAGUNA</item>
+        <item>CoV-VEREDA LA MIRANDA</item>
+        <item>CoV-VEREDA LA PALMERA</item>
+        <item>CoV-VEREDA LA SIBERIA</item>
+        <item>CoV-VEREDA LA SONORA</item>
+        <item>CoV-VEREDA LAS MARGARITAS</item>
+        <item>CoV-VEREDA LLANO GRANDE</item>
+        <item>CoV-VEREDA LUNAPAR</item>
+        <item>CoV-VEREDA NAPOLES</item>
+        <item>CoV-VEREDA PEŃAS BLANCAS</item>
+        <item>CoV-VEREDA SANTA RITA</item>
+        <item>VIA A LOS TANQUES</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLEGAS</item>
+    </string-array>
+
+    <string-array name="el_cerrito">
+        <item>ASOVISCON</item>
+        <item>CoV-AUJI</item>
+        <item>BALCAZAR MONZON</item>
+        <item>BALCONES</item>
+        <item>BALCONES DE LA MERCED</item>
+        <item>BELLAVISTA</item>
+        <item>BRISAS DE LA MERCED</item>
+        <item>BUENOS AIRES</item>
+        <item>CoV-CAMPOALEGRE</item>
+        <item>CoV-CARRIZAL</item>
+        <item>CENTRAL</item>
+        <item>CHAPINERO</item>
+        <item>CINCUENTENARIO</item>
+        <item>CIUDADELA LA MERCED</item>
+        <item>CIUDADELA LAS MERCEDES</item>
+        <item>COINCER</item>
+        <item>COOINCER</item>
+        <item>EDUARDO CABAL MOLINA</item>
+        <item>CoV-EL CASTILLO</item>
+        <item>EL LIMONAR</item>
+        <item>CoV-EL MORAL</item>
+        <item>EL PLACER</item>
+        <item>CoV-EL PLACER</item>
+        <item>CoV-EL POMO</item>
+        <item>EL PORVENIR</item>
+        <item>EL PRADO</item>
+        <item>EL ROSARIO</item>
+        <item>CoV-EL ROSARIO</item>
+        <item>EL SAMAN</item>
+        <item>CoV-GUACANAL</item>
+        <item>LA CRISTALINA</item>
+        <item>LA ESPERANZA</item>
+        <item>LA ESTACION</item>
+        <item>LA ESTRELLA</item>
+        <item>CoV-LA HONDA</item>
+        <item>LA PAZ</item>
+        <item>LARES DEL PRADO</item>
+        <item>LOS ALMENDROS</item>
+        <item>LOS RINCONES</item>
+        <item>LOS SAMANES</item>
+        <item>NUEVO AMANECER</item>
+        <item>NUEVO MUNICIPIO ETAPA 1</item>
+        <item>NUEVO MUNICIPIO ETAPA 2</item>
+        <item>OVIEDO</item>
+        <item>PAJONALES</item>
+        <item>CoV-PAJONALES</item>
+        <item>PORTAL DEL PORVENIR</item>
+        <item>PRADOVALLE</item>
+        <item>PUEBLITO VALLUNO</item>
+        <item>PUERTO NUEVO</item>
+        <item>CoV-REGADEROS</item>
+        <item>SAGRADO CORAZÓN</item>
+        <item>SAJONIA</item>
+        <item>SAN ANTONIO</item>
+        <item>CoV-SAN ANTONIO</item>
+        <item>SAN RAFAEL</item>
+        <item>SANTA BARBARA</item>
+        <item>CoV-SANTA ELENA</item>
+        <item>CoV-SANTA LUISA</item>
+        <item>SANTA MONICA</item>
+        <item>CoV-TENERIFE</item>
+        <item>URBANIZACIÓN CORAL</item>
+        <item>VALLE DEL CERRITO</item>
+        <item>VILLA CARIŃO</item>
+        <item>VILLA DEL CARMEN</item>
+        <item>VILLA LINA</item>
+        <item>VILLA MERCEDES</item>
+        <item>VILLAMARIA</item>
+        <item>VILLANELLY</item>
+        <item>CoV-ZABALETAS</item>
+    </string-array>
+
+    <string-array name="el_dovio">
+        <item>ACACIAS</item>
+        <item>BENJAMIN PEREA</item>
+        <item>CoV-CAŃADA HONDA</item>
+        <item>CENTRO</item>
+        <item>CIUDADELA HECTOR URDINOLA</item>
+        <item>COLEGIO</item>
+        <item>EL CARMEN</item>
+        <item>EL PORVENIR</item>
+        <item>EL RODEO</item>
+        <item>FUNDADORES</item>
+        <item>INMACULADA</item>
+        <item>LA ESPERANZA</item>
+        <item>LA MERCED</item>
+        <item>LAS COLINAS</item>
+        <item>LOS ALPES</item>
+        <item>MARISCAL ROBLEDO</item>
+        <item>CoV-MONTE AZUL</item>
+        <item>MUNICIPAL</item>
+        <item>NICOLAS BORRERO OLANO</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>NUEVO AMANACER</item>
+        <item>CoV-OJEDAS</item>
+        <item>PRADOS DE MATECAŃA</item>
+        <item>PROVIVIENDA</item>
+        <item>PUERTO BETANIA</item>
+        <item>PUERTO CASTILLO</item>
+        <item>SALIDA ROLDANILLO</item>
+        <item>SAMANA</item>
+        <item>SAN PEDRO</item>
+        <item>CoV-SANTA ELENA</item>
+        <item>TRES ESQUINAS</item>
+        <item>UNION DE VIVIENDA</item>
+        <item>URBANIZACION EL OASIS</item>
+        <item>URBANIZACION JOSE ANTONIO LOPEZ</item>
+        <item>URBANIZACION LAS ACACIAS</item>
+        <item>URBANIZACION MOTORISTAS</item>
+        <item>URBANIZACION NUEVO AMANECER</item>
+        <item>CoV-VEREDA BELLAVISTA</item>
+        <item>CoV-VEREDA BIRMANIA</item>
+        <item>CoV-VEREDA BITACO</item>
+        <item>CoV-VEREDA CALLE LARGA</item>
+        <item>CoV-VEREDA EL CRUCERO</item>
+        <item>CoV-VEREDA EL DIAMANTE</item>
+        <item>CoV-VEREDA EL GUADUAL</item>
+        <item>CoV-VEREDA EL LULAR</item>
+        <item>CoV-VEREDA EL ORO</item>
+        <item>CoV-VEREDA GUATEMALA</item>
+        <item>CoV-VEREDA LA AGUADITA</item>
+        <item>CoV-VEREDA LA CABAŃA</item>
+        <item>CoV-VEREDA LA ESPERANZA</item>
+        <item>CoV-VEREDA LA HONDURA</item>
+        <item>CoV-VEREDA LA MARIA</item>
+        <item>CoV-VEREDA LA PEŃA</item>
+        <item>CoV-VEREDA LA VIRGINIA</item>
+        <item>CoV-VEREDA LAS VUELTAS</item>
+        <item>CoV-VEREDA LITUANIA</item>
+        <item>CoV-VEREDA LOS ZAINOS</item>
+        <item>CoV-VEREDA MATECAŃA</item>
+        <item>CoV-VEREDA MONTEBELLO</item>
+        <item>CoV-VEREDA PLAYA RICA</item>
+        <item>CoV-VEREDA SAMANÁ</item>
+        <item>CoV-VEREDA TOLDAFRIA</item>
+        <item>CoV-VEREDAEL CIELITO</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLA EMMA</item>
+    </string-array>
+
+    <string-array name="florida">
+        <item>ABSALON FAJARDO</item>
+        <item>CoV-ALTAMIRA</item>
+        <item>BOSQUES DE LA HACIENDA</item>
+        <item>BOSQUES GUAYACAN</item>
+        <item>BRISAS DEL FRAYLE</item>
+        <item>CoV-CAŃAS ABAJO</item>
+        <item>CoV-CAŃAS ARRIBA</item>
+        <item>CAŃAVERALES DE QUEVEDO</item>
+        <item>CENTRO</item>
+        <item>CoV-CHOCOCITO</item>
+        <item>CIUDADELA DON PACO</item>
+        <item>COLORES DE SANTA SOFIA</item>
+        <item>CoV-EL CABUYO</item>
+        <item>EL CEDRO</item>
+        <item>CoV-EL LIBANO</item>
+        <item>EL LIMONAR</item>
+        <item>CoV-EL LLANITO</item>
+        <item>EL PARAISO</item>
+        <item>CoV-EL PEDREGAL</item>
+        <item>EL PEREZ</item>
+        <item>EL RECREO</item>
+        <item>CoV-EL REMOLINO</item>
+        <item>CoV-EL SALADO</item>
+        <item>CoV-EL TAMBORAL</item>
+        <item>CoV-GRANATES</item>
+        <item>JAIRO ROJAS</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>CoV-LA ACEQUIA</item>
+        <item>LA AURORA</item>
+        <item>LA CABAŃA</item>
+        <item>CoV-LA CABAŃA</item>
+        <item>LA CASILDA</item>
+        <item>CoV-LA CUMBRE</item>
+        <item>CoV-LA DIANA</item>
+        <item>LA ESMERALDA</item>
+        <item>LA ESPERANZA</item>
+        <item>LA FLORESTA</item>
+        <item>LA HACIENDA</item>
+        <item>CoV-LA RIVERA</item>
+        <item>CoV-LA UNION</item>
+        <item>CoV-LAS BRISAS</item>
+        <item>CoV-LAS GUACAS</item>
+        <item>LAS TINAJAS</item>
+        <item>CoV-LOMA GORDA</item>
+        <item>CoV-LOMITAS</item>
+        <item>LOPEZ</item>
+        <item>LOS ALMENDROS</item>
+        <item>CoV-LOS CALEŃOS</item>
+        <item>LOS CRISTALES</item>
+        <item>LOS PINOS</item>
+        <item>CoV-MATEGUADUA</item>
+        <item>MI PUEBLITO</item>
+        <item>MONCALEANO</item>
+        <item>NUEVO HORIZONTE</item>
+        <item>CoV-NUEVO HORIZONTE</item>
+        <item>CoV-PEDREGAL I</item>
+        <item>PROGRESO</item>
+        <item>PUBENZA</item>
+        <item>CoV-PUEBLITO VALLUNO</item>
+        <item>CoV-PUEBLO NUEVO</item>
+        <item>PUERTO NUEVO</item>
+        <item>QUINAMAYO</item>
+        <item>RIO FRAILE URBANIZACIÓN</item>
+        <item>SAMANES</item>
+        <item>SAN ANTONIO</item>
+        <item>CoV-SAN ANTONIO DE LOS CABALLEROS</item>
+        <item>CoV-SAN JOAQUIN</item>
+        <item>SAN JORGE</item>
+        <item>CoV-SAN JUANITO</item>
+        <item>SAN LUIS</item>
+        <item>SANTA MONICA</item>
+        <item>CoV-SANTA ROSA</item>
+        <item>CoV-SANTODOMINGO</item>
+        <item>CoV-TARRAGONA</item>
+        <item>URBANIZACION SAN LUIS 1</item>
+        <item>URBANIZACION SAN LUIS 2</item>
+        <item>URBANIZACION VILLA NANCY I</item>
+        <item>URBANIZACIÓN VILLA NANCY I</item>
+        <item>URBANIZACION VILLA NANCY II</item>
+        <item>VILLA DEL SUR</item>
+        <item>CoV-VILLA MARINA</item>
+        <item>CoV-VILLA PINZON</item>
+        <item>WATERLOO</item>
+    </string-array>
+
+    <string-array name="ginebra">
+        <item>CoV-AGUA BENDITA</item>
+        <item>ALCAZAR</item>
+        <item>ALFONSO LOPEZ</item>
+        <item>CoV-ALTAMIRA</item>
+        <item>ALTOS DE GINEBRA</item>
+        <item>CoV-BARRANCO BAJO</item>
+        <item>BOLÍVAR</item>
+        <item>BUENA VISTA</item>
+        <item>CoV-CAMPOALEGRE</item>
+        <item>CoV-CANAIMA</item>
+        <item>CENTRO</item>
+        <item>CoV-COCUYOS</item>
+        <item>CoV-COMINAL</item>
+        <item>CORNELIO REYES</item>
+        <item>CoV-COSTA RICA</item>
+        <item>EL CONDADO</item>
+        <item>CoV-EL GUABITO</item>
+        <item>CoV-EL JARDIN</item>
+        <item>EL MOLINO</item>
+        <item>EL PRADO</item>
+        <item>EL REFUGIO</item>
+        <item>EL RODEO</item>
+        <item>EL ROSARIO</item>
+        <item>EL SAMAN</item>
+        <item>CoV-FLAUTAS</item>
+        <item>JORDAN</item>
+        <item>CoV-JUNTAS</item>
+        <item>CoV-LA ALDEA</item>
+        <item>CoV-LA CASCADA</item>
+        <item>CoV-LA CECILIA</item>
+        <item>CoV-LA CUESTA</item>
+        <item>CoV-LA ESTRELLA</item>
+        <item>CoV-LA FLORESTA</item>
+        <item>CoV-LA LUNA</item>
+        <item>LA MANSION</item>
+        <item>LA PLAZA</item>
+        <item>LA PROMESA</item>
+        <item>CoV-LA SELVA</item>
+        <item>CoV-LAS HERMOSAS</item>
+        <item>CoV-LOMA GORDA</item>
+        <item>CoV-LOS MEDIOS</item>
+        <item>LOS SAUCES</item>
+        <item>CoV-LOS SAUCES</item>
+        <item>MARIANO OSPINA</item>
+        <item>CoV-MORAVIA</item>
+        <item>CoV-MOSOCO</item>
+        <item>MUNICIPAL</item>
+        <item>CoV-NARANJAL</item>
+        <item>PALMARES DE LA PERLA</item>
+        <item>CoV-PATIO BONITO</item>
+        <item>CoV-PORTUGAL ALTO</item>
+        <item>CoV-PORTUGAL BAJO</item>
+        <item>PRADOS DEL NORTE</item>
+        <item>PUEBLO NUEVO</item>
+        <item>CoV-PUENTE ROJO</item>
+        <item>SAGI</item>
+        <item>SAN JOSE</item>
+        <item>SAN JUAN BOSCO</item>
+        <item>SAN PEDRO</item>
+        <item>SIMON BOLIVAR</item>
+        <item>URBANIZACION GUAYACANES DE LA ALDEA</item>
+        <item>CoV-VALLEDUPAR</item>
+        <item>VILLA LIBIA</item>
+        <item>CoV-VILLA VANEGAS</item>
+        <item>CoV-ZABALETAS</item>
+    </string-array>
+
+    <string-array name="guacari">
+        <item>CoV-ALTO DE GUACAS</item>
+        <item>CoV-ALTO DE LA JULIA</item>
+        <item>CoV-ALTO DE LA MAGDALENA</item>
+        <item>CoV-ALTO DE TAPIAS</item>
+        <item>ARANJUEZ</item>
+        <item>BELLAVISTA</item>
+        <item>BRISAS DE LA AVENIDA</item>
+        <item>CoV-CANANGUA</item>
+        <item>CEIBAS AZULES</item>
+        <item>CEIBAS VERDES</item>
+        <item>CENTRO</item>
+        <item>CoV-CHAFALOTE</item>
+        <item>CHAPINERO</item>
+        <item>EL CAIRO</item>
+        <item>EL DORADO</item>
+        <item>EL LIMONAR</item>
+        <item>CoV-EL PLACER</item>
+        <item>EL PORVENIR</item>
+        <item>EL SAMAN</item>
+        <item>EL SOL</item>
+        <item>CoV-EL TREBOL</item>
+        <item>EL TUNAL</item>
+        <item>CoV-GUABAS</item>
+        <item>CoV-GUABITAS</item>
+        <item>CoV-GUACAS</item>
+        <item>IV CENTENARIO</item>
+        <item>LA ESPERANZA</item>
+        <item>LA INDEPENDENCIA</item>
+        <item>LA ITALIA</item>
+        <item>LA LUISA</item>
+        <item>CoV-LA MAGDALENA</item>
+        <item>LA NUBIA</item>
+        <item>LA PRIMAVERA</item>
+        <item>LAS AMERICAS</item>
+        <item>LAS CEIBAS</item>
+        <item>CoV-LOS LULOS</item>
+        <item>NUEVA COLOMBIA</item>
+        <item>CoV-PICHICHI</item>
+        <item>CoV-POMARES</item>
+        <item>PORTALES DEL CAIRO</item>
+        <item>PORVENIR</item>
+        <item>PRADOS DE LA LUISA</item>
+        <item>CoV-PUENTE BLANCO</item>
+        <item>CoV-PUENTE ROJO</item>
+        <item>SAAVEDRA GALINDO</item>
+        <item>SANTA BARBARA</item>
+        <item>SANTA MARIA</item>
+        <item>SANTA MARIA DEL PRADO</item>
+        <item>CoV-SANTA ROSA DE TAPIAS</item>
+        <item>CoV-SONSO</item>
+    </string-array>
+
+    <string-array name="jamundi">
+        <item>AL VIENTO PARQUE NATURA</item>
+        <item>ALFAGUARA</item>
+        <item>ANGEL MARIA CAMACHO</item>
+        <item>BELALCAZAR</item>
+        <item>BELALCAZAR I</item>
+        <item>BELALCAZAR II</item>
+        <item>BELLO HORIZONTE</item>
+        <item>BONANZA</item>
+        <item>CoV-BULEVAR DE LAS FLORES</item>
+        <item>CENTENARIO</item>
+        <item>CENTRO</item>
+        <item>CoV-CHAGRES</item>
+        <item>CIRO VELASCO</item>
+        <item>CIUDAD DEL SUR</item>
+        <item>CIUDAD NATURA PARK</item>
+        <item>CIUDADELA LAS FLORES</item>
+        <item>CIUDADELA TERRANOVA</item>
+        <item>COLOMBINA</item>
+        <item>EDEN DEL PARQUE</item>
+        <item>EL CASTILLO</item>
+        <item>EL DORADO</item>
+        <item>EL JARDIN</item>
+        <item>EL PILOTO</item>
+        <item>EL PORTAL</item>
+        <item>EL PORVENIR</item>
+        <item>EL ROSARIO</item>
+        <item>CoV-EL TRIUNFO</item>
+        <item>CoV-GUACHINTE</item>
+        <item>GUAYACAN</item>
+        <item>HOJARASCA</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>JUAN DE AMPUDIA</item>
+        <item>LA ADRIANITA</item>
+        <item>LA ALBORADA</item>
+        <item>LA AURORA</item>
+        <item>LA CEIBITA</item>
+        <item>LA ESMERALDA</item>
+        <item>LA ESTACIÓN</item>
+        <item>LA LUCHA</item>
+        <item>LA PRADERA</item>
+        <item>LAS ACACIAS</item>
+        <item>LIBERTADORES</item>
+        <item>LOMA DE PIEDRA</item>
+        <item>MARBELLA</item>
+        <item>OPORTO</item>
+        <item>PANAMERICANO</item>
+        <item>PANGOLA</item>
+        <item>PARQUES DE CASTILLA</item>
+        <item>POPULAR</item>
+        <item>PORTAL DE JAMUNDI</item>
+        <item>PORTAL DEL JORDÁN</item>
+        <item>CoV-POTERITO</item>
+        <item>PRIMERO DE MAYO</item>
+        <item>CoV-QUINAMAYO</item>
+        <item>QUINTAS DE BOLIVAR</item>
+        <item>RECANTO</item>
+        <item>RICAURTE</item>
+        <item>RIVERAS DEL ROSARIO</item>
+        <item>CoV-ROBLES</item>
+        <item>SACHAMATE</item>
+        <item>SAMAN I</item>
+        <item>CoV-SAN ISIDRO</item>
+        <item>SANTA ANA</item>
+        <item>SIMON BOLIVAR</item>
+        <item>CoV-TIMBA</item>
+        <item>TORRES DE JAMUND</item>
+        <item>URBANIZACION AMIGOS 2000</item>
+        <item>URBANIZACION CANTABRIA</item>
+        <item>URBANIZACION CIUDAD COUNTRY</item>
+        <item>URBANIZACION PAISAJE DE LAS FLORES</item>
+        <item>URBANIZACION SIGLO XXI</item>
+        <item>URBANIZACION ZARAGOZA</item>
+        <item>VERDE ALFAGUARA</item>
+        <item>VERDI</item>
+        <item>VILLA ALTAGRACIA</item>
+        <item>VILLA DEL SOL</item>
+        <item>CoV-VILLA DELFA</item>
+        <item>VILLA ELVIRA</item>
+        <item>VILLA EMA</item>
+        <item>VILLA ESTELA</item>
+        <item>VILLA MONICA</item>
+        <item>VILLA PAULINA 3</item>
+        <item>CoV-VILLA PAZ</item>
+        <item>VILLA PIME</item>
+        <item>VILLA TATIANA</item>
+    </string-array>
+
+    <string-array name="la_cumbre">
+        <item>CoV-AGUACATAL</item>
+        <item>CoV-AGUAS CLARAS</item>
+        <item>CoV-ARBOLEDA</item>
+        <item>BELLAVISTA</item>
+        <item>CoV-BELLAVISTA</item>
+        <item>CoV-BITACO</item>
+        <item>CENTRAL</item>
+        <item>CoV-CHICORAL</item>
+        <item>CoV-CHICORALITO</item>
+        <item>CoV-CORDOBITAS</item>
+        <item>CoV-EL CARMEN</item>
+        <item>CoV-EL DIAMANTE</item>
+        <item>CoV-EL RETIRO</item>
+        <item>FRANCISCO JARAMILLO</item>
+        <item>CoV-GUADALUPE</item>
+        <item>CoV-JIGUALES</item>
+        <item>CoV-LA CUCHILLA</item>
+        <item>LA ESTACION</item>
+        <item>CoV-LA GUAIRA</item>
+        <item>CoV-LA LAGUNA</item>
+        <item>LA MANZANA</item>
+        <item>CoV-LA MARIA</item>
+        <item>CoV-LA PLAYITA</item>
+        <item>CoV-LA VENTURA</item>
+        <item>CoV-LAS COLINAS</item>
+        <item>LAS MARGARITAS</item>
+        <item>CoV-LOMITAS</item>
+        <item>LOS ALMENDROS</item>
+        <item>CoV-MONTAŃITAS</item>
+        <item>CoV-MORALES</item>
+        <item>MUNICIPAL</item>
+        <item>OBREROS DE CRISTO</item>
+        <item>CoV-PALO ALTO</item>
+        <item>CoV-PARRAGA</item>
+        <item>CoV-PAVAS</item>
+        <item>CoV-PAVITAS</item>
+        <item>PUEBLO NUEVO</item>
+        <item>CoV-PUENTE PALO</item>
+        <item>CoV-SAN JOSE DE PAVAS</item>
+        <item>CoV-SANTA FÉ</item>
+        <item>SANTA MARGARITA</item>
+        <item>CoV-TIMBIO</item>
+        <item>CoV-TRES ESQUINAS</item>
+        <item>VILLA NUEVA</item>
+        <item>VILLANUEVA</item>
+        <item>CoV-ZARAGOZA</item>
+    </string-array>
+
+    <string-array name="la_union">
+        <item>BELEN</item>
+        <item>BELLAVISTA</item>
+        <item>CENTRO</item>
+        <item>CIUDADELA GRAJALES</item>
+        <item>CoV-CORREGIMIENTO DE CORCEGA</item>
+        <item>CoV-CORREGIMIENTO EL LINDERO</item>
+        <item>CoV-CORREGIMIENTO LA DESPENSA</item>
+        <item>CoV-CORREGIMIENTO QUEBRADA GRANDE</item>
+        <item>CoV-CORREGIMIENTO SAN LUIS</item>
+        <item>EL AMPARO</item>
+        <item>EL CARMEN</item>
+        <item>EL JARDIN</item>
+        <item>EL PARAISO</item>
+        <item>EL POPULAR</item>
+        <item>EL PRADO</item>
+        <item>FATIMA</item>
+        <item>LA CAMPESINA</item>
+        <item>LA CRUZ</item>
+        <item>LA ESPERANZA</item>
+        <item>LA FLORESTA</item>
+        <item>LA HABANA</item>
+        <item>LA PRIMAVERA</item>
+        <item>LAS BRISAS</item>
+        <item>LAS LAJAS</item>
+        <item>LAS PALMAS</item>
+        <item>LOS VIŃEDOS</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>PASO ANCHO</item>
+        <item>PRADOS DEL NORTE</item>
+        <item>SAN JOSE</item>
+        <item>SAN MIGUEL</item>
+        <item>SAN PABLO</item>
+        <item>SAN PEDRO</item>
+        <item>SAN RAFAEL</item>
+        <item>SILOE</item>
+        <item>URBANIZACION BOSQUES DE LA ACUARELA</item>
+        <item>URBANIZACION EL ROSARIO</item>
+        <item>URBANIZACION HATEŃOS</item>
+        <item>URBANIZACION LA ESPERANZA</item>
+        <item>URBANIZACION LA HERMITA</item>
+        <item>URBANIZACION LOS ANGELES.</item>
+        <item>URBANIZACION LOS CAMINOS</item>
+        <item>URBANIZACION LUIS ALFREDO GRAJALES</item>
+        <item>URBANIZACION VILLA DE LA PAZ</item>
+        <item>URBANIZACION VILLA DEL SOL</item>
+        <item>URBANIZACION VILLA FERNANDA</item>
+        <item>URBANIZACION VILLA NUEVA</item>
+        <item>CoV-VEREDA CAMPO ALEGRE</item>
+        <item>CoV-VEREDA EL BANCO</item>
+        <item>CoV-VEREDA EL LUCERO</item>
+        <item>CoV-VEREDA EL PEDREGAL</item>
+        <item>CoV-VEREDA EL RINCON</item>
+        <item>CoV-VEREDA LA AGUADA</item>
+        <item>CoV-VEREDA LA CAMPESINA</item>
+        <item>CoV-VEREDA LA ISLA</item>
+        <item>CoV-VEREDA LA TRINIDAD</item>
+        <item>CoV-VEREDA LA UNION</item>
+        <item>CoV-VEREDA LAS PARCELAS</item>
+        <item>CoV-VEREDA MARTINDOZA</item>
+        <item>CoV-VEREDA PAJARO DE ORO</item>
+        <item>CoV-VEREDA PARAMILLO</item>
+        <item>CoV-VEREDA PORTACHUELO</item>
+        <item>CoV-VEREDA SABANAZO</item>
+        <item>CoV-VEREDA VIOLETAS</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLA BETHEL</item>
+    </string-array>
+
+    <string-array name="la_victoria">
+        <item>CENTRAL</item>
+        <item>CENTRO</item>
+        <item>CORDOBA</item>
+        <item>CoV-CORREGIMIENTO DE HOLGUIN</item>
+        <item>CoV-CORREGIMIENTO MIRAVALLES</item>
+        <item>CoV-CORREGIMIENTO RIVERAALTA</item>
+        <item>CoV-CORREGIMIENTO SAN JOSE</item>
+        <item>CoV-CORREGIMIENTO SAN PEDRO</item>
+        <item>CoV-CORREGIMIENTO TAGUALES</item>
+        <item>EL BOSQUE</item>
+        <item>EL PRADO</item>
+        <item>FATIMA</item>
+        <item>FUNDADORES</item>
+        <item>LA CRUZ</item>
+        <item>LA FLORA</item>
+        <item>LA RIVERA</item>
+        <item>LAS COLINAS</item>
+        <item>LAS MERCEDES</item>
+        <item>LAS PEŃITAS</item>
+        <item>LOS ALMENDROS</item>
+        <item>NO SE REGISTRA EN EL ACTA.</item>
+        <item>OCCIDENTAL</item>
+        <item>PORVENIR</item>
+        <item>SANTA TERESA</item>
+        <item>URBANIZACION LA VIRGEN</item>
+        <item>URBANIZACION VILLA ZAIDA</item>
+        <item>CoV-VEREDA EL GUASIMAL</item>
+        <item>CoV-VEREDA LA SIBERIA</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLA ERMILA</item>
+        <item>VILLA GLORIA</item>
+        <item>VILLA HERMOSA ETAPA II</item>
+        <item>VILLA MARIANA</item>
+    </string-array>
+
+    <string-array name="obando">
+        <item>BELLO HORIZONTE</item>
+        <item>CENTRO</item>
+        <item>CIUDADELA OBANDO ETAPA I</item>
+        <item>CIUDADELA OBANDO ETAPA II</item>
+        <item>CoV-CORREGIMIENTO BUENOS AIRES</item>
+        <item>CoV-CORREGIMIENTO CRUCES</item>
+        <item>CoV-CORREGIMIENTO EL CHUZO</item>
+        <item>CoV-CORREGIMIENTO JUAN DIAS</item>
+        <item>CoV-CORREGIMIENTO PUERTO MOLINA</item>
+        <item>CoV-CORREGIMIENTO PUERTO SAMARIA</item>
+        <item>CoV-CORREGIMIENTO SAN ISIDRO</item>
+        <item>CoV-CORREGIMIENTO SAN JOSE</item>
+        <item>CoV-CORREGIMIENTO VILLA RODAS</item>
+        <item>EL JARDIN</item>
+        <item>EL LAGO</item>
+        <item>EL LLANO</item>
+        <item>EL PORTAL</item>
+        <item>EL PRADO</item>
+        <item>EL TRIUNFO</item>
+        <item>LA ARBOLEDA</item>
+        <item>LA AURORA</item>
+        <item>LA ESPERANZA</item>
+        <item>LA VIRGEN</item>
+        <item>LAS BRISAS</item>
+        <item>LOS ALMENDROS</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>SAGRADA FAMILIA</item>
+        <item>SAN FERNANDO</item>
+        <item>SAN JORGE</item>
+        <item>SAN JOSE</item>
+        <item>SAN RAFAEL</item>
+        <item>SANTA BARBARA</item>
+        <item>SANTANDER</item>
+        <item>SIGLO XXI</item>
+        <item>SILVIO VASQUEZ</item>
+        <item>URBANIZACION VILLA DEL SOL</item>
+        <item>CoV-VEREDA EL PLEITO</item>
+        <item>CoV-VEREDA FRIAS</item>
+        <item>CoV-VEREDA LIMONES</item>
+        <item>CoV-VEREDA MARCOPOLIS</item>
+        <item>CoV-VEREDA MONTEROSO</item>
+        <item>CoV-VEREDA PLAYA RICA</item>
+        <item>CoV-VEREDA SALEM</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLA EUROPA</item>
+    </string-array>
+
+    <string-array name="palmira">
+        <item>AGUACLARA</item>
+        <item>CoV-AGUACLARA</item>
+        <item>ALAMEDA</item>
+        <item>ALFONSO LÓPEZ</item>
+        <item>ALMENDROS DE LA ITALIA</item>
+        <item>ALTAMIRA</item>
+        <item>CoV-AMAIME</item>
+        <item>ANTONIO NARIŃO</item>
+        <item>CoV-ANTONIO NARIŃO</item>
+        <item>BARRIO NUEVO</item>
+        <item>BELTRAN PORVENIR</item>
+        <item>BERLIN</item>
+        <item>BIZERTA</item>
+        <item>CoV-BOLO ALIZAL</item>
+        <item>CoV-BOLO HARTONAL</item>
+        <item>CoV-BOLO LA ITALIA</item>
+        <item>CoV-BOLO SAN ISIDRO</item>
+        <item>BRISAS DE LA ITALIA</item>
+        <item>CAŃA REAL</item>
+        <item>CENTRAL</item>
+        <item>CENTRO</item>
+        <item>CEREZOS DE LA ITALIA</item>
+        <item>CHAPINERO</item>
+        <item>CoV-CIUDAD DEL CAMPO</item>
+        <item>COLOMBINA</item>
+        <item>COPSERVIR</item>
+        <item>CORONADO</item>
+        <item>EL PRADO</item>
+        <item>EL RECREO</item>
+        <item>EL TRIUNFO</item>
+        <item>ESTONIA</item>
+        <item>FATIMA</item>
+        <item>FRANCISCO RIVERA ESCOBAR</item>
+        <item>FRAY LUIS AMIGO</item>
+        <item>CoV-GUANABANAL</item>
+        <item>GUAYACANES DEL INGENIO</item>
+        <item>GUAYACANES DEL PARQUE</item>
+        <item>IGNACIO TORRES</item>
+        <item>INDUSTRIAL</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>LA BENEDICTA</item>
+        <item>CoV-LA BUITRERA</item>
+        <item>LA CARBONERA</item>
+        <item>LA COSECHA ETAPA 3</item>
+        <item>LA EMILIA</item>
+        <item>LA ESTACION</item>
+        <item>LA ITALIA</item>
+        <item>CoV-LA TORRE</item>
+        <item>LA TRINIDAD</item>
+        <item>LA VEGA</item>
+        <item>LAS DELICIAS</item>
+        <item>LAS MERCEDES</item>
+        <item>LIBERTADORES</item>
+        <item>LLANOS DE LA RIVERA</item>
+        <item>LOS MANGOS</item>
+        <item>LOS PINOS</item>
+        <item>MARIA CANO</item>
+        <item>CoV-MATAPALO</item>
+        <item>MIRRIŃAO</item>
+        <item>OASIS DE LA ITALIA</item>
+        <item>OBRERO</item>
+        <item>OLIMPICO</item>
+        <item>CoV-PALMASECA</item>
+        <item>PALMERAS</item>
+        <item>PALO VERDE</item>
+        <item>PARQUES DE BELEN</item>
+        <item>PARQUES DE LA ITALIA</item>
+        <item>CoV-PILES</item>
+        <item>PLAZA CAMPESTRE</item>
+        <item>POBLADO COMFAUNION</item>
+        <item>POPULAR MODELO</item>
+        <item>PORTAL DE BUENOS AIRES</item>
+        <item>CoV-POTRERILLO</item>
+        <item>PRADOS DE ORIENTE</item>
+        <item>PRIMERO DE MAYO</item>
+        <item>CoV-ROZO</item>
+        <item>SAMANES DE LA MERCED</item>
+        <item>SAN CAYETANO</item>
+        <item>CoV-SAN JOAQUIN</item>
+        <item>SAN PEDRO</item>
+        <item>SANTA BARBARA</item>
+        <item>SANTA ISABEL</item>
+        <item>SANTA RERESITA</item>
+        <item>SANTA RITA</item>
+        <item>SESQUICENTENARIO</item>
+        <item>CoV-TABLONES</item>
+        <item>CoV-TIENDA NUEVA</item>
+        <item>URBANIZACION CAMINOS DE LLANO GRANDE</item>
+        <item>URBANIZACION EL BOSQUE</item>
+        <item>URBANIZACION EL CAIMITO</item>
+        <item>URBANIZACION JUAN PABLO II</item>
+        <item>URBANIZACION LA ESPERANZA</item>
+        <item>URBANIZACIÓN LAS AMERICAS</item>
+        <item>URBANIZACION LOS SAMANES</item>
+        <item>URBANIZACIÓN PARMA</item>
+        <item>URBANIZACIÓN PORTAL DEL SEMBRADOR</item>
+        <item>URBANIZACION SIETE DE AGOSTO</item>
+        <item>URBANIZACION SIMON BOLIVAR</item>
+        <item>URIBE URIBE</item>
+        <item>VERSALLES</item>
+        <item>VILLA DEL SOL</item>
+        <item>ZAMORANO</item>
+    </string-array>
+
+    <string-array name="pradera">
+        <item>ALTOS DE LA PRADERA</item>
+        <item>ALTOS DEL CASTILLO</item>
+        <item>ANTONIO RICAURTE</item>
+        <item>BELLO HORIZONTE</item>
+        <item>BERLIN</item>
+        <item>CoV-BOLIVAR</item>
+        <item>CoV-BOLO AZUL</item>
+        <item>CoV-BOLO BLANCO</item>
+        <item>CoV-BOLO HARTONAL</item>
+        <item>BOSQUES DE LA COLINA</item>
+        <item>BOSQUES DE LA PRADERA</item>
+        <item>CENTRAL</item>
+        <item>CENTRO</item>
+        <item>CERREZUELA</item>
+        <item>CoV-EL ARENILLO</item>
+        <item>EL BOLITO</item>
+        <item>EL CAIRO</item>
+        <item>EL JARDIN</item>
+        <item>CoV-EL LIBANO</item>
+        <item>CoV-EL NOGAL</item>
+        <item>EL PRADO</item>
+        <item>CoV-EL RECREO</item>
+        <item>CoV-EL RETIRO</item>
+        <item>GRAN VÍA</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>LA BODEGA</item>
+        <item>CoV-LA BUITRERA</item>
+        <item>CoV-LA CARBONERA</item>
+        <item>LA COLINA</item>
+        <item>LA ESMERALDA</item>
+        <item>LA ESPERANZA</item>
+        <item>CoV-LA FERIA</item>
+        <item>LA FLORESTA</item>
+        <item>CoV-LA FRIA</item>
+        <item>CoV-LA GRAN VÍA</item>
+        <item>CoV-LA GRANJA</item>
+        <item>LA LIBERTAD</item>
+        <item>LA LORENA</item>
+        <item>LA MARIA</item>
+        <item>LA MICHELA</item>
+        <item>LA MISERICORDIA</item>
+        <item>LA POPA</item>
+        <item>CoV-LA TUPIA</item>
+        <item>LAS MARGARITAS</item>
+        <item>LAS PALMAS</item>
+        <item>LAS VEGAS</item>
+        <item>CoV-LOMITAS</item>
+        <item>LOS ALICANTES</item>
+        <item>LOS COMUNEROS</item>
+        <item>CoV-LOS PINOS</item>
+        <item>MANUEL JOSE RAMIREZ</item>
+        <item>MARSELLA</item>
+        <item>ORIENTE</item>
+        <item>PANCHINITA</item>
+        <item>POTRERITO</item>
+        <item>CoV-POTRERITO</item>
+        <item>PRADOS DE LA COLINA</item>
+        <item>PRIMERO DE MAYO</item>
+        <item>PROVIVIENDA</item>
+        <item>PUERTAS DEL SOL</item>
+        <item>PUERTO NUEVO</item>
+        <item>CoV-SAN ANTONIO</item>
+        <item>CoV-SAN ISIDRO</item>
+        <item>SAN JOSE</item>
+        <item>SAN ROQUE</item>
+        <item>URBANIZACION SERREZUELA</item>
+        <item>CoV-VALLECITO</item>
+        <item>VILLA MARINA</item>
+    </string-array>
+
+    <string-array name="restrepo">
+        <item>CoV-AGUA LINDA</item>
+        <item>CoV-AGUA MONA</item>
+        <item>CoV-ALBANIA</item>
+        <item>CoV-ALTO CALIMA</item>
+        <item>CoV-ALTO DE LOS CEDROS</item>
+        <item>CoV-ALTO DEL OSO</item>
+        <item>CoV-ALTO SAN PABLO</item>
+        <item>CoV-ALTO ZABALETAS</item>
+        <item>CoV-BAJO ZABALETAS</item>
+        <item>CoV-BOSQUES DE CALIMA</item>
+        <item>CoV-BUEN VIVIR</item>
+        <item>CoV-CALIMITA</item>
+        <item>CENTRO</item>
+        <item>CoV-CHONTADURO</item>
+        <item>CoV-COLEGURRE</item>
+        <item>CoV-COLINAS DEL LAGO</item>
+        <item>CoV-EL AGRADO</item>
+        <item>CoV-EL AGUACATE</item>
+        <item>EL ALTO</item>
+        <item>CoV-EL DIAMANTE</item>
+        <item>CoV-EL LAGO</item>
+        <item>EL PORTAL DE SAN PABLO</item>
+        <item>FUNDADORES</item>
+        <item>CoV-HISPANOS</item>
+        <item>CoV-LA ALBANIA</item>
+        <item>CoV-LA BELMIRA</item>
+        <item>CoV-LA FLORIDA</item>
+        <item>CoV-LA GUAIRA</item>
+        <item>CoV-LA ILAMA</item>
+        <item>LA INDEPENDENCIA</item>
+        <item>CoV-LA INDEPENDENCIA</item>
+        <item>LA INMACULADA</item>
+        <item>CoV-LA ITALIA</item>
+        <item>CoV-LA PALMA</item>
+        <item>CoV-LA SOLEDAD</item>
+        <item>LA TRINIDAD</item>
+        <item>CoV-LAS BRISAS</item>
+        <item>LOS ALPES</item>
+        <item>CoV-LOS CEDROS</item>
+        <item>CoV-LOS ESTRECHOS</item>
+        <item>LUIS CARLOS GALAN</item>
+        <item>CoV-MADROŃAL</item>
+        <item>CoV-MARQUETALIA</item>
+        <item>CoV-MONTERREDONDO</item>
+        <item>CoV-MOSOCO</item>
+        <item>CoV-MOZAMBIQUE</item>
+        <item>NUEVO HORIZONTE</item>
+        <item>CoV-PLAYA RICA</item>
+        <item>POPULAR</item>
+        <item>PORTAL DEL MILAGROSO</item>
+        <item>CoV-POTRERILLO</item>
+        <item>PUEBLO NUEVO</item>
+        <item>CoV-PUERTA NEGRA</item>
+        <item>CoV-PUERTO BUGA</item>
+        <item>PUERTO TEJADA</item>
+        <item>CoV-PUERTO TEJADA</item>
+        <item>CoV-RIO BRAVO</item>
+        <item>CoV-RIO GRANDE</item>
+        <item>CoV-ROMAN</item>
+        <item>SAN JOSE</item>
+        <item>CoV-SAN PABLO</item>
+        <item>CoV-SAN SALVADOR</item>
+        <item>CoV-SANTA ROSA</item>
+        <item>CoV-SILENCIO</item>
+        <item>CoV-TABLEROS</item>
+        <item>CoV-TRES PUERTAS</item>
+        <item>CoV-VENTAQUEMADA</item>
+        <item>VIENTO LIBRE</item>
+        <item>CoV-VIENTO LIBRE</item>
+        <item>CoV-ZABALETAS</item>
+    </string-array>
+
+    <string-array name="riofrio">
+        <item>BELEN</item>
+        <item>CoV-CABUYAL</item>
+        <item>CoV-CALABAZAS</item>
+        <item>CoV-CARRIZALEZ</item>
+        <item>CENTRO</item>
+        <item>CoV-COROZAL</item>
+        <item>CoV-EL BOSQUE</item>
+        <item>EL CAMELLON</item>
+        <item>CoV-EL CARMEN</item>
+        <item>EL CASTILLO</item>
+        <item>CoV-EL CRUCERO</item>
+        <item>CoV-EL DINDE</item>
+        <item>CoV-EL JAGUAL</item>
+        <item>EL LAGO</item>
+        <item>CoV-EL PLANCHON</item>
+        <item>CoV-EL RUBY</item>
+        <item>EL SAMAN</item>
+        <item>CoV-FENICIA</item>
+        <item>FUNDEVIVIR</item>
+        <item>GONZALO ALVARADO</item>
+        <item>CoV-GUAYABAL</item>
+        <item>CoV-HOJAS ANCHAS</item>
+        <item>CoV-LA ARABIA</item>
+        <item>CoV-LA CRISTALINA</item>
+        <item>CoV-LA ITALIA</item>
+        <item>CoV-LA JUDEA</item>
+        <item>CoV-LA MARINA</item>
+        <item>LA PAZ</item>
+        <item>CoV-LA QUIEBRA</item>
+        <item>CoV-LA SONADORA</item>
+        <item>CoV-LA SULTANA</item>
+        <item>CoV-LA TRINIDAD</item>
+        <item>CoV-LA VIGOROSA</item>
+        <item>CoV-LA ZULIA</item>
+        <item>CoV-LAS BRISAS</item>
+        <item>LAS DELICIAS</item>
+        <item>CoV-LOS ALPES</item>
+        <item>CoV-LOS CHIVOS</item>
+        <item>CoV-LOS ESTRECHOS</item>
+        <item>LOS NARANJOS</item>
+        <item>CoV-MADRIGAL</item>
+        <item>CoV-MELENAS</item>
+        <item>CoV-MIRAVALLE</item>
+        <item>CoV-MORROPLANCHO</item>
+        <item>CoV-PALMAS</item>
+        <item>PIEDRA PINTADA</item>
+        <item>PINAR DEL RIO</item>
+        <item>PORTALES DEL RIO</item>
+        <item>CoV-PORTUGAL DE PIEDRAS</item>
+        <item>CoV-PORTUGAL DEL CARMEN</item>
+        <item>PORVENIR</item>
+        <item>CoV-PUERTO BELLO</item>
+        <item>CoV-PUERTO FENICIA</item>
+        <item>CoV-RUBI ALTO</item>
+        <item>CoV-SALONICA</item>
+        <item>CoV-SAN ALFONSO</item>
+        <item>SAN JORGE</item>
+        <item>CoV-SAN JOSE DE LA SELVA</item>
+        <item>CoV-SAN MARINO</item>
+        <item>CoV-SAN PABLO</item>
+        <item>CoV-SANTA RITA</item>
+        <item>VILLA LUCY</item>
+        <item>VILLA NUEVA</item>
+    </string-array>
+
+    <string-array name="roldanillo">
+        <item>26 DE OCTUBRE</item>
+        <item>ACACIAS</item>
+        <item>ADOLFO LEON GOMEZ</item>
+        <item>ALVARO URIBE VELEZ</item>
+        <item>ARRAYANES</item>
+        <item>AVENIDA SANTANDER</item>
+        <item>BOLIVAR</item>
+        <item>BOSQUES DEL EDEN</item>
+        <item>CACERES</item>
+        <item>CAŃAVERALES</item>
+        <item>CARACOLI</item>
+        <item>CARLOS HOLGUIN</item>
+        <item>CHIMINANGOS</item>
+        <item>CIUDAD JARDIN</item>
+        <item>CIUDAD VERDE</item>
+        <item>CoV-CORREGIMIENTO LA TULIA. ( BOLIVAR)</item>
+        <item>CoV-CORREGIMIENTO BELGICA</item>
+        <item>CoV-CORREGIMIENTO CAJAMARCA</item>
+        <item>CoV-CORREGIMIENTO CANDELARIA</item>
+        <item>CoV-CORREGIMIENTO DE TIERRA BLANCA</item>
+        <item>CoV-CORREGIMIENTO EL CASTILLO</item>
+        <item>CoV-CORREGIMIENTO EL HOBO</item>
+        <item>CoV-CORREGIMIENTO EL PIE</item>
+        <item>CoV-CORREGIMIENTO EL RETIRO</item>
+        <item>CoV-CORREGIMIENTO EL REY</item>
+        <item>CoV-CORREGIMIENTO EL SILENCIO</item>
+        <item>CoV-CORREGIMIENTO HIGUERONCITO</item>
+        <item>CoV-CORREGIMIENTO ISUGU</item>
+        <item>CoV-CORREGIMIENTO MORELIA</item>
+        <item>CoV-CORREGIMIENTO PALMAR GUAYABAL</item>
+        <item>CoV-CORREGIMIENTO PUERTO QUINTERO</item>
+        <item>CoV-CORREGIMIENTO SANTA RITA</item>
+        <item>DOŃA ELVIA</item>
+        <item>DOŃA EMMA</item>
+        <item>EL ALCAZAR</item>
+        <item>EL CENTRO</item>
+        <item>EL GUACHAL</item>
+        <item>EL HATICO</item>
+        <item>EL JARDIN</item>
+        <item>EL MIRADOR</item>
+        <item>EL PARAISO</item>
+        <item>EL PORTAL</item>
+        <item>EL PRADO</item>
+        <item>EL REY BAJO</item>
+        <item>EUSTAQUIO PALACIO</item>
+        <item>GUERRERO</item>
+        <item>HUMBERTO GONZALEZ NARVAEZ</item>
+        <item>IPIRA</item>
+        <item>JOSE JOAQUIN JARAMILLO</item>
+        <item>JOSE MARIA BARBOSA</item>
+        <item>JOSE MARIA TORRIJOS</item>
+        <item>LA ARBOLEDA</item>
+        <item>LA ASUNCION</item>
+        <item>LA CAMPIŃA</item>
+        <item>LA CEIBA</item>
+        <item>LA CIENAGA</item>
+        <item>LA COOPERATIVA</item>
+        <item>LA ERMITA</item>
+        <item>LA GRANJA</item>
+        <item>LA GRUTA</item>
+        <item>LA NUEVA ERMITA</item>
+        <item>LA PLAYITA</item>
+        <item>LA VARIANTE</item>
+        <item>LAS BRISAS</item>
+        <item>LAS COLINAS</item>
+        <item>LAS CRUCES</item>
+        <item>LAS ORQUIDEAS</item>
+        <item>LAS PALMAS</item>
+        <item>LAS VERANERAS</item>
+        <item>LLANITOS</item>
+        <item>LOS ALAMOS</item>
+        <item>CoV-LOS ALMENDROS</item>
+        <item>LOS ALPES</item>
+        <item>LOS LAURELES</item>
+        <item>LOS PINOS</item>
+        <item>LOS SAMANES</item>
+        <item>NO SE REGISTRA EN EL ACTA.</item>
+        <item>NUEVA ERMITA</item>
+        <item>OASIS</item>
+        <item>OASIS II ETAPA</item>
+        <item>OBRAS PUBLICAS</item>
+        <item>OBRERO</item>
+        <item>PANORAMA</item>
+        <item>PORTAL DEL VALLE</item>
+        <item>PRADOS DE LA ERMITA</item>
+        <item>RODRIGO LLOREDA CAICEDO</item>
+        <item>SAN ANTONIO</item>
+        <item>CoV-SAN ISIDRO</item>
+        <item>SAN JOSE OBRERO</item>
+        <item>SAN JUAN BOSCO</item>
+        <item>SAN NICOLAS</item>
+        <item>SAN SEBASTIAN</item>
+        <item>SANTA BARBARA</item>
+        <item>SANTA MARTHA</item>
+        <item>SIMON BOLIVAR</item>
+        <item>SINDICAL</item>
+        <item>TRES DE MAYO</item>
+        <item>UNION DE VIVIENDA POPULAR</item>
+        <item>UNIVERSITARIO</item>
+        <item>URBANIZACION VILLA SOFIA</item>
+        <item>CoV-VEREDA LAS CRUSES</item>
+        <item>CoV-VEREDA BUENAVISTA</item>
+        <item>CoV-VEREDA CACERES</item>
+        <item>CoV-VEREDA CASCARILLO</item>
+        <item>CoV-VEREDA CASERES</item>
+        <item>CoV-VEREDA EL CIRUELO</item>
+        <item>CoV-VEREDA EL PALMAR</item>
+        <item>CoV-VEREDA IRRUPA</item>
+        <item>CoV-VEREDA LA ARMENIA.</item>
+        <item>CoV-VEREDA LA SOLEDAD</item>
+        <item>CoV-VEREDA LIMONAR</item>
+        <item>CoV-VEREDA MATEGUADUA</item>
+        <item>CoV-VEREDA MONTAŃUELA</item>
+        <item>CoV-VEREDA PARAMILLO</item>
+        <item>CoV-VEREDA REMOLINO</item>
+        <item>CoV-VEREDA SIMON BOLIVAR</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLA CAMPESTRE</item>
+        <item>VILLA DEL PILAR</item>
+        <item>VILLA FATIMA</item>
+        <item>VILLA ROSITA</item>
+        <item>VILLA SANTA MARIA</item>
+    </string-array>
+
+    <string-array name="san_pedro">
+        <item>CoV-ANGOSTURAS</item>
+        <item>AVENIDA LA PLANTA</item>
+        <item>CoV-BELEN</item>
+        <item>BELLO HORIZONTE</item>
+        <item>CoV-BUENOS AIRES</item>
+        <item>CoV-CALLEJON ARANGO</item>
+        <item>CENTRO</item>
+        <item>CIUDAD JARDIN</item>
+        <item>CoV-EL CHIRCAL</item>
+        <item>EL ESPINAL</item>
+        <item>EL JARDIN</item>
+        <item>CoV-EL VIŃEDO</item>
+        <item>CoV-GUADUALEJO</item>
+        <item>CoV-GUAQUEROS</item>
+        <item>CoV-GUAYABAL</item>
+        <item>JORGE HERRERA</item>
+        <item>LA CAMPIŃA</item>
+        <item>CoV-LA ESMERALDA</item>
+        <item>LA ESPERANZA</item>
+        <item>CoV-LA PUENTE</item>
+        <item>CoV-LA SIRIA</item>
+        <item>CoV-LAS FUENTES</item>
+        <item>CoV-LOS CHANCOS</item>
+        <item>CoV-LOS MATES</item>
+        <item>MONACO</item>
+        <item>CoV-MONTE GRANDE</item>
+        <item>CoV-MONTERREDONDO</item>
+        <item>CoV-NARANJAL</item>
+        <item>CoV-PANTANILLO</item>
+        <item>CoV-PAVAS</item>
+        <item>CoV-PLATANARES</item>
+        <item>PORVENIR</item>
+        <item>PORVENIR II</item>
+        <item>CoV-POSITOS</item>
+        <item>CoV-PRESIDENTE</item>
+        <item>CoV-SAN JOSE</item>
+        <item>CoV-TODOS LOS SANTOS</item>
+        <item>CoV-TOTOCAL</item>
+        <item>VILLA JULIANA</item>
+        <item>VILLAS DE BELEN</item>
+    </string-array>
+
+    <string-array name="sevilla">
+        <item>CoV-ALEGRIAS</item>
+        <item>ALFONSO LOPEZ</item>
+        <item>CoV-ALTO CONGAL</item>
+        <item>ALTO DE LA CRUZ</item>
+        <item>CoV-ALTO EL RECREO</item>
+        <item>CoV-ALTO SAN MARCOS</item>
+        <item>CoV-ALTO TOTORO</item>
+        <item>AVAS</item>
+        <item>CoV-BAJO PIJAO</item>
+        <item>BELEN</item>
+        <item>BELLAVISTA</item>
+        <item>BELLO HORIZONTE</item>
+        <item>BERLIN</item>
+        <item>CoV-BILLAR</item>
+        <item>BONANZA</item>
+        <item>BRASIL</item>
+        <item>CoV-BUENOS AIRES</item>
+        <item>CAFETERO</item>
+        <item>CoV-CALAMAR</item>
+        <item>CAMILO TORRES</item>
+        <item>CoV-CANOAS</item>
+        <item>CoV-CEBOLLAL</item>
+        <item>CENTENARIO</item>
+        <item>CENTRO</item>
+        <item>CoV-CIMITARRA</item>
+        <item>CINCUENTENARIO</item>
+        <item>CoV-COLORADAS</item>
+        <item>CoV-COMINALES</item>
+        <item>CoV-CONGAL ALTO</item>
+        <item>CoV-COROZAL</item>
+        <item>CoV-CRISTALINA</item>
+        <item>CoV-CUMBARCO</item>
+        <item>CoV-EL BARCINO</item>
+        <item>CoV-EL BILLAR</item>
+        <item>EL CARMEN</item>
+        <item>CoV-EL CRUCERO</item>
+        <item>EL JARDIN</item>
+        <item>CoV-EL MANZANO</item>
+        <item>EL PINAR</item>
+        <item>CoV-EL POPAL</item>
+        <item>EL PORVENIR</item>
+        <item>CoV-EL RECREO</item>
+        <item>CoV-EL ROCIO</item>
+        <item>CoV-EL VENADO</item>
+        <item>CoV-ESTACION CAICEDONIA</item>
+        <item>FERNANDO BOTERO</item>
+        <item>FUNDADORES</item>
+        <item>GRANADA</item>
+        <item>CoV-GUAYABAL</item>
+        <item>HERACLIO URIBE</item>
+        <item>CoV-HIGUERONES</item>
+        <item>INMACULADA</item>
+        <item>CoV-JARDIN</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>CoV-LA ASTELIA</item>
+        <item>CoV-LA CABAŃA</item>
+        <item>LA CONCORDIA</item>
+        <item>CoV-LA COQUETA</item>
+        <item>CoV-LA CRISTALINA Y PURNIO</item>
+        <item>CoV-LA CUCHILLA</item>
+        <item>LA ESPERANZA</item>
+        <item>CoV-LA ESTELIA</item>
+        <item>CoV-LA ESTRELLA</item>
+        <item>CoV-LA FLORESTA</item>
+        <item>CoV-LA FLORIDA</item>
+        <item>CoV-LA IRLANDA</item>
+        <item>CoV-LA MARIA</item>
+        <item>CoV-LA MELVA</item>
+        <item>CoV-LA MILONGA</item>
+        <item>LA MIRANDA</item>
+        <item>LA PISTA</item>
+        <item>CoV-LA SONORA</item>
+        <item>CoV-LAS BRISAS</item>
+        <item>LAS FERIAS</item>
+        <item>LAS GARZAS</item>
+        <item>LOS ALPEZ</item>
+        <item>LOS CEDROS</item>
+        <item>LOS FUNDADORES</item>
+        <item>CoV-MANZANILLO</item>
+        <item>MARCO FIDEL SUAREZ</item>
+        <item>MARGARITA 2</item>
+        <item>MARGARITAS</item>
+        <item>CoV-MAULEN</item>
+        <item>CoV-MEDIO SAN CARLOS</item>
+        <item>CoV-MEDIO SAN MARCOS</item>
+        <item>CoV-MIRAMAR</item>
+        <item>MONSERRATE</item>
+        <item>CoV-MORROAZUL</item>
+        <item>MUNICIPAL</item>
+        <item>OBRERO</item>
+        <item>CoV-PALMILLA</item>
+        <item>CoV-PALOMINO</item>
+        <item>CoV-PIJAO</item>
+        <item>POPULAR</item>
+        <item>PRADOS DEL NORTE</item>
+        <item>PROVIVIENDA</item>
+        <item>CoV-PURNIO</item>
+        <item>PUYANA</item>
+        <item>QUEBRADA SECA</item>
+        <item>CoV-QUEBRADANUEVA</item>
+        <item>RECREO</item>
+        <item>CoV-SALDAŃA</item>
+        <item>CoV-SAN ANTONIO</item>
+        <item>SAN JOSE</item>
+        <item>CoV-SAN JOSE DE LA SELVA</item>
+        <item>SAN LUIS</item>
+        <item>CoV-SAN MARCOS</item>
+        <item>SAN VICENTE</item>
+        <item>SIRACUSA</item>
+        <item>CoV-TOTORO</item>
+        <item>TRES DE MAYO</item>
+        <item>TRES ESQUINAS</item>
+        <item>CoV-TRES ESQUINAS</item>
+        <item>URIBE URIBE</item>
+        <item>VILLA CLAUDIA</item>
+        <item>VILLA LINDA</item>
+        <item>VILLA PAZ</item>
+    </string-array>
+
+    <string-array name="toro">
+        <item>AVENIDA LOS CONQUISTADORES</item>
+        <item>BAYANO</item>
+        <item>CENTRO</item>
+        <item>CHIMINANGOS</item>
+        <item>CoV-CORREGIMIENTO EL BOHIO</item>
+        <item>CoV-CORREGIMIENTO EL CEDRO</item>
+        <item>CoV-CORREGIMIENTO LA PRADERA</item>
+        <item>CoV-CORREGIMIENTO LA QUIEBRA</item>
+        <item>CoV-CORREGIMIENTO SAN ANTONIO</item>
+        <item>CoV-CORREGIMIENTO VENTAQUEMADA</item>
+        <item>EL CARMEN</item>
+        <item>EL CASTILLO</item>
+        <item>EL CHANCO</item>
+        <item>EL HOBO</item>
+        <item>EL JARDIN</item>
+        <item>EL LAZARO</item>
+        <item>EL PORVENIR</item>
+        <item>EL REMANZO</item>
+        <item>JUAN PABLO II</item>
+        <item>LA PLAZUELA</item>
+        <item>LA TRONCADA</item>
+        <item>LA VIRGEN</item>
+        <item>LAS AURAS</item>
+        <item>LOS PARRALES</item>
+        <item>NO SE REGISTRA EN EL ACTA.</item>
+        <item>PALERMO</item>
+        <item>CoV-SAN FRANCISCO</item>
+        <item>SAN JOSE</item>
+        <item>SANTA ELENA</item>
+        <item>TIZA</item>
+        <item>URBANIZACION VILLA LOURDES</item>
+        <item>CoV-VEREDA BOLIVAR</item>
+        <item>CoV-VEREDA CHONTADURO</item>
+        <item>CoV-VEREDA EL GUACHAL</item>
+        <item>CoV-VEREDA EL ROBLE</item>
+        <item>CoV-VEREDA EL SABANAZO</item>
+        <item>CoV-VEREDA LA CAYETANA</item>
+        <item>CoV-VEREDA LA CHICA</item>
+        <item>CoV-VEREDA LA CONSOLIDA ALTA</item>
+        <item>CoV-VEREDA PAN DE AZUCAR</item>
+        <item>CoV-VEREDA PATIO BONITO</item>
+        <item>CoV-VEREDA TAPIAS</item>
+        <item>VILLA CLARIVEL</item>
+        <item>VILLA ESPERANZA</item>
+        <item>VILLA PAMELA</item>
+    </string-array>
+
+    <string-array name="trujillo">
+        <item>CoV-ALTA CRISTALINA</item>
+        <item>CoV-ALTO CACERES</item>
+        <item>CoV-ALTO CRISTALES</item>
+        <item>CoV-ALTO MIRA</item>
+        <item>CoV-ALTO VIEJO</item>
+        <item>CoV-ANDINAPOLIS</item>
+        <item>CoV-ARAUCA</item>
+        <item>CoV-BAJA CRISTALINA</item>
+        <item>CoV-BAJO CACERES</item>
+        <item>CoV-BAJO PALERMO</item>
+        <item>CoV-BRUMAS</item>
+        <item>CoV-BUENAVISTA</item>
+        <item>CoV-CASCAJAL</item>
+        <item>CoV-CEDRALES</item>
+        <item>CENTRO</item>
+        <item>CoV-CERRO AZUL</item>
+        <item>CoV-CRISTALES</item>
+        <item>CoV-CULEBRAS</item>
+        <item>CoV-DOS QUEBRADAS</item>
+        <item>CoV-EL ALTO</item>
+        <item>CoV-EL CHOCHO</item>
+        <item>CoV-EL INDIO</item>
+        <item>EL JARDIN</item>
+        <item>EL MIRADOR</item>
+        <item>CoV-EL OSO</item>
+        <item>EL PEDRERO</item>
+        <item>EL PLANCHON</item>
+        <item>EL PORVENIR</item>
+        <item>EL REFUGIO</item>
+        <item>CoV-EL REMOLINO</item>
+        <item>CoV-EL TABOR (PUENTE BLANCO)</item>
+        <item>CoV-HATO VIEJO</item>
+        <item>CoV-HUASANO</item>
+        <item>INMACULADA</item>
+        <item>JOSE NOE</item>
+        <item>CoV-LA BETULIA</item>
+        <item>CoV-LA BOHEMIA</item>
+        <item>CoV-LA CRISTALINA</item>
+        <item>LA CUCHILLA</item>
+        <item>LA CUMBRE</item>
+        <item>CoV-LA DEBORA</item>
+        <item>CoV-LA DIAMANTINA</item>
+        <item>LA ERMITA</item>
+        <item>CoV-LA FLORESTA</item>
+        <item>LA GRUTA</item>
+        <item>CoV-LA INMACULADA</item>
+        <item>CoV-LA LUISA</item>
+        <item>LA MARIA</item>
+        <item>CoV-LA MARIA</item>
+        <item>CoV-LA MARINA</item>
+        <item>LA PAZ</item>
+        <item>LA PAZ II</item>
+        <item>LA PAZ III</item>
+        <item>LA PLAZUELA</item>
+        <item>CoV-LA ROCHELA</item>
+        <item>CoV-LA SIRIA</item>
+        <item>CoV-LA SOLEDAD</item>
+        <item>CoV-LA SONORA</item>
+        <item>CoV-LA VETULIA</item>
+        <item>CoV-LAS AMARILLAS</item>
+        <item>CoV-LAS BRUMAS</item>
+        <item>LOS LEONES</item>
+        <item>CoV-LOS RANCHOS</item>
+        <item>CoV-MARACAIBO</item>
+        <item>CoV-MELENAS</item>
+        <item>CoV-MILANIA</item>
+        <item>CoV-PALERMO</item>
+        <item>PUEBLO NUEVO</item>
+        <item>CoV-PUENTE BLANCO</item>
+        <item>CoV-PUENTE ROJO</item>
+        <item>CoV-RIN RAN</item>
+        <item>CoV-ROBLEDO</item>
+        <item>CoV-SAN ISIDRO</item>
+        <item>SAN JORGE</item>
+        <item>CoV-SONORA ALTA</item>
+        <item>CoV-TRES ESQUINAS</item>
+        <item>URBANIZACION ESPIRITU SANTO</item>
+        <item>CoV-VENECIA</item>
+    </string-array>
+
+    <string-array name="tulua">
+        <item>12 DE OCTUBRE</item>
+        <item>350 AŃOS</item>
+        <item>AGUACLARA</item>
+        <item>ALAMEDA 1</item>
+        <item>ALAMEDA II</item>
+        <item>CoV-ALTAFLOR</item>
+        <item>ALVERNIA</item>
+        <item>ASOAGRIN</item>
+        <item>AVENIDA CALI</item>
+        <item>CoV-BARRAGAN</item>
+        <item>BELLO HORIZONTE</item>
+        <item>CoV-BOCAS DE TULUA</item>
+        <item>BOLIVAR</item>
+        <item>BOSQUES DE MARACAIBO</item>
+        <item>BUENOS AIRES</item>
+        <item>CoV-CAMPOALEGRE</item>
+        <item>CASA HUERTAS</item>
+        <item>CENTRO</item>
+        <item>CESPEDES</item>
+        <item>CHIMINANGOS</item>
+        <item>CoV-CIENEGUETA</item>
+        <item>CIUDAD CAMPESTRE</item>
+        <item>COMFAMILIAR</item>
+        <item>COMUNEROS</item>
+        <item>CONDOMINIO EL CONDOR</item>
+        <item>CONJUNTO RESIDENCIAL EL DORADO</item>
+        <item>CORAZON DEL VALLE</item>
+        <item>DEPARTAMENTAL</item>
+        <item>DIABLO ROJO # 1</item>
+        <item>DIABLOS ROJOS II</item>
+        <item>EL BOSQUE</item>
+        <item>EL BOSQUECITO</item>
+        <item>EL CONDOR 2</item>
+        <item>EL DESCANSO</item>
+        <item>EL JARDIN</item>
+        <item>EL JAZMIN</item>
+        <item>EL LAGO</item>
+        <item>EL LAGUITO</item>
+        <item>EL PALMAR</item>
+        <item>EL PARAISO</item>
+        <item>CoV-EL PICACHO</item>
+        <item>EL PINAR</item>
+        <item>EL PRINCIPE</item>
+        <item>EL RETIRO</item>
+        <item>CoV-EL RETIRO</item>
+        <item>ENTRERIOS</item>
+        <item>ESC POLICIA SIMON BOLIVAR</item>
+        <item>ESCOBAR</item>
+        <item>ESTAMBUL</item>
+        <item>FARFAN</item>
+        <item>FATIMA</item>
+        <item>FLOR DE LA CAMPANA</item>
+        <item>FRANCISCANO</item>
+        <item>CoV-GATO NEGRO</item>
+        <item>GUAYACANES</item>
+        <item>HORIZONTE</item>
+        <item>INDEPENDENCIA</item>
+        <item>INTERNACIONAL</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>JOSE ANTONIO GALAN</item>
+        <item>JUAN 23</item>
+        <item>JUAN LEMUS AGUIRRE</item>
+        <item>LA BASTILLA</item>
+        <item>LA CAMPIŃA</item>
+        <item>LA CASONA</item>
+        <item>LA CEIBA</item>
+        <item>CoV-LA DIADEMA</item>
+        <item>LA ESPERANZA</item>
+        <item>LA GRACIELA</item>
+        <item>LA HERRADURA</item>
+        <item>CoV-LA IBERIA</item>
+        <item>LA INMACULADA</item>
+        <item>CoV-LA MARINA</item>
+        <item>LA MERCED</item>
+        <item>CoV-LA MORALIA</item>
+        <item>CoV-LA PALMERA</item>
+        <item>LA QUINTA</item>
+        <item>LA RIVERA</item>
+        <item>CoV-LA RIVERA</item>
+        <item>LA SANTA CRUZ</item>
+        <item>LA TRINIDAD</item>
+        <item>LAS ACACIAS</item>
+        <item>LAS AMERICAS</item>
+        <item>LAS BRISAS</item>
+        <item>LAS DELICIAS</item>
+        <item>LAS LOMAS</item>
+        <item>LAS NIEVES</item>
+        <item>LAS PALMAS</item>
+        <item>LAS VERANERAS</item>
+        <item>LAURELES 1</item>
+        <item>LAURELES 2</item>
+        <item>LIMONAR</item>
+        <item>CoV-LOMA REDONDA</item>
+        <item>CoV-LOS CAIMOS</item>
+        <item>LOS MANGUITOS</item>
+        <item>LOS OLMOS</item>
+        <item>LUSITANIA</item>
+        <item>MARACAIBO</item>
+        <item>MARANDUA</item>
+        <item>CoV-MATEGUADUA</item>
+        <item>MIRAFLORES</item>
+        <item>CoV-MONTELORO</item>
+        <item>MORALES</item>
+        <item>MUNICIPAL</item>
+        <item>CoV-NARIŃO</item>
+        <item>NUEVO ALVERNIA</item>
+        <item>NUEVO FARFAN</item>
+        <item>NUEVO FATIMA</item>
+        <item>NUEVO MORALES</item>
+        <item>NUEVO PRINCIPE</item>
+        <item>OLAS</item>
+        <item>OLIMPICO</item>
+        <item>PALO BONITO</item>
+        <item>CoV-PALOMESTIZO</item>
+        <item>PANAMERICANO</item>
+        <item>PARQUE INDUSTRIAL</item>
+        <item>PEŃARANDA</item>
+        <item>CoV-PIEDRITAS</item>
+        <item>PLAYAS</item>
+        <item>POPULAR</item>
+        <item>PORTALES DEL RIO</item>
+        <item>PORTALES RIO PAILA</item>
+        <item>PORVENIR</item>
+        <item>PRADOS DEL NORTE</item>
+        <item>PRIMERO DE MAYO</item>
+        <item>PROGRESAR</item>
+        <item>PUEBLO NUEVO</item>
+        <item>CoV-PUERTO FRAZADAS</item>
+        <item>CoV-QUEBRADAGRANDE</item>
+        <item>QUINTAS DE SAN FELIPE</item>
+        <item>REFUGIO</item>
+        <item>ROJAS</item>
+        <item>RUBEN CRUZ VELEZ</item>
+        <item>SAJONIA</item>
+        <item>SALESIANOS</item>
+        <item>SAMAN DEL NORTE</item>
+        <item>SAN ANTONIO</item>
+        <item>SAN BENITO</item>
+        <item>SAN CARLOS</item>
+        <item>CoV-SAN LORENZO</item>
+        <item>SAN LUIS</item>
+        <item>SAN PEDRO CLAVER</item>
+        <item>CoV-SAN RAFAEL</item>
+        <item>SAN VICENTE</item>
+        <item>SANTA INES DE COMFAMILIAR</item>
+        <item>SANTA ISABEL</item>
+        <item>CoV-SANTA LUCIA</item>
+        <item>SANTA RITA DEL RIO 1AR ETAPA</item>
+        <item>SANTA RITA DEL RIO 2DA ETAPA</item>
+        <item>SENDEROS DE VILLA LILIANA 2</item>
+        <item>SIETE DE AGOSTO</item>
+        <item>SINTRA SAN CARLOS</item>
+        <item>TECER MILENIO</item>
+        <item>CoV-TOCHECITO</item>
+        <item>TOLUES</item>
+        <item>TOMAS URIBE</item>
+        <item>CoV-TRES ESQUINAS</item>
+        <item>TRINIDAD</item>
+        <item>URBANIZACION LA PAZ</item>
+        <item>URBANIZACION LA VILLA</item>
+        <item>URBANIZACION LOMITAS</item>
+        <item>URBANIZACION PORTALES DE SAN FELIPE</item>
+        <item>URBANIZACION RIOPAILA</item>
+        <item>URBANIZACION SAN FRANCISCO</item>
+        <item>URBANIZACION SAN GABRIEL</item>
+        <item>CoV-VENUS</item>
+        <item>VICTORIA</item>
+        <item>VILLA CAMPESTRE</item>
+        <item>VILLA COLOMBIA</item>
+        <item>VILLA DEL LAGO</item>
+        <item>VILLA DEL RIO</item>
+        <item>VILLA DEL SUR</item>
+        <item>VILLA LILIANA</item>
+        <item>VILLA MARGARITA</item>
+        <item>VILLANUEVA</item>
+    </string-array>
+
+    <string-array name="ulloa">
+        <item>AVENIDA VILLEGAS</item>
+        <item>BERLIN</item>
+        <item>BOLIVAR</item>
+        <item>BUENOS AIRES</item>
+        <item>CALLE PRINCIPAL</item>
+        <item>CENTENARIO</item>
+        <item>CENTRO</item>
+        <item>CoV-CORREGIMIENTO CHAPINERO</item>
+        <item>CoV-CORREGIMIENTO EL BRILLANTE</item>
+        <item>CoV-CORREGIMIENTO MOCTEZUMA</item>
+        <item>EL BRILLANTE</item>
+        <item>EL PROGRESO II</item>
+        <item>JESUS MARIA BEDOYA</item>
+        <item>LA GLORIA</item>
+        <item>LA INVASION</item>
+        <item>LA ISLA</item>
+        <item>LA VIRGEN</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>OBELISCO</item>
+        <item>PALERMO</item>
+        <item>PROGRESO I</item>
+        <item>SAN GIL</item>
+        <item>SECTOR HOSPITAL</item>
+        <item>CoV-VEREDA BERLIN</item>
+        <item>CoV-VEREDA CALAMONTE.</item>
+        <item>CoV-VEREDA DINAMARCA</item>
+        <item>CoV-VEREDA EL BOSQUE</item>
+        <item>VEREDA EL COFRE</item>
+        <item>CoV-VEREDA EL COFRE</item>
+        <item>CoV-VEREDA EL PIŃAL</item>
+        <item>CoV-VEREDA EL PLACER</item>
+        <item>CoV-VEREDA LA MONTAŃA</item>
+        <item>CoV-VEREDA LA PASTORA</item>
+        <item>CoV-VEREDA SUCRE</item>
+        <item>CoV-VEREDA VENECIA</item>
+        <item>VIA PUBLICA</item>
+        <item>VILLA MONTANA</item>
+        <item>VILLA SUCRE</item>
+    </string-array>
+
+    <string-array name="versalles">
+        <item>CARLOS HOLGUIN</item>
+        <item>CENTENARIO</item>
+        <item>CENTRO</item>
+        <item>CoV-CORREGIMIENTO CAMPOALEGRE</item>
+        <item>CoV-CORREGIMIENTO EL BALSAL</item>
+        <item>CoV-CORREGIMIENTO EL VERGEL</item>
+        <item>CoV-CORREGIMIENTO LA FLORIDA</item>
+        <item>CoV-CORREGIMIENTO PUERTO NUEVO</item>
+        <item>EL BOSQUE</item>
+        <item>EL COMERCIO</item>
+        <item>EL OASIS</item>
+        <item>FUNDADORES</item>
+        <item>GUAYABITO</item>
+        <item>LA NEBLINA.</item>
+        <item>LA PISTA</item>
+        <item>LA SUIZA</item>
+        <item>LAS OLIVAS</item>
+        <item>MONSERRATE</item>
+        <item>NO SE REGISTRA EN EL ACTA</item>
+        <item>CoV-VEREDA BUENAVISTA</item>
+        <item>CoV-VEREDA CALAMAR</item>
+        <item>CoV-VEREDA CEDRAL</item>
+        <item>CoV-VEREDA COCONUCO</item>
+        <item>CoV-VEREDA COSTA RICA</item>
+        <item>CoV-VEREDA EL DIAMANTE</item>
+        <item>CoV-VEREDA EL SILENCIO</item>
+        <item>CoV-VEREDA EMBAL</item>
+        <item>CoV-VEREDA GUAMALITO</item>
+        <item>CoV-VEREDA LA BALSORA</item>
+        <item>CoV-VEREDA LA BODEGA / EL JIGUAL</item>
+        <item>CoV-VEREDA LA CRISTALINA</item>
+        <item>CoV-VEREDA LA SONORA</item>
+        <item>CoV-VEREDA MURRAPAL</item>
+        <item>CoV-VEREDA PINARES</item>
+        <item>CoV-VEREDA PUENTE TIERRA</item>
+        <item>VIA PUBLICA</item>
+    </string-array>
+
+    <string-array name="vijes">
+        <item>CoV-ALTO FRESNEDA</item>
+        <item>CoV-ALTOS DEL TRIUNFO</item>
+        <item>BALCONES</item>
+        <item>CoV-BELLA VISTA</item>
+        <item>BUENOS AIRES</item>
+        <item>CoV-CACHIMBAL</item>
+        <item>CoV-CAIMITAL</item>
+        <item>CANGREJO</item>
+        <item>CoV-CARBONERO</item>
+        <item>CENTRO</item>
+        <item>CoV-CHAMBIMBAL</item>
+        <item>CoV-CHARCO OSCURO</item>
+        <item>CoV-CIENAGUITAS</item>
+        <item>CoV-EL PORVENIR</item>
+        <item>CoV-EL TAMBOR</item>
+        <item>CoV-EL TRILLO</item>
+        <item>JORGE ROBLEDO</item>
+        <item>KENNEDY</item>
+        <item>CoV-LA FRESNEDA</item>
+        <item>CoV-LA MERCED</item>
+        <item>CoV-LA PEDRERA</item>
+        <item>CoV-LA RIVERA</item>
+        <item>LAS CEIBAS</item>
+        <item>CoV-LAS VEGAS</item>
+        <item>LIDO</item>
+        <item>MALVINAS</item>
+        <item>MIRAFLORES</item>
+        <item>MIS SUEŃOS</item>
+        <item>CoV-MONTERREY</item>
+        <item>CoV-MOZAMBIQUE</item>
+        <item>MUNICIPAL</item>
+        <item>CoV-OCACHE</item>
+        <item>PATIO BONITO I</item>
+        <item>PATIO BONITO II</item>
+        <item>PIEDRA GRANDE</item>
+        <item>CoV-PUEBLO NUEVO</item>
+        <item>CoV-ROMERITO</item>
+        <item>SALAMINA</item>
+        <item>SALOMIA</item>
+        <item>SAN ANTONIO</item>
+        <item>CoV-SAN ISIDRO</item>
+        <item>CoV-SANTA ANA</item>
+        <item>SONADORA</item>
+        <item>CoV-VIDAL</item>
+        <item>VILLA ESPERANZA</item>
+        <item>CoV-VILLA MARIA</item>
+    </string-array>
+
+    <string-array name="yotoco">
+        <item>CoV-ALTO SAN JUAN</item>
+        <item>CoV-BUENOS AIRES</item>
+        <item>CoV-CALIMITA</item>
+        <item>CoV-CAMPOALEGRE</item>
+        <item>CENTENARIO</item>
+        <item>CENTRO</item>
+        <item>CoV-COLORADOS</item>
+        <item>CoV-CORDOBITAS</item>
+        <item>DIEGO RENGIFO SALAZAR</item>
+        <item>CoV-DOPO</item>
+        <item>CoV-EL BOSQUE</item>
+        <item>CoV-EL CANEY</item>
+        <item>CoV-EL CRUCERO</item>
+        <item>CoV-EL DELIRIO</item>
+        <item>CoV-EL DIVISO</item>
+        <item>CoV-EL DORADO</item>
+        <item>CoV-EL JARDIN</item>
+        <item>CoV-EL SOBACO</item>
+        <item>INMACULADA CONCEPCION</item>
+        <item>CoV-JIGUALES</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>CoV-LA ARGELIA</item>
+        <item>CoV-LA CECILIA</item>
+        <item>CoV-LA COLONIA</item>
+        <item>CoV-LA FLORESTA</item>
+        <item>CoV-LA PLAYA</item>
+        <item>CoV-LA RIVERA</item>
+        <item>CoV-LA VIRGINIA</item>
+        <item>CoV-LAS DELICIAS</item>
+        <item>CoV-LETICIA</item>
+        <item>CoV-LOS PLANES</item>
+        <item>CoV-MEDIACANOA</item>
+        <item>CoV-MIRACAMPO</item>
+        <item>CoV-MIRAVALLE</item>
+        <item>CoV-MUŃECOS</item>
+        <item>NUEVO MILENIO</item>
+        <item>CoV-PICAPIEDRA</item>
+        <item>CoV-PIEDRAS</item>
+        <item>CoV-PUENTETIERRA</item>
+        <item>CoV-PUNTA BRAVA</item>
+        <item>CoV-RAYITO</item>
+        <item>CoV-SAN ANTONIO DE PIEDRAS</item>
+        <item>CoV-SAN JUAN</item>
+        <item>CoV-SAN RAFAEL</item>
+        <item>SANTA BARBARA</item>
+        <item>CoV-YEMEN</item>
+    </string-array>
+
+    <string-array name="yumbo">
+        <item>ACOPI</item>
+        <item>ARROYOHONDO</item>
+        <item>CoV-Arroyohondo</item>
+        <item>BALCONES</item>
+        <item>BELALCAZAR</item>
+        <item>BELLAVISTA</item>
+        <item>BOLIVAR</item>
+        <item>BUENOS AIRES</item>
+        <item>CACIQUE JACINTO</item>
+        <item>CoV-CENCAR</item>
+        <item>CIUDAD GUABINAS</item>
+        <item>CIUDADELA CARLOS PIZARRO LEON</item>
+        <item>CIUDADELA PORTALES DE COMFANDI</item>
+        <item>CoV-DAPA</item>
+        <item>FRAY PEŃA</item>
+        <item>GUACANDA</item>
+        <item>JORGE ELIECER GAITAN</item>
+        <item>CoV-LA BUITRERA</item>
+        <item>LA ESTANCIA</item>
+        <item>LAS AMERICAS</item>
+        <item>LAS CRUCES</item>
+        <item>LAS VEGAS</item>
+        <item>LLERAS</item>
+        <item>MADRIGAL</item>
+        <item>CoV-MULALO</item>
+        <item>NUEVO HORIZONTE</item>
+        <item>PANORAMA</item>
+        <item>PARQUE DEL PINAR</item>
+        <item>PORTALES DE YUMBO</item>
+        <item>PUERTO ISAACS</item>
+        <item>ROBLEDO</item>
+        <item>SAN FERNANDO</item>
+        <item>SAN JORGE</item>
+        <item>CoV-SAN MARCOS</item>
+        <item>TRINIDAD</item>
+        <item>URIBE</item>
+        <item>VILLA ESPERANZA</item>
+    </string-array>
+
+    <string-array name="zarzal">
+        <item>ALTOS DE BUENOS AIRES</item>
+        <item>ASOVIVA</item>
+        <item>AZUCAREROS</item>
+        <item>BALVANERA</item>
+        <item>CoV-BELISARIO CAICEDO</item>
+        <item>BOLIVAR</item>
+        <item>BRISAS DE RIOPAILA</item>
+        <item>BUENOS AIRES</item>
+        <item>CENTENARIO</item>
+        <item>CENTRO</item>
+        <item>CIUDAD JARDIN</item>
+        <item>CIUDAD KENNEDY</item>
+        <item>CIUDADELA DEL NORTE</item>
+        <item>COCLI</item>
+        <item>COLOMBINA</item>
+        <item>CoV-COROZAL</item>
+        <item>DIANA MARIA</item>
+        <item>CoV-EL ALISAL</item>
+        <item>EL PLACER</item>
+        <item>EL POBLADO</item>
+        <item>EL PRADO</item>
+        <item>EL PROGRESO</item>
+        <item>CoV-EL VERGEL</item>
+        <item>CoV-ESTACION CAICEDONIA</item>
+        <item>GONZALO ECHEVERRY</item>
+        <item>GUADUALITO</item>
+        <item>GUADUALITO 2 ETAPA</item>
+        <item>GUAMAL</item>
+        <item>CoV-GUASIMAL</item>
+        <item>HERNANDO CAICEDO</item>
+        <item>LA ALBORADA</item>
+        <item>LA CASTILLA</item>
+        <item>LA ESPERANZA</item>
+        <item>LA INMACULADA</item>
+        <item>LA ISABELITA</item>
+        <item>LA MERCED</item>
+        <item>CoV-LA PAILA</item>
+        <item>LAS MERCEDES</item>
+        <item>LIBRAIDA</item>
+        <item>LIMONAR</item>
+        <item>CoV-LIMONES</item>
+        <item>LINA MARIA</item>
+        <item>LOS ALMENDROS</item>
+        <item>LOS LAGOS</item>
+        <item>LOS LAGOS 2 ETAPA</item>
+        <item>LOS LAGOS 3 ETAPA</item>
+        <item>LOS LAGOS 4 ETAPA</item>
+        <item>PALLANOS</item>
+        <item>PAMA</item>
+        <item>PUEBLO NUEVO</item>
+        <item>PUERTAS DEL SOL</item>
+        <item>CoV-QUEBRADANUEVA</item>
+        <item>QUINDIO</item>
+        <item>CoV-RAFAEL GONZALEZ</item>
+        <item>SAN RAFAEL</item>
+        <item>CoV-SANTA BARBARA</item>
+        <item>CoV-SANTA CECILIA</item>
+        <item>CoV-SANTA RITA</item>
+        <item>URBANIZACION CAŃAVERAL</item>
+        <item>URBANIZACION DIANA MARCELA</item>
+        <item>URBANIZACION LA MARIELA</item>
+        <item>CoV-VALLEJUELO</item>
+        <item>VILLA AMELIA</item>
+        <item>VILLA CAMPESTRE</item>
+        <item>CoV-VILLA DEL RIO</item>
+        <item>CoV-VILLA DEL SOL</item>
+        <item>VILLA ISABELA</item>
+        <item>VILLA ISABELA II</item>
+        <item>VILLA ISABELA III</item>
+        <item>VILLA VALENTINA</item>
+        <item>VILLA YOLI</item>
+        <item>ZARZALITO</item>
+    </string-array>
+
 </resources>

@@ -44,7 +44,7 @@ public class PrimeraVisitaUbicacionActivity extends AppCompatActivity {
         if (depSaved.isEmpty()) depSaved = "Valle del Cauca";
         acDepartamento.setText(depSaved, false);
 
-        // Cargar municipios para Valle del Cauca (siempre usa municipios_valle)
+        // Carga inicial de municipios (siempre desde municipios_valle)
         loadMunicipiosValle();
 
         // 2) Restaurar municipio/vereda si existen
@@ -128,13 +128,33 @@ public class PrimeraVisitaUbicacionActivity extends AppCompatActivity {
         }
     }
 
-    /** CORREGIMIENTOS: busca R.array.corregimientos_<slug_municipio> */
+    /** CORREGIMIENTOS: intenta varias rutas basadas en el nombre del municipio */
     private void loadCorregimientosFor(String municipio) {
-        String slug = slug(municipio); // p. ej. "cali", "la_buitrera_palmira"
+        // slug normalizado
+        String slug = slug(municipio);
+
+        // 1) corregimientos_<slug>
         int resId = getResources().getIdentifier("corregimientos_" + slug, "array", getPackageName());
-        setAdapterFromArray(acVereda, resId);
+
+        // 2) <slug> (tus arrays están así en la mayoría de municipios)
         if (resId == 0) {
-            // Si no hay array, dejamos vacío el listado (no es error grave)
+            resId = getResources().getIdentifier(slug, "array", getPackageName());
+        }
+
+        // 3) Caso especial "Calima (El Darién)" → calima
+        if (resId == 0 && municipio.toLowerCase(Locale.ROOT).contains("calima")) {
+            resId = getResources().getIdentifier("calima", "array", getPackageName());
+        }
+
+        // 4) Último recurso: si el slug tiene '_', intenta solo la primera parte
+        if (resId == 0 && slug.contains("_")) {
+            String firstToken = slug.split("_", 2)[0];
+            resId = getResources().getIdentifier(firstToken, "array", getPackageName());
+        }
+
+        setAdapterFromArray(acVereda, resId);
+
+        if (resId == 0) {
             acVereda.setText("", false);
             Toast.makeText(this, "Sin corregimientos para: " + municipio, Toast.LENGTH_SHORT).show();
         }
