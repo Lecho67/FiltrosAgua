@@ -101,15 +101,16 @@ public class PrimeraVisitaAlmacenamientoActivity extends AppCompatActivity {
         saveSectionNow();
     }
 
+    /** Guarda con claves SIN prefijo; la sección se pasa aparte. */
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            data.put("almacenamiento_tratamiento.tanque",
-                    getRadio(rgTanque, R.id.rbTanqueSiPv, R.id.rbTanqueNoPv));
-            data.put("almacenamiento_tratamiento.tratamientos", getTratamientos());
-            data.put("almacenamiento_tratamiento.hervir_emplea", t(etHervirEmplea));
-            data.put("almacenamiento_tratamiento.quien_labores", t(etQuienLabores));
-            data.put("almacenamiento_tratamiento.gasto_mensual", t(etGastoMensual));
+            // claves canónicas que espera el unificador:
+            data.put("tanque",        getRadioSiNo(rgTanque, R.id.rbTanqueSiPv, R.id.rbTanqueNoPv));
+            data.put("tratamientos",  getTratamientos());
+            data.put("hierve_como",   t(etHervirEmplea));   // antes "hervir_emplea" -> unificador usa hierve_como
+            data.put("quien_labores", t(etQuienLabores));
+            data.put("gasto_mensual", t(etGastoMensual));
 
             SessionCsvPrimera.saveSection(this, "almacenamiento_tratamiento", data);
         } catch (Exception e) {
@@ -127,6 +128,7 @@ public class PrimeraVisitaAlmacenamientoActivity extends AppCompatActivity {
 
     private void setChecksFromPrefs() {
         String csv = Prefs.get(this, K_TRATS);
+        if (csv == null) csv = "";
         cbHervir.setChecked(csv.contains("Hervir"));
         cbFiltrar.setChecked(csv.contains("Filtrar"));
         cbClorar.setChecked(csv.contains("Clorar"));
@@ -152,11 +154,13 @@ public class PrimeraVisitaAlmacenamientoActivity extends AppCompatActivity {
         et.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
             @Override public void onTextChanged(CharSequence s, int st, int b, int c) {}
-            @Override public void afterTextChanged(Editable s) { Prefs.put(PrimeraVisitaAlmacenamientoActivity.this, key, s.toString()); }
+            @Override public void afterTextChanged(Editable s) {
+                Prefs.put(PrimeraVisitaAlmacenamientoActivity.this, key, s.toString());
+            }
         });
     }
 
-    private String getRadio(RadioGroup rg, int idSi, int idNo) {
+    private String getRadioSiNo(RadioGroup rg, int idSi, int idNo) {
         int id = rg.getCheckedRadioButtonId();
         if (id == -1) return "";
         return id == idSi ? "Si" : "No";

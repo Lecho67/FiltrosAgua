@@ -21,29 +21,26 @@ import java.util.Objects;
 
 public class SeguimientoUbicacionActivity extends AppCompatActivity {
 
-    private EditText etUbicacion;
+    private EditText etLatitud, etAltitud;
 
-    // autosave
-    private static final String K_UBIC = "seg6_ubicacion";
+    private static final String K_LAT = "seg6_latitud";
+    private static final String K_ALT = "seg6_altitud";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seguimiento_ubicacion);
 
-        etUbicacion = req(R.id.etUbicacion);
+        etLatitud = req(R.id.etLatitud);
+        etAltitud = req(R.id.etAltitud);
         MaterialButton btnAnterior = req(R.id.btnAnteriorSeg6);
         MaterialButton btnEnviar   = req(R.id.btnEnviarEncuesta);
 
         // Rellenar + autosave
-        etUbicacion.setText(Prefs.get(this, K_UBIC));
-        etUbicacion.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
-            @Override public void onTextChanged(CharSequence s, int st, int b, int c) {}
-            @Override public void afterTextChanged(Editable s) {
-                Prefs.put(SeguimientoUbicacionActivity.this, K_UBIC, s.toString());
-            }
-        });
+        etLatitud.setText(Prefs.get(this, K_LAT));
+        etAltitud.setText(Prefs.get(this, K_ALT));
+        watch(etLatitud, K_LAT);
+        watch(etAltitud, K_ALT);
 
         btnAnterior.setOnClickListener(v -> {
             saveSectionNow();
@@ -53,34 +50,26 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
 
         btnEnviar.setOnClickListener(v -> {
             try {
-                // 1) Guardar sección
+                // 1) Guardar esta sección en STAGING (formato "long": seccion,campo,valor)
                 saveSectionNow();
-                // 2) Consolidar seguimiento.csv -> seguimiento_master_wide.csv
+
+                // 2) Consolidar todo STAGING a WIDE (una fila) -> seguimiento_master_wide.csv
                 SessionCsvSeguimiento.commitToMasterWide(this);
 
-                // 3) Mostrar ruta del maestro
-                java.io.File m = SessionCsvSeguimiento.fMasterWide(this);
-                if (m != null) {
-                    Toast.makeText(
-                            this,
-                            "Encuesta guardada en:\n" + m.getAbsolutePath(),
-                            Toast.LENGTH_LONG
-                    ).show();
-                }
-
-                // 4) Limpiar archivo de sesión para la próxima encuesta (opcional pero recomendado)
+                // 3) Limpiar staging/autosave y volver a inicio
                 SessionCsvSeguimiento.clearSession(this);
+                Prefs.clearAll(this);
+
+                Toast.makeText(this, "Encuesta guardada.", Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent(this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+                finish();
 
             } catch (Exception e) {
                 Toast.makeText(this, "Error al enviar: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
-
-            // 5) Limpiar autosave y volver al login
-            Prefs.clearAll(this);
-            Intent i = new Intent(this, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-            finish();
         });
     }
 
@@ -90,12 +79,24 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
         saveSectionNow();
     }
 
+    /** Guarda la sección 'ubicacion' con claves canónicas 'ubicacion.latitud' y 'ubicacion.altitud'. */
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            data.put("direccion_referencias", t(etUbicacion));
+            data.put("ubicacion.latitud", t(etLatitud));
+            data.put("ubicacion.altitud", t(etAltitud));
             SessionCsvSeguimiento.saveSection(this, "ubicacion", data);
         } catch (Exception ignored) {}
+    }
+
+    /* ---------- helpers ---------- */
+
+    private void watch(EditText et, String key) {
+        et.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
+            @Override public void onTextChanged(CharSequence s, int st, int b, int c) {}
+            @Override public void afterTextChanged(Editable s) { Prefs.put(SeguimientoUbicacionActivity.this, key, s.toString()); }
+        });
     }
 
     private String t(EditText et) {
@@ -105,9 +106,6 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
     @SuppressWarnings("unchecked")
     private <T> T req(int id) {
         T v = (T) findViewById(id);
-        return Objects.requireNonNull(
-                v,
-                "Falta la vista con id: " + getResources().getResourceEntryName(id)
-        );
+        return Objects.requireNonNull(v, "Falta la vista con id: " + getResources().getResourceEntryName(id));
     }
 }

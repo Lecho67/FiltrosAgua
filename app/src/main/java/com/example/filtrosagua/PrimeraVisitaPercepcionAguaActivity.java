@@ -37,6 +37,7 @@ public class PrimeraVisitaPercepcionAguaActivity extends AppCompatActivity {
         etSabor      = req(R.id.etSaborPv);
         etClaridad   = req(R.id.etClaridadPv);
         rgOlores     = req(R.id.rgOloresPv);
+
         MaterialButton btnAnt = req(R.id.btnAnteriorPv7);
         MaterialButton btnSig = req(R.id.btnSiguientePv7);
 
@@ -72,14 +73,15 @@ public class PrimeraVisitaPercepcionAguaActivity extends AppCompatActivity {
         saveSectionNow();
     }
 
-    /** Guarda esta sección con claves canónicas para el CSV en filas. */
+    /** Guarda esta sección con claves canónicas (sin prefijo de sección). */
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            data.put("percepcion", t(etPercepcion));
-            data.put("sabor",      t(etSabor));
-            data.put("aspecto",    t(etClaridad)); // clara/oscura/por temporada
-            data.put("olor",       getRadioSiNo());
+            // ← claves que espera el unificador/cabecera final:
+            data.put("percepcion",       t(etPercepcion));        // antes "percepcion_agua.percepcion"
+            data.put("opinion_sabor",    t(etSabor));             // antes "percepcion_agua.sabor"
+            data.put("aspecto",          t(etClaridad));          // antes "percepcion_agua.aspecto"
+            data.put("presenta_olores",  getRadioSiNo());         // antes "percepcion_agua.olor"
 
             SessionCsvPrimera.saveSection(this, "percepcion_agua", data);
         } catch (Exception e) {

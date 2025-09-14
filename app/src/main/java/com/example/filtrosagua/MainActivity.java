@@ -37,17 +37,17 @@ public class MainActivity extends AppCompatActivity {
         btnActualizar = findViewById(R.id.btnActualizar);
         btnCompartir  = findViewById(R.id.btnCompartir);
 
-        // Ingresar
+        // INGRESAR
         btnIngresar.setOnClickListener(v -> {
-            String u = text(etUsuario);
-            String p = text(etContrasena);
+            String cedula = text(etUsuario);
+            String passUser = text(etContrasena);
 
-            if (TextUtils.isEmpty(u)) {
-                etUsuario.setError("Ingresa el usuario");
+            if (TextUtils.isEmpty(cedula)) {
+                etUsuario.setError("Ingresa la cédula");
                 etUsuario.requestFocus();
                 return;
             }
-            if (TextUtils.isEmpty(p)) {
+            if (TextUtils.isEmpty(passUser)) {
                 etContrasena.setError("Ingresa la contraseña");
                 etContrasena.requestFocus();
                 return;
@@ -55,17 +55,26 @@ public class MainActivity extends AppCompatActivity {
 
             hideKeyboard(v);
 
-            // DEMO simple: cambia por tu validación real
-            if (u.equals("admin") && p.equals("1234")) {
+            // Validar formato de la cédula
+            if (!cedula.matches("\\d{7,}")) {
+                Toast.makeText(this, "La cédula debe tener mínimo 7 dígitos y solo números", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // Generar contraseña según tu algoritmo
+            String generated = generarContrasena(cedula);
+
+            if (passUser.equals(generated)) {
+                Toast.makeText(this, "Acceso concedido ✅", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                i.putExtra("user", u);
+                i.putExtra("user", cedula);
                 startActivity(i);
             } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Actualizar (limpiar campos y errores)
+        // ACTUALIZAR: limpiar campos
         btnActualizar.setOnClickListener(v -> {
             etUsuario.setText("");
             etContrasena.setText("");
@@ -78,17 +87,35 @@ public class MainActivity extends AppCompatActivity {
         btnCompartir.setOnClickListener(v -> compartirMaestroUnificado());
     }
 
-    // ---------------- COMPARTIR UNIFICADO ----------------
+    // ------------------ GENERAR CONTRASEÑA ------------------
+    private String generarContrasena(String cedula) {
+        // mapa de reemplazo
+        String[] mapa = {"H","L","J","T","V","Z","M","I","R","C"};
+
+        StringBuilder reemplazada = new StringBuilder();
+        for (char c : cedula.toCharArray()) {
+            int idx = Character.getNumericValue(c);
+            if (idx >= 0 && idx <= 9) {
+                reemplazada.append(mapa[idx]);
+            }
+        }
+
+        String ultimos6 = reemplazada.substring(Math.max(reemplazada.length() - 6, 0));
+        String primeros5 = ultimos6.substring(0, Math.min(5, ultimos6.length()));
+
+        // Contraseña: cedula[3] + primeros5 + cedula[0]
+        return cedula.charAt(3) + primeros5 + cedula.charAt(0);
+    }
+    // --------------------------------------------------------
+
+    // ---------------- COMPARTIR UNIFICADO -------------------
     private void compartirMaestroUnificado() {
         try {
-            // Opcional: asegúrate de que lo último en staging esté en los maestros
-            // (si el usuario no cerró sesión todavía)
             try {
                 SessionCsv.commitToMaster(this);
                 SessionCsvPrimera.commitToMaster(this);
             } catch (Exception ignored) {}
 
-            // Generar /files/csv/maestro_unificado_YYYYMMDD_HHMMSS.csv
             File unificado = CsvMerge.crearMaestroUnificado(this);
             if (unificado == null || !unificado.exists() || unificado.length() == 0L) {
                 Toast.makeText(this, "No hay datos para compartir todavía.", Toast.LENGTH_LONG).show();
@@ -113,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error al compartir: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-    // -----------------------------------------------------
+    // --------------------------------------------------------
 
     // Utilidades
     private String text(TextInputEditText et) {

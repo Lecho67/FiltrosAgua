@@ -68,9 +68,11 @@ public class PrimeraVisitaSaneamientoActivity extends AppCompatActivity {
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            // 🔹 Claves normalizadas:
-            data.put("saneamiento.taza",             pairValue(cbTazaSi, cbTazaNo));   // "Si"/"No"/""
-            data.put("saneamiento.sistema_residuos", pairValue(cbDispSi, cbDispNo));   // "Si"/"No"/""
+            // 🔹 Claves SIN prefijo (el prefijo es el nombre de la sección):
+            //   sección = "saneamiento"
+            //   campos  = "taza" y "sistema_residuos"
+            data.put("taza",             pairValue(cbTazaSi, cbTazaNo));   // "Si"/"No"/""
+            data.put("sistema_residuos", pairValue(cbDispSi, cbDispNo));   // "Si"/"No"/""
             SessionCsvPrimera.saveSection(this, "saneamiento", data);
         } catch (Exception e) {
             Toast.makeText(this, "Error guardando: " + e.getMessage(), Toast.LENGTH_LONG).show();

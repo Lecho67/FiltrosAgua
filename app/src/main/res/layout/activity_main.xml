@@ -5,19 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:background="#EDF2F7">
 
-    <!-- Franja superior -->
     <View
         android:id="@+id/top_bar"
         android:layout_width="0dp"
         android:layout_height="110dp"
-        android:background="@color/topBar"
+        android:background="#3B82F6"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Tarjeta del login -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/loginCard"
         android:layout_width="0dp"
@@ -26,7 +24,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginTop="32dp"
         app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="@color/card"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="#FFFFFF"
         app:layout_constraintTop_toBottomOf="@id/top_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -37,35 +36,42 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- Usuario (Cédula) -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Usuario">
+                android:hint="Cédula"
+                app:boxStrokeColor="#3B82F6"
+                app:hintTextColor="@android:color/darker_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etUsuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"/>
+                    android:inputType="number"
+                    android:maxLength="20" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Contraseña -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:hint="Contraseña"
-                android:layout_marginTop="12dp">
+                app:endIconMode="password_toggle"
+                app:boxStrokeColor="#3B82F6"
+                app:hintTextColor="@android:color/darker_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etContrasena"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Botones -->
     <LinearLayout
         android:id="@+id/buttonRow"
         android:layout_width="wrap_content"
@@ -81,9 +87,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ingresar"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             app:cornerRadius="12dp"
-            app:backgroundTint="@color/primaryBlue"
-            android:textColor="@color/white"
+            app:backgroundTint="#3B82F6"
             android:layout_marginEnd="12dp"/>
 
         <com.google.android.material.button.MaterialButton
@@ -91,9 +98,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Actualizar"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             app:cornerRadius="12dp"
-            app:backgroundTint="@color/primaryBlue"
-            android:textColor="@color/white"
+            app:backgroundTint="#3B82F6"
             android:layout_marginEnd="12dp"/>
 
         <com.google.android.material.button.MaterialButton
@@ -101,9 +109,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Compartir"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             app:cornerRadius="12dp"
-            app:backgroundTint="@color/accentGreen"
-            android:textColor="@color/white"/>
+            app:backgroundTint="#10B981"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

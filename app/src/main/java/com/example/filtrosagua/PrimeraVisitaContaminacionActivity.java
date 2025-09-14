@@ -65,7 +65,7 @@ public class PrimeraVisitaContaminacionActivity extends AppCompatActivity {
         setChecksFromCsv(Prefs.get(this, K_BEN), false);
 
         // ---- Autosave
-        // Exclusión de "Ninguno" para contaminación:
+        // Exclusión de "Ninguno"
         cbNinguno.setOnCheckedChangeListener((v, ch) -> {
             if (ch) {
                 cbAnimales.setChecked(false);
@@ -113,16 +113,16 @@ public class PrimeraVisitaContaminacionActivity extends AppCompatActivity {
         saveSectionNow();
     }
 
+    /** Guarda SIN prefijos; la sección se pasa por separado. */
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            // >>>> Claves normalizadas para el CSV <<<<
-            data.put("contaminacion.contacto_fuentes",           getContaminacionCsv());
-            data.put("contaminacion.fuente_protegida",           getRadioCsv(rgProtegida,  R.id.rbProtSi, R.id.rbProtNo));
-            data.put("contaminacion.importancia_consumir_buena", getRadioCsv(rgImportante, R.id.rbImpSi,  R.id.rbImpNo));
-            data.put("contaminacion.beneficios",                 getBeneficiosCsv());
+            // Claves canónicas:
+            data.put("contacto_fuentes",           getContaminacionCsv());
+            data.put("fuente_protegida",           getRadioCsv(rgProtegida,  R.id.rbProtSi, R.id.rbProtNo));
+            data.put("importancia_consumir_buena", getRadioCsv(rgImportante, R.id.rbImpSi,  R.id.rbImpNo));
+            data.put("beneficios",                 getBeneficiosCsv());
 
-            // Guardar en la sección "contaminacion"
             SessionCsvPrimera.saveSection(this, "contaminacion", data);
         } catch (Exception e) {
             Toast.makeText(this, "Error guardando: " + e.getMessage(), Toast.LENGTH_LONG).show();

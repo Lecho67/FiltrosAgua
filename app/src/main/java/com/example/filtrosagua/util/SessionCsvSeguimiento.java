@@ -7,219 +7,229 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Maneja el CSV para el formulario de SEGUIMIENTO.
+ * Maneja:
+ *  - STAGING: seguimiento.csv con formato "long" ("seccion","campo","valor")
+ *  - MASTER_WIDE: seguimiento_master_wide.csv (una fila por encuesta)
  *
- * Staging (long):  /files/csv/seguimiento.csv         -> "seccion","campo","valor"
- * Maestro wide:    /files/csv/seguimiento_master_wide.csv -> 1 fila por encuesta.
+ * commitToMasterWide() toma TODO lo que haya en STAGING y lo vuelca como UNA FILA en MASTER_WIDE.
+ * Incluye las claves 'ubicacion.latitud' y 'ubicacion.altitud' si existen en STAGING.
  */
 public class SessionCsvSeguimiento {
 
-    /* ====== Rutas ====== */
-    public static File file(Context ctx)        { return new File(ensureCsvDir(ctx), "seguimiento.csv"); }
-    public static File fMasterWide(Context ctx) { return new File(ensureCsvDir(ctx), "seguimiento_master_wide.csv"); }
+    private static final String STAGING_NAME   = "seguimiento.csv";
+    private static final String MASTER_WIDE    = "seguimiento_master_wide.csv";
 
-    private static File ensureCsvDir(Context ctx) {
+    /* ===== Archivos ===== */
+
+    public static File stagingFile(Context ctx) {
         File dir = new File(ctx.getFilesDir(), "csv");
         if (!dir.exists()) dir.mkdirs();
-        return dir;
+        return new File(dir, STAGING_NAME);
     }
 
-    /* ====== API Principal ====== */
-
-    /**
-     * Guarda/actualiza una sección en el archivo de staging (seguimiento.csv).
-     * Usa el formato "long" (seccion, campo, valor).
-     */
-    public static void saveSection(Context ctx, String section, Map<String, String> data) throws Exception {
-        CsvUtils.upsertSection(file(ctx), section, data);
+    public static File masterWideFile(Context ctx) {
+        File dir = new File(ctx.getFilesDir(), "csv");
+        if (!dir.exists()) dir.mkdirs();
+        return new File(dir, MASTER_WIDE);
     }
 
-    /**
-     * Limpia el archivo de staging para la próxima encuesta.
-     */
-    public static void clearSession(Context ctx) {
-        File f = file(ctx);
+    /* ===== API pública ===== */
+
+    /** Inserta o reemplaza COMPLETAMENTE una sección en el STAGING. */
+    public static synchronized void saveSection(Context ctx, String section, Map<String, String> data) throws Exception {
+        File f = stagingFile(ctx);
+        List<String[]> triples = new ArrayList<>();
+
+        // Cargar lo previo (omitir la sección que vamos a reemplazar)
+        if (f.exists() && f.length() > 0) {
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+                String line;
+                // Saltar cabecera si está
+                br.mark(256);
+                line = br.readLine();
+                if (line != null && !isHeader(line)) {
+                    br.reset();
+                }
+                while ((line = br.readLine()) != null) {
+                    String[] parts = splitCsvTriple(line);
+                    if (parts != null && !section.equals(parts[0])) {
+                        triples.add(parts);
+                    }
+                }
+            }
+        }
+
+        // Agregar la sección nueva (cada entrada es una fila "section,campo,valor")
+        for (Map.Entry<String,String> e : data.entrySet()) {
+            String key = e.getKey();
+            String val = e.getValue() == null ? "" : e.getValue();
+            // key puede venir como "ubicacion.latitud" -> seccion = "ubicacion", campo = "latitud"
+            String sec = section;
+            String campo = key;
+            int dot = key.indexOf('.');
+            if (dot > 0) {
+                sec = key.substring(0, dot);
+                campo = key.substring(dot + 1);
+            }
+            triples.add(new String[]{sec, campo, val});
+        }
+
+        // Escribir de nuevo STAGING (con cabecera)
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(f, false))) {
+            bw.write("seccion,campo,valor");
+            bw.newLine();
+            for (String[] t : triples) {
+                bw.write(csvQuote(t[0])); bw.write(",");
+                bw.write(csvQuote(t[1])); bw.write(",");
+                bw.write(csvQuote(t[2]));
+                bw.newLine();
+            }
+        }
+    }
+
+    /** Limpia el STAGING para la próxima encuesta. */
+    public static synchronized void clearSession(Context ctx) {
+        File f = stagingFile(ctx);
         if (f.exists()) f.delete();
     }
 
     /**
-     * Toma el staging "long" (seguimiento.csv), lo convierte a una fila "wide"
-     * y la añade al maestro (seguimiento_master_wide.csv).
-     * Finalmente, limpia el staging.
+     * Toma TODO el STAGING (una encuesta) -> genera UNA FILA en MASTER_WIDE.
+     * - Si MASTER_WIDE no existe, crea cabecera automáticamente con todas las claves vistas,
+     *   asegurando que incluya 'ubicacion.latitud' y 'ubicacion.altitud'.
+     * - Si ya existe, usa su cabecera y rellena vacíos para las claves faltantes.
      */
-    public static void commitToMasterWide(Context ctx) throws Exception {
-        File staging = file(ctx);
+    public static synchronized void commitToMasterWide(Context ctx) throws Exception {
+        File staging = stagingFile(ctx);
         if (!staging.exists() || staging.length() == 0) return;
 
-        // 1. Parsear el staging "long" a un mapa de clave->valor para la fila "wide"
-        Map<String, String> row = parseStagingToWideRow(staging);
+        // 1) Parsear STAGING (long) a un mapa row (wide)
+        Map<String,String> row = parseStagingAsRow(staging);
 
-        // 2. Escribir/añadir al maestro "wide"
-        File masterWide = fMasterWide(ctx);
-        boolean writeHeader = !masterWide.exists() || masterWide.length() == 0;
+        // 2) Asegurar que las dos claves estén presentes aunque vengan vacías
+        if (!row.containsKey("ubicacion.latitud")) row.put("ubicacion.latitud", "");
+        if (!row.containsKey("ubicacion.altitud")) row.put("ubicacion.altitud", "");
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(masterWide, true))) {
-            if (writeHeader) {
-                bw.write(String.join(",", quoteList(WIDE_COLUMNS)));
+        // 3) Abrir MASTER_WIDE
+        File master = masterWideFile(ctx);
+
+        if (!master.exists() || master.length() == 0) {
+            // 3a) Crear cabecera dinámica a partir de las claves del row
+            List<String> header = new ArrayList<>(row.keySet());
+            // un pequeño orden por seccion.campo
+            Collections.sort(header);
+            // Garantizar orden relativo (si quieres fijar un orden de secciones, puedes reordenar aquí)
+
+            // Escribir cabecera + primera fila
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(master, false))) {
+                bw.write(String.join(",", quoteList(header)));
+                bw.newLine();
+
+                List<String> cols = new ArrayList<>(header.size());
+                for (String h : header) cols.add(csvQuote(row.getOrDefault(h, "")));
+                bw.write(String.join(",", cols));
                 bw.newLine();
             }
-            // Producir la fila en el orden definido por WIDE_COLUMNS
-            List<String> values = new ArrayList<>(WIDE_COLUMNS.size());
-            for (String col : WIDE_COLUMNS) {
-                values.add(csvQuote(row.getOrDefault(col, "")));
+        } else {
+            // 3b) Ya existe: leer cabecera, y solo APPEND una nueva fila
+            List<String> header;
+            try (BufferedReader br = new BufferedReader(new FileReader(master))) {
+                String first = br.readLine();
+                if (first == null || first.trim().isEmpty())
+                    throw new IllegalStateException("Cabecera de master_wide está vacía.");
+                header = parseHeader(first);
             }
-            bw.write(String.join(",", values));
-            bw.newLine();
-        }
 
-        // 3. Limpiar el staging para la siguiente encuesta
-        clearSession(ctx);
+            // Si por algún motivo la cabecera no tiene las nuevas columnas, no reescribimos
+            // todo el archivo (para mantener simple). Solo usamos lo existente y rellenamos.
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(master, true))) {
+                List<String> cols = new ArrayList<>(header.size());
+                for (String h : header) cols.add(csvQuote(row.getOrDefault(h, "")));
+                bw.write(String.join(",", cols));
+                bw.newLine();
+            }
+        }
     }
 
-    /* ====== Columnas fijas (en orden) para el CSV wide de seguimiento ====== */
-    private static final List<String> WIDE_COLUMNS = Arrays.asList(
-            // info_basica
-            "info_basica.fecha",
-            "info_basica.responsable",
-            "info_basica.empresa",
-            "info_basica.numero1",
-            "info_basica.numero2",
+    /* ===== Internos ===== */
 
-            // acceso_agua_filtro
-            "acceso_agua_filtro.fecha",
-            "acceso_agua_filtro.fuente_agua",
-            "acceso_agua_filtro.porque_arcilla",
-            "acceso_agua_filtro.dias_almacenada",
-            "acceso_agua_filtro.veces_recarga",
-            "acceso_agua_filtro.miembro_recarga",
-            "acceso_agua_filtro.uso_del_agua",
-
-            // percepciones_cambios
-            "percepciones_cambios.cambios",
-            "percepciones_cambios.percepcion",
-            "percepciones_cambios.sabor",
-            "percepciones_cambios.color",
-            "percepciones_cambios.olor",
-            "percepciones_cambios.enfermedades_disminuyen",
-            "percepciones_cambios.gastos_disminuyen",
-            "percepciones_cambios.gasto_actual",
-
-            // mantenimiento
-            "mantenimiento.frecuencia_mantenimiento",
-            "mantenimiento.productos_limpieza_arcilla",
-            "mantenimiento.productos_limpieza_plastico",
-            "mantenimiento.conoce_vida_util_arcilla",
-            "mantenimiento.sabe_donde_conseguir_repuestos",
-
-            // observaciones_tecnicas
-            "observaciones_tecnicas.estable_seguro",
-            "observaciones_tecnicas.ensamblado_tapado",
-            "observaciones_tecnicas.limpio_parte_externa",
-            "observaciones_tecnicas.lavado_manos_previo",
-            "observaciones_tecnicas.manipulacion_arcilla_adecuada",
-            "observaciones_tecnicas.limpieza_tanque_sin_sedimentos",
-            "observaciones_tecnicas.limpieza_vasija_sin_sedimentos",
-            "observaciones_tecnicas.fisuras_arcilla",
-            "observaciones_tecnicas.niveles_agua_impiden_manipulacion",
-            "observaciones_tecnicas.instalacion_lavado_manos",
-            "observaciones_tecnicas.disp_jabon_lavado_manos",
-
-            // ubicacion
-            "ubicacion.direccion_referencias"
-    );
-
-    /* ====== Helpers: de long -> wide row ====== */
-
-    /** Convierte el staging "long" a un mapa de columnas fijas (wide) para UNA encuesta. */
-    private static Map<String,String> parseStagingToWideRow(File staging) throws Exception {
+    private static Map<String,String> parseStagingAsRow(File f) throws Exception {
         Map<String,String> row = new LinkedHashMap<>();
-        // Lee todo el staging y arma clave "seccion.campo"
-        try (BufferedReader br = new BufferedReader(new FileReader(staging))) {
-            String line = br.readLine();
-            boolean headerSeen = isHeader(line);
-            if (!headerSeen) {
-                // primera línea era dato
-                if (line != null) putLine(row, line);
+        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+            String line = br.readLine(); // cabecera o primera línea
+            if (line == null) return row;
+            if (!isHeader(line)) {
+                // la primera no era cabecera
+                String[] p = splitCsvTriple(line);
+                if (p != null) row.put(p[0] + "." + p[1], p[2]);
             }
             while ((line = br.readLine()) != null) {
-                putLine(row, line);
+                String[] p = splitCsvTriple(line);
+                if (p == null) continue;
+                row.put(p[0] + "." + p[1], p[2]);
             }
         }
-
-        // Normalización para consolidar claves si es necesario
-        normalizeRow(row);
-
         return row;
     }
 
     private static boolean isHeader(String line) {
-        if (line == null) return false;
         String l = line.trim().toLowerCase(Locale.ROOT);
-        return l.equals("\"seccion\",\"campo\",\"valor\"")
-                || l.equals("seccion,campo,valor")
-                || l.startsWith("seccion,campo,valor");
+        return l.equals("\"seccion\",\"campo\",\"valor\"") || l.equals("seccion,campo,valor");
     }
 
-    private static void putLine(Map<String,String> row, String csvLine) {
-        if (csvLine == null || csvLine.trim().isEmpty()) return;
-        String[] parts = splitCsvTriple(csvLine);
-        if (parts == null) return;
-        String sec = parts[0];
-        String key = parts[1];
-        String val = parts[2];
-        row.put(sec + "." + key, val);
-    }
-
-    /**
-     * Acepta variantes de nombres de campos y las mapea a las columnas finales.
-     * Para seguimiento, los nombres son bastante consistentes, pero esto es útil por si acaso.
-     */
-    private static void normalizeRow(Map<String,String> r) {
-        // Ejemplo: si en una Activity guardaste "miembro" y en la columna es "miembro_recarga"
-        // moveAny(r, Arrays.asList("acceso_agua_filtro.miembro"), "acceso_agua_filtro.miembro_recarga");
-
-        // Por ahora, las claves de las Activities de seguimiento ya coinciden con WIDE_COLUMNS,
-        // por lo que no se necesita normalización. Se deja el método por si se necesita en el futuro.
-    }
-
-    private static void moveAny(Map<String,String> map, List<String> sources, String target) {
-        if (map.containsKey(target) && notEmpty(map.get(target))) return;
-        for (String s : sources) {
-            String v = map.get(s);
-            if (notEmpty(v)) { map.put(target, v); return; }
-        }
-    }
-
-    private static boolean notEmpty(String s){ return s != null && !s.trim().isEmpty(); }
-
-    /* ====== CSV helpers ====== */
-
+    /** Divide una línea CSV muy simple con comillas: "a","b","c" -> [a,b,c] */
     private static String[] splitCsvTriple(String line) {
         List<String> out = new ArrayList<>(3);
         StringBuilder sb = new StringBuilder();
         boolean inQ = false;
-        for (int i=0;i<line.length();i++) {
+
+        for (int i = 0; i < line.length(); i++) {
             char ch = line.charAt(i);
-            if (ch=='"') {
-                if (inQ && i+1<line.length() && line.charAt(i+1)=='"') { sb.append('"'); i++; }
+            if (ch == '"') {
+                if (inQ && i + 1 < line.length() && line.charAt(i + 1) == '"') { sb.append('"'); i++; }
                 else inQ = !inQ;
-            } else if (ch==',' && !inQ) {
+            } else if (ch == ',' && !inQ) {
                 out.add(sb.toString()); sb.setLength(0);
             } else {
                 sb.append(ch);
             }
         }
         out.add(sb.toString());
-        if (out.size()!=3) return null;
+        if (out.size() != 3) return null;
         return new String[]{out.get(0), out.get(1), out.get(2)};
+    }
+
+    private static List<String> parseHeader(String line) {
+        // Cabeceras sencillas: no esperamos comillas dobles complejas aquí
+        List<String> h = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        boolean inQ = false;
+        for (int i = 0; i < line.length(); i++) {
+            char ch = line.charAt(i);
+            if (ch == '"') {
+                if (inQ && i + 1 < line.length() && line.charAt(i + 1) == '"') { sb.append('"'); i++; }
+                else inQ = !inQ;
+            } else if (ch == ',' && !inQ) {
+                h.add(unquote(sb.toString()));
+                sb.setLength(0);
+            } else {
+                sb.append(ch);
+            }
+        }
+        h.add(unquote(sb.toString()));
+        return h;
+    }
+
+    private static String unquote(String s) {
+        if (s == null) return "";
+        s = s.trim();
+        if (s.length() >= 2 && s.startsWith("\"") && s.endsWith("\"")) {
+            s = s.substring(1, s.length() - 1).replace("\"\"", "\"");
+        }
+        return s;
     }
 
     private static List<String> quoteList(List<String> keys) {
