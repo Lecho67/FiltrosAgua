@@ -31,47 +31,45 @@ public class PrimeraVisitaBeneficiarioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Asegúrate que este layout es el correcto para Beneficiario
         setContentView(R.layout.activity_primera_visita_beneficiario);
 
-        // Bind seguro (prueba varios ids alternativos para cada vista)
-        etTipoBeneficiario   = bindEt("etTipoBeneficiario", "etTipo", "etTipoBen");
-        etGrupoPoblacional   = bindEt("etGrupoPoblacional", "etGrupo", "etGrupoBen");
-        etNombreBeneficiario = bindEt("etNombreBeneficiario", "etNombre", "etNombreBen");
-        etCedulaBeneficiario = bindEt("etCedulaBeneficiario", "etCedula", "etCedulaBen");
+        // Bind (acepta ids alternativos por si difieren en tu layout)
+        etTipoBeneficiario     = bindEt("etTipoBeneficiario", "etTipo", "etTipoBen");
+        etGrupoPoblacional     = bindEt("etGrupoPoblacional", "etGrupo", "etGrupoBen");
+        etNombreBeneficiario   = bindEt("etNombreBeneficiario", "etNombre", "etNombreBen");
+        etCedulaBeneficiario   = bindEt("etCedulaBeneficiario", "etCedula", "etCedulaBen");
         etTelefonoBeneficiario = bindEt("etTelefonoBeneficiario", "etTelefono", "etTelefonoBen");
 
         btnAnterior  = bindBtn("btnPvAnterior", "btnAnterior", "btnAnteriorSeg");
         btnSiguiente = bindBtn("btnPvSiguiente", "btnSiguiente", "btnSiguienteSeg");
 
-        // Relleno desde Prefs (si el campo existe)
-        setIfNotNull(etTipoBeneficiario,   Prefs.get(this, K_TIPO));
-        setIfNotNull(etGrupoPoblacional,   Prefs.get(this, K_GRUPO));
-        setIfNotNull(etNombreBeneficiario, Prefs.get(this, K_NOMBRE));
-        setIfNotNull(etCedulaBeneficiario, Prefs.get(this, K_CED));
+        // Prefill desde Prefs
+        setIfNotNull(etTipoBeneficiario,     Prefs.get(this, K_TIPO));
+        setIfNotNull(etGrupoPoblacional,     Prefs.get(this, K_GRUPO));
+        setIfNotNull(etNombreBeneficiario,   Prefs.get(this, K_NOMBRE));
+        setIfNotNull(etCedulaBeneficiario,   Prefs.get(this, K_CED));
         setIfNotNull(etTelefonoBeneficiario, Prefs.get(this, K_TEL));
 
         // Autosave
-        autosave(etTipoBeneficiario,   K_TIPO);
-        autosave(etGrupoPoblacional,   K_GRUPO);
-        autosave(etNombreBeneficiario, K_NOMBRE);
-        autosave(etCedulaBeneficiario, K_CED);
+        autosave(etTipoBeneficiario,     K_TIPO);
+        autosave(etGrupoPoblacional,     K_GRUPO);
+        autosave(etNombreBeneficiario,   K_NOMBRE);
+        autosave(etCedulaBeneficiario,   K_CED);
         autosave(etTelefonoBeneficiario, K_TEL);
 
-        // Navegación
+        // Navegación (solo guarda sección; NO consolidar aquí)
         if (btnAnterior != null) {
             btnAnterior.setOnClickListener(v -> {
                 saveSectionNow();
-                startActivity(new Intent(this, PrimeraVisitaActivity.class)); // Pantalla 1
+                startActivity(new Intent(this, PrimeraVisitaActivity.class));
                 finish();
             });
         }
-
         if (btnSiguiente != null) {
             btnSiguiente.setOnClickListener(v -> {
                 try {
                     saveSectionNow();
-                    startActivity(new Intent(this, PrimeraVisitaUbicacionActivity.class)); // Pantalla 3
+                    startActivity(new Intent(this, PrimeraVisitaUbicacionActivity.class));
                     finish();
                 } catch (Exception e) {
                     Toast.makeText(this, "Error guardando: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -86,19 +84,29 @@ public class PrimeraVisitaBeneficiarioActivity extends AppCompatActivity {
         saveSectionNow();
     }
 
+    /** Guarda beneficiario.* y también info_basica.cedula para poblar la columna base. */
     private void saveSectionNow() {
         try {
-            Map<String, String> data = new LinkedHashMap<>();
-            data.put("tipo_beneficiario",   getTextOrEmpty(etTipoBeneficiario));
-            data.put("grupo_poblacional",   getTextOrEmpty(etGrupoPoblacional));
-            data.put("nombre_beneficiario", getTextOrEmpty(etNombreBeneficiario));
-            data.put("cedula",              getTextOrEmpty(etCedulaBeneficiario));
-            data.put("telefono",            getTextOrEmpty(etTelefonoBeneficiario));
-            SessionCsvPrimera.saveSection(this, "beneficiario", data);
+            // beneficiario.*
+            Map<String, String> ben = new LinkedHashMap<>();
+            ben.put("tipo_beneficiario",   getTextOrEmpty(etTipoBeneficiario));
+            ben.put("grupo_poblacional",   getTextOrEmpty(etGrupoPoblacional));
+            ben.put("nombre_beneficiario", getTextOrEmpty(etNombreBeneficiario));
+            ben.put("cedula",              getTextOrEmpty(etCedulaBeneficiario));
+            ben.put("telefono",            getTextOrEmpty(etTelefonoBeneficiario));
+            SessionCsvPrimera.saveSection(this, "beneficiario", ben);
+
+            // info_basica.cedula  (columna prioritaria del wide)
+            String ced = getTextOrEmpty(etCedulaBeneficiario);
+            if (!ced.isEmpty()) {
+                Map<String, String> info = new LinkedHashMap<>();
+                info.put("cedula", ced);
+                SessionCsvPrimera.saveSection(this, "info_basica", info);
+            }
         } catch (Exception ignored) {}
     }
 
-    // ===== Helpers seguros =====
+    // ===== Helpers =====
     private EditText bindEt(String... ids) {
         for (String id : ids) {
             int res = getId(id);

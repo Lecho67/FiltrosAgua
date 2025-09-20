@@ -43,7 +43,7 @@ public class PrimeraVisitaHigieneActivity extends AppCompatActivity {
         MaterialButton btnAnt = req(R.id.btnAnteriorPv11);
         MaterialButton btnSig = req(R.id.btnSiguientePv11);
 
-        // ---- Rellenar desde Prefs (sin usar Prefs.isTrue)
+        // Prefill desde Prefs
         setPairFromPref(K_CAP, cbCapSi, cbCapNo);
         cbLavadoManos.setChecked(boolPref(K_LM));
         cbLimpiezaHogar.setChecked(boolPref(K_LH));
@@ -51,7 +51,7 @@ public class PrimeraVisitaHigieneActivity extends AppCompatActivity {
         cbOtro.setChecked(boolPref(K_OTRO));
         cbBanoDiario.setChecked(boolPref(K_BANO));
 
-        // ---- Autosave + exclusión mutua
+        // Autosave + exclusión mutua
         cbCapSi.setOnCheckedChangeListener((b, c) -> { if (c) cbCapNo.setChecked(false); savePair(K_CAP, cbCapSi, cbCapNo); });
         cbCapNo.setOnCheckedChangeListener((b, c) -> { if (c) cbCapSi.setChecked(false); savePair(K_CAP, cbCapSi, cbCapNo); });
 
@@ -61,7 +61,7 @@ public class PrimeraVisitaHigieneActivity extends AppCompatActivity {
         setAuto(cbOtro,          K_OTRO);
         setAuto(cbBanoDiario,    K_BANO);
 
-        // Navegación (usa las clases que SÍ tienes)
+        // Navegación (solo guardar sección; NO consolidar aquí)
         btnAnt.setOnClickListener(v -> {
             saveSectionNow();
             startActivity(new Intent(this, PrimeraVisitaSaneamientoActivity.class));
@@ -69,7 +69,6 @@ public class PrimeraVisitaHigieneActivity extends AppCompatActivity {
         });
         btnSig.setOnClickListener(v -> {
             saveSectionNow();
-            // En tu proyecto existe esta clase:
             startActivity(new Intent(this, PrimeraVisitaSaludActivity.class));
             finish();
         });
@@ -78,18 +77,21 @@ public class PrimeraVisitaHigieneActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // Guardar en staging + buffer (sin consolidar)
         saveSectionNow();
     }
 
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            data.put("capacitacion_higiene", pairValue(cbCapSi, cbCapNo));
-            data.put("practica_lavado_manos",   yn(cbLavadoManos));
-            data.put("practica_limpieza_hogar", yn(cbLimpiezaHogar));
-            data.put("practica_cepillado_dientes", yn(cbCepillado));
-            data.put("practica_otro", yn(cbOtro));
-            data.put("practica_bano_diario", yn(cbBanoDiario));
+            // Claves SIN prefijo; saveSection("higiene", ...) añadirá "higiene."
+            data.put("capacitacion_higiene",        pairValue(cbCapSi, cbCapNo)); // "Si"/"No"/""
+            data.put("practica_lavado_manos",       yn(cbLavadoManos));           // "Si"/"No"
+            data.put("practica_limpieza_hogar",     yn(cbLimpiezaHogar));
+            data.put("practica_cepillado_dientes",  yn(cbCepillado));
+            data.put("practica_otro",               yn(cbOtro));
+            data.put("practica_bano_diario",        yn(cbBanoDiario));
+
             SessionCsvPrimera.saveSection(this, "higiene", data);
         } catch (Exception e) {
             Toast.makeText(this, "Error guardando: " + e.getMessage(), Toast.LENGTH_LONG).show();

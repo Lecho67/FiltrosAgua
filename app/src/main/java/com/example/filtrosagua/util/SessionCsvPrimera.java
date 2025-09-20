@@ -16,8 +16,9 @@ import java.util.*;
  * Maestro long:    /files/csv/primeravisita_master.csv  -> append long (si ya usas esto)
  * Maestro wide:    /files/csv/primeravisita_master_wide.csv -> 1 fila por encuesta
  *
- * En el maestro wide la fila se guarda así:
- *   timestamp(ms desde 1970), info_responsable.cedula, ubicacion.municipio, ubicacion.vereda_corregimiento, ...
+ * En el maestro wide la fila se guarda así (orden inicial):
+ *   timestamp, ubicacion.latitud, ubicacion.altitud, info_responsable.cedula,
+ *   ubicacion.municipio, ubicacion.vereda_corregimiento, ubicacion.direccion, ...
  */
 public class SessionCsvPrimera {
 
@@ -89,14 +90,17 @@ public class SessionCsvPrimera {
     }
 
     /* ====== columnas fijas (en orden) para el CSV wide ======
-       Primero timestamp, luego cédula del usuario (responsable), municipio, vereda/barrio,
-       y después el resto de variables del formulario. */
+       Primero timestamp, latitud, altitud, cédula del responsable, municipio, vereda/corregimiento,
+       dirección; luego el resto de variables del formulario. */
     private static final List<String> WIDE_COLUMNS = Arrays.asList(
-            // Orden requerido:
+            // Orden requerido (bloque inicial):
             "timestamp",
+            "ubicacion.latitud",
+            "ubicacion.altitud",
             "info_responsable.cedula",
             "ubicacion.municipio",
             "ubicacion.vereda_corregimiento",
+            "ubicacion.direccion",
 
             // Resto (puedes ajustar/añadir aquí si cambias el formulario)
             "info_responsable.fecha",
@@ -110,7 +114,7 @@ public class SessionCsvPrimera {
             "beneficiario.cedula",
             "beneficiario.telefono",
 
-            // ubicación (dejamos departamento después)
+            // ubicación extra (departamento queda después del bloque base)
             "ubicacion.departamento",
 
             // demografía

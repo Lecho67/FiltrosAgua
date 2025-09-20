@@ -30,6 +30,12 @@ public class PrimeraVisitaSaludActivity extends AppCompatActivity {
 
     private EditText etObservaciones;
 
+    // Botones
+    private MaterialButton btnAnterior, btnEnviar;
+
+    // Para evitar re-guardados en onPause y doble tap
+    private volatile boolean isSubmitting = false;
+
     // ---- Claves de autosave (Prefs)
     private static final String K_DOLOR      = "pv12_dolor_estomago";
     private static final String K_DIARREA    = "pv12_enf_diarrea";
@@ -47,21 +53,21 @@ public class PrimeraVisitaSaludActivity extends AppCompatActivity {
         setContentView(R.layout.activity_primera_visita_salud);
 
         // Referencias
-        cbDolorSi       = req(R.id.cbDolorSi);
-        cbDolorNo       = req(R.id.cbDolorNo);
+        cbDolorSi        = req(R.id.cbDolorSi);
+        cbDolorNo        = req(R.id.cbDolorNo);
 
-        cbEnfDiarrea    = req(R.id.cbEnfDiarrea);
-        cbEnfVomito     = req(R.id.cbEnfVomito);
-        cbEnfColera     = req(R.id.cbEnfColera);
-        cbEnfHepatitis  = req(R.id.cbEnfHepatitis);
-        cbEnfParasitosis= req(R.id.cbEnfParasitosis);
-        cbEnfOtro       = req(R.id.cbEnfOtro);
-        cbEnfNinguna    = req(R.id.cbEnfNinguna);
+        cbEnfDiarrea     = req(R.id.cbEnfDiarrea);
+        cbEnfVomito      = req(R.id.cbEnfVomito);
+        cbEnfColera      = req(R.id.cbEnfColera);
+        cbEnfHepatitis   = req(R.id.cbEnfHepatitis);
+        cbEnfParasitosis = req(R.id.cbEnfParasitosis);
+        cbEnfOtro        = req(R.id.cbEnfOtro);
+        cbEnfNinguna     = req(R.id.cbEnfNinguna);
 
-        etObservaciones = req(R.id.etObservaciones);
+        etObservaciones  = req(R.id.etObservaciones);
 
-        MaterialButton btnAnterior = req(R.id.btnAnteriorSalud);
-        MaterialButton btnEnviar   = req(R.id.btnEnviarEncuesta);
+        btnAnterior = req(R.id.btnAnteriorSalud);
+        btnEnviar   = req(R.id.btnEnviarEncuesta);
 
         // ---- Relleno desde Prefs
         setPairFromPref(K_DOLOR, cbDolorSi, cbDolorNo);
@@ -103,23 +109,27 @@ public class PrimeraVisitaSaludActivity extends AppCompatActivity {
 
         // ---- Navegación
         btnAnterior.setOnClickListener(v -> {
-            saveSectionNow();
+            if (isSubmitting) return;
+            saveSectionNow(); // solo staging + buffer (NO consolidar aquí)
             startActivity(new Intent(this, PrimeraVisitaHigieneActivity.class));
             finish();
         });
 
         // ENVIAR = guardar sección + consolidar maestro + limpiar + volver a inicio
         btnEnviar.setOnClickListener(v -> {
+            if (isSubmitting) return;      // anti doble toque
+            isSubmitting = true;
+            btnEnviar.setEnabled(false);   // desactivar botón
+
             try {
-                saveSectionNow();                         // 1) guarda "salud" en primeravisita.csv
-                SessionCsvPrimera.commitToMasterWide(this); // WIDE: 1 fila por encuesta
-                // 2) consolida a primeravisita_master.csv
+                saveSectionNow();                           // 1) guarda "salud" (staging + buffer)
+                SessionCsvPrimera.commitToMasterWide(this); // 2) WIDE: 1 fila por encuesta (consolidación única)
                 File m = SessionCsvPrimera.fMaster(this);
                 if (m != null) {
                     Toast.makeText(this, "Guardada en: " + m.getAbsolutePath(), Toast.LENGTH_LONG).show();
                 }
-                SessionCsvPrimera.clearSession(this);     // 3) limpia staging
-                Prefs.clearAll(this);                     //    limpia autosave
+                SessionCsvPrimera.clearSession(this);       // 3) limpia buffer wide
+                Prefs.clearAll(this);                       //    limpia autosave
 
                 // 4) regreso a inicio
                 Intent i = new Intent(this, MainActivity.class);
@@ -127,6 +137,8 @@ public class PrimeraVisitaSaludActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             } catch (Exception e) {
+                isSubmitting = false;
+                btnEnviar.setEnabled(true);
                 Toast.makeText(this, "Error al enviar: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
@@ -135,7 +147,10 @@ public class PrimeraVisitaSaludActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        saveSectionNow();
+        // Evitar re-guardar si ya estamos enviando (onPause se dispara al startActivity)
+        if (!isSubmitting) {
+            saveSectionNow();
+        }
     }
 
     // ---- Persistencia de la sección
@@ -143,13 +158,12 @@ public class PrimeraVisitaSaludActivity extends AppCompatActivity {
         try {
             Map<String, String> data = new LinkedHashMap<>();
 
-            // Normalizadas (lo que pediste)
-            data.put("salud.dolor_estomago", pairValue(cbDolorSi, cbDolorNo));
-            data.put("salud.enfermedades", enfermedadesCsv()); // <- agregado clave agregada
-            data.put("salud.observaciones", s(etObservaciones));
+            // ✅ Claves SIN prefijo (SessionCsvPrimera antepone "salud.")
+            data.put("dolor_estomago",  pairValue(cbDolorSi, cbDolorNo)); // "Si"/"No"/""
+            data.put("enfermedades",    enfermedadesCsv());               // CSV "Diarrea,Vómito,..."/"Ninguna"
+            data.put("observaciones",   s(etObservaciones));
 
-            // Compat (claves detalladas que ya tenías)
-            data.put("dolor_estomago",        pairValue(cbDolorSi, cbDolorNo));
+            // Compat: flags detalladas (si las quieres conservar)
             data.put("enf_diarrea",           yn(cbEnfDiarrea));
             data.put("enf_vomito",            yn(cbEnfVomito));
             data.put("enf_colera",            yn(cbEnfColera));
@@ -157,7 +171,6 @@ public class PrimeraVisitaSaludActivity extends AppCompatActivity {
             data.put("enf_parasitosis",       yn(cbEnfParasitosis));
             data.put("enf_otro",              yn(cbEnfOtro));
             data.put("enf_ninguna",           yn(cbEnfNinguna));
-            data.put("observaciones",         s(etObservaciones));
 
             SessionCsvPrimera.saveSection(this, "salud", data);
         } catch (Exception ignored) {}

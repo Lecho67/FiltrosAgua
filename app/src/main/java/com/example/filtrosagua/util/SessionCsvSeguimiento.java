@@ -26,8 +26,11 @@ public class SessionCsvSeguimiento {
             "timestamp_ms",
             "ubicacion.latitud",
             "ubicacion.altitud",
-            "info_basica.cedula"
+            "info_basica.cedula",
+            "ubicacion.municipio",
+            "ubicacion.vereda_corregimiento"
     );
+
 
     /* ================== Archivos ================== */
 
@@ -111,11 +114,14 @@ public class SessionCsvSeguimiento {
         // 1) Parsear staging -> mapa wide
         Map<String, String> row = parseStagingAsRow(staging);
 
-        // 2) Timestamp y claves mínimas
         row.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
-        if (!row.containsKey("ubicacion.latitud")) row.put("ubicacion.latitud", "");
-        if (!row.containsKey("ubicacion.altitud")) row.put("ubicacion.altitud", "");
-        if (!row.containsKey("info_basica.cedula")) row.put("info_basica.cedula", "");
+        if (!row.containsKey("ubicacion.latitud"))               row.put("ubicacion.latitud", "");
+        if (!row.containsKey("ubicacion.altitud"))               row.put("ubicacion.altitud", "");
+        if (!row.containsKey("info_basica.cedula"))              row.put("info_basica.cedula", "");
+        if (!row.containsKey("ubicacion.municipio"))             row.put("ubicacion.municipio", "");
+        if (!row.containsKey("ubicacion.vereda_corregimiento"))  row.put("ubicacion.vereda_corregimiento", "");
+
+
 
         File master = masterFile(ctx);
 

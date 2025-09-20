@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class PrimeraVisitaDesplazamientoActivity extends AppCompatActivity {
 
-    // UI (IDs exactamente como están en tu XML)
+    // UI
     private RadioGroup rgDesplaza;
     private RadioButton rbDesplazaSi, rbDesplazaNo;
     private TextInputEditText etMedioDesplaza, etTiempoMin;
@@ -47,20 +47,18 @@ public class PrimeraVisitaDesplazamientoActivity extends AppCompatActivity {
         btnAnterior     = req(R.id.btnAnterior);
         btnSiguiente    = req(R.id.btnSiguiente);
 
-        // Rellenar autosave
+        // Prefill desde Prefs
         setRadioFromPrefs(rgDesplaza, Prefs.get(this, K_NEC), rbDesplazaSi, rbDesplazaNo);
         etMedioDesplaza.setText(Prefs.get(this, K_MEDIO));
         etTiempoMin.setText(Prefs.get(this, K_MIN));
 
-        // Autosave textos
+        // Autosave
         auto(etMedioDesplaza, K_MEDIO);
         auto(etTiempoMin,     K_MIN);
-
-        // Autosave radios
         rgDesplaza.setOnCheckedChangeListener((g, id) ->
                 Prefs.put(this, K_NEC, radioSiNoFromId(id)));
 
-        // Navegación: Anterior → Acceso al agua, Siguiente → Percepción del agua
+        // Navegación (solo guarda sección; NO consolidar aquí)
         btnAnterior.setOnClickListener(v -> {
             saveSectionNow();
             startActivity(new Intent(this, PrimeraVisitaAccesoAguaActivity.class));
@@ -76,14 +74,15 @@ public class PrimeraVisitaDesplazamientoActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // staging + buffer (sin consolidar)
         saveSectionNow();
     }
 
-    /** Guarda esta sección con claves canónicas. */
+    /** Guarda esta sección con claves sin prefijo (se antepone "desplazamiento.") */
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            data.put("necesita_desplazarse", getRadioSiNo(rgDesplaza)); // "Si"/"No"
+            data.put("necesita_desplazarse", getRadioSiNo(rgDesplaza));
             data.put("medio_utiliza",        t(etMedioDesplaza));
             data.put("tiempo_min",           t(etTiempoMin));
 
@@ -111,24 +110,22 @@ public class PrimeraVisitaDesplazamientoActivity extends AppCompatActivity {
         else group.clearCheck();
     }
 
-    /** "Si"/"No" desde grupo (por texto del RadioButton). */
     private String getRadioSiNo(RadioGroup g) {
         int id = g.getCheckedRadioButtonId();
         if (id == -1) return "";
         RadioButton rb = findViewById(id);
         if (rb == null || rb.getText() == null) return "";
         String tx = rb.getText().toString().trim().toLowerCase();
-        if (tx.startsWith("si") || tx.startsWith("s\u00ed")) return "Si";
+        if (tx.startsWith("si") || tx.startsWith("sí")) return "Si";
         return "No";
     }
 
-    /** Para autosave: convertir id → "Si"/"No". */
     private String radioSiNoFromId(int id) {
         if (id <= 0) return "";
         RadioButton rb = findViewById(id);
         if (rb == null || rb.getText() == null) return "";
         String tx = rb.getText().toString().trim().toLowerCase();
-        return (tx.startsWith("si") || tx.startsWith("s\u00ed")) ? "Si" : "No";
+        return (tx.startsWith("si") || tx.startsWith("sí")) ? "Si" : "No";
     }
 
     private String t(TextInputEditText et) {

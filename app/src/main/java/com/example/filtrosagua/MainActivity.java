@@ -111,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
     // ---------------- COMPARTIR UNIFICADO -------------------
     private void compartirMaestroUnificado() {
         try {
-            try {
-                SessionCsv.commitToMaster(this);
-                SessionCsvPrimera.commitToMaster(this);
-            } catch (Exception ignored) {}
+//            try {
+//                SessionCsv.commitToMaster(this);
+//                SessionCsvPrimera.commitToMaster(this);
+//            } catch (Exception ignored) {}
 
             File unificado = CsvMerge.crearMaestroUnificado(this);
             if (unificado == null || !unificado.exists() || unificado.length() == 0L) {

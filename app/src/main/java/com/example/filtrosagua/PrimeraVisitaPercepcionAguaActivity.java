@@ -41,7 +41,7 @@ public class PrimeraVisitaPercepcionAguaActivity extends AppCompatActivity {
         MaterialButton btnAnt = req(R.id.btnAnteriorPv7);
         MaterialButton btnSig = req(R.id.btnSiguientePv7);
 
-        // Rellenar Prefs
+        // Prefill desde Prefs
         etPercepcion.setText(Prefs.get(this, K_PERCEP));
         etSabor.setText(Prefs.get(this, K_SABOR));
         etClaridad.setText(Prefs.get(this, K_CLAR));
@@ -54,7 +54,7 @@ public class PrimeraVisitaPercepcionAguaActivity extends AppCompatActivity {
         rgOlores.setOnCheckedChangeListener((g, id) ->
                 Prefs.put(this, K_OLORES, id == R.id.rbOloresSiPv ? "Si" : "No"));
 
-        // Navegación
+        // Navegación (solo guardar sección; NO consolidar aquí)
         btnAnt.setOnClickListener(v -> {
             saveSectionNow();
             startActivity(new Intent(this, PrimeraVisitaDesplazamientoActivity.class));
@@ -70,18 +70,17 @@ public class PrimeraVisitaPercepcionAguaActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        saveSectionNow();
+        saveSectionNow(); // staging + buffer wide (sin consolidar)
     }
 
     /** Guarda esta sección con claves canónicas (sin prefijo de sección). */
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            // ← claves que espera el unificador/cabecera final:
-            data.put("percepcion",       t(etPercepcion));        // antes "percepcion_agua.percepcion"
-            data.put("opinion_sabor",    t(etSabor));             // antes "percepcion_agua.sabor"
-            data.put("aspecto",          t(etClaridad));          // antes "percepcion_agua.aspecto"
-            data.put("presenta_olores",  getRadioSiNo());         // antes "percepcion_agua.olor"
+            data.put("percepcion",      t(etPercepcion));   // -> percepcion_agua.percepcion
+            data.put("opinion_sabor",   t(etSabor));        // -> percepcion_agua.opinion_sabor
+            data.put("aspecto",         t(etClaridad));     // -> percepcion_agua.aspecto
+            data.put("presenta_olores", getRadioSiNo());    // -> percepcion_agua.presenta_olores
 
             SessionCsvPrimera.saveSection(this, "percepcion_agua", data);
         } catch (Exception e) {

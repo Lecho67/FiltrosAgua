@@ -54,8 +54,7 @@
                         android:id="@+id/acDepartamento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        />
+                        android:inputType="none"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Municipio -->
@@ -70,9 +69,7 @@
                         android:id="@+id/acMunicipio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-
-                        />
+                        android:inputType="none"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Vereda/Corregimiento -->
@@ -87,8 +84,25 @@
                         android:id="@+id/acVereda"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        />
+                        android:inputType="none"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Dirección -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilDireccion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Dirección">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDireccion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress|textCapWords"
+                        android:maxLines="2"
+                        android:imeOptions="actionDone"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>

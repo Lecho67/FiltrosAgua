@@ -46,7 +46,7 @@ public class PrimeraVisitaSaneamientoActivity extends AppCompatActivity {
         cbDispSi.setOnCheckedChangeListener((b, c) -> { if (c) cbDispNo.setChecked(false); savePair(K_DISP, cbDispSi, cbDispNo); });
         cbDispNo.setOnCheckedChangeListener((b, c) -> { if (c) cbDispSi.setChecked(false); savePair(K_DISP, cbDispSi, cbDispNo); });
 
-        // Navegación
+        // Navegación (solo guardamos sección; NO consolidamos aquí)
         btnAnt.setOnClickListener(v -> {
             saveSectionNow();
             startActivity(new Intent(this, PrimeraVisitaContaminacionActivity.class));
@@ -62,15 +62,14 @@ public class PrimeraVisitaSaneamientoActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // Solo guardamos en staging + buffer (wide en memoria)
         saveSectionNow();
     }
 
     private void saveSectionNow() {
         try {
             Map<String, String> data = new LinkedHashMap<>();
-            // 🔹 Claves SIN prefijo (el prefijo es el nombre de la sección):
-            //   sección = "saneamiento"
-            //   campos  = "taza" y "sistema_residuos"
+            // sección = "saneamiento"
             data.put("taza",             pairValue(cbTazaSi, cbTazaNo));   // "Si"/"No"/""
             data.put("sistema_residuos", pairValue(cbDispSi, cbDispNo));   // "Si"/"No"/""
             SessionCsvPrimera.saveSection(this, "saneamiento", data);
