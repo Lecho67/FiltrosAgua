@@ -19,16 +19,20 @@ import java.util.*;
 public class SessionCsvSeguimiento {
 
     private static final String STAGING_NAME = "seguimiento.csv";
-    private static final String MASTER_NAME  = "seguimiento_master_wide.csv";
+    // Ahora ambos formularios (primera y seguimiento) apuntan al mismo master unificado
+    private static final String MASTER_NAME  = "encuestas_master_wide.csv";
 
-    /** Orden base obligatorio al inicio de la cabecera */
+    /** Orden base obligatorio al inicio de la cabecera (unificada para ambos formularios) */
     private static final List<String> BASE_ORDER = Arrays.asList(
-            "timestamp_ms",
-            "ubicacion.latitud",
-            "ubicacion.altitud",
-            "info_basica.cedula",
-            "ubicacion.municipio",
-            "ubicacion.vereda_corregimiento"
+        "timestamp_ms",
+        "tipo_formulario",
+        "ubicacion.municipio",
+        "ubicacion.vereda_corregimiento",
+        "ubicacion.direccion",
+        "ubicacion.latitud",
+        "ubicacion.altitud",
+        "info_responsable.cedula",   // solo primera, quedará vacío en seguimiento
+        "info_basica.cedula"         // seguimiento
     );
 
 
@@ -114,12 +118,16 @@ public class SessionCsvSeguimiento {
         // 1) Parsear staging -> mapa wide
         Map<String, String> row = parseStagingAsRow(staging);
 
-        row.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
-        if (!row.containsKey("ubicacion.latitud"))               row.put("ubicacion.latitud", "");
-        if (!row.containsKey("ubicacion.altitud"))               row.put("ubicacion.altitud", "");
-        if (!row.containsKey("info_basica.cedula"))              row.put("info_basica.cedula", "");
-        if (!row.containsKey("ubicacion.municipio"))             row.put("ubicacion.municipio", "");
-        if (!row.containsKey("ubicacion.vereda_corregimiento"))  row.put("ubicacion.vereda_corregimiento", "");
+    row.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
+    row.put("tipo_formulario", "seguimiento");
+    // Asegurar claves base
+    if (!row.containsKey("ubicacion.municipio"))             row.put("ubicacion.municipio", "");
+    if (!row.containsKey("ubicacion.vereda_corregimiento"))  row.put("ubicacion.vereda_corregimiento", "");
+    if (!row.containsKey("ubicacion.direccion"))             row.put("ubicacion.direccion", "");
+    if (!row.containsKey("ubicacion.latitud"))               row.put("ubicacion.latitud", "");
+    if (!row.containsKey("ubicacion.altitud"))               row.put("ubicacion.altitud", "");
+    if (!row.containsKey("info_responsable.cedula"))         row.put("info_responsable.cedula", "");
+    if (!row.containsKey("info_basica.cedula"))              row.put("info_basica.cedula", "");
 
 
 

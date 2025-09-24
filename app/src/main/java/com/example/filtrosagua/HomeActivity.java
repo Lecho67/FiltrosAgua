@@ -11,6 +11,7 @@ import com.example.filtrosagua.util.ExportUtils;
 import com.example.filtrosagua.util.Prefs;
 import com.example.filtrosagua.util.SessionCsv;
 import com.example.filtrosagua.util.SessionCsvPrimera;
+import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -51,25 +52,23 @@ public class HomeActivity extends AppCompatActivity {
     private void cerrarSesionIgualQueUbicacion() {
         try {
             // 1) Consolidar encuestas en curso -> maestros
-            SessionCsv.commitToMaster(this);          // seguimiento -> master.csv
-            SessionCsvPrimera.commitToMaster(this);   // primera visita -> primeravisita_master.csv
+        // Consolidar cualquier staging a wide unificado
+        try { SessionCsvPrimera.commitToMasterWide(this); } catch (Exception ignored) {}
+        try { SessionCsvSeguimiento.commitToMasterWide(this); } catch (Exception ignored) {}
 
-            // 2) Mostrar rutas de los maestros consolidados
-            File segMaster = SessionCsv.masterFile(this);
-            File pvMaster = SessionCsvPrimera.fMaster(this);
-
-            String rutaSeg = (segMaster != null) ? segMaster.getAbsolutePath() : "(sin archivo)";
-            String rutaPv = (pvMaster != null) ? pvMaster.getAbsolutePath() : "(sin archivo)";
+        // 2) Ruta del master unificado
+        File unificado = new File(getFilesDir(), "csv/encuestas_master_wide.csv");
+        String ruta = unificado.exists() ? unificado.getAbsolutePath() : "(sin archivo)";
 
             Toast.makeText(
                     this,
-                    "Guardado:\n- Seguimiento: " + rutaSeg + "\n- Primera visita: " + rutaPv,
+            "Guardado unificado:\n" + ruta,
                     Toast.LENGTH_LONG
             ).show();
 
             // 3) Limpiar archivos de sesión (staging) para próxima encuesta
-            SessionCsv.clearSession(this);
-            SessionCsvPrimera.clearSession(this);
+            SessionCsv.clearSession(this);      // seguimiento legacy long
+            SessionCsvPrimera.clearSession(this); // primera long
 
             // 4) Limpiar autosave
             Prefs.clearAll(this);
@@ -89,30 +88,22 @@ public class HomeActivity extends AppCompatActivity {
     private void cerrarSesionConExport() {
         try {
             // 1) Consolidar encuesta en curso -> maestros
-            SessionCsv.commitToMaster(this);          // seguimiento -> master.csv
-            SessionCsvPrimera.commitToMaster(this);   // primera visita -> primeravisita_master.csv
+            try { SessionCsvPrimera.commitToMasterWide(this); } catch (Exception ignored) {}
+            try { SessionCsvSeguimiento.commitToMasterWide(this); } catch (Exception ignored) {}
 
-            // 2) (Opcional) Exportar a Descargas/FiltrosAgua (Android 10+)
+            // 2) Exportar a Descargas/FiltrosAgua el unificado (Android 10+)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                File segMaster = SessionCsv.masterFile(this);
-                if (segMaster.exists() && segMaster.length() > 0) {
+                File unificado = new File(getFilesDir(), "csv/encuestas_master_wide.csv");
+                if (unificado.exists() && unificado.length() > 0) {
                     ExportUtils.exportToDownloads(
                             this,
-                            segMaster,
-                            "seguimientos_master_" + System.currentTimeMillis() + ".csv"
+                            unificado,
+                            "encuestas_master_" + System.currentTimeMillis() + ".csv"
                     );
+                    Toast.makeText(this, "Exportado a Descargas/FiltrosAgua", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "No hay datos unificados para exportar", Toast.LENGTH_LONG).show();
                 }
-
-                File pvMaster = SessionCsvPrimera.fMaster(this);
-                if (pvMaster.exists() && pvMaster.length() > 0) {
-                    ExportUtils.exportToDownloads(
-                            this,
-                            pvMaster,
-                            "primeravisita_master_" + System.currentTimeMillis() + ".csv"
-                    );
-                }
-
-                Toast.makeText(this, "Exportado(s) a Descargas/FiltrosAgua", Toast.LENGTH_LONG).show();
             }
 
             // 3) Dejar ambos stagings limpios para próximas encuestas

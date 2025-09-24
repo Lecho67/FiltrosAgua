@@ -15,7 +15,7 @@ import androidx.core.content.FileProvider;
 import com.example.filtrosagua.util.Prefs;
 import com.example.filtrosagua.util.SessionCsv;
 import com.example.filtrosagua.util.SessionCsvPrimera;
-import com.example.filtrosagua.util.CsvMerge;   // <-- IMPORTANTE
+import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -111,13 +111,16 @@ public class MainActivity extends AppCompatActivity {
     // ---------------- COMPARTIR UNIFICADO -------------------
     private void compartirMaestroUnificado() {
         try {
-//            try {
-//                SessionCsv.commitToMaster(this);
-//                SessionCsvPrimera.commitToMaster(this);
-//            } catch (Exception ignored) {}
+            // Intentar consolidar lo que haya en staging a la versión WIDE unificada
+            try {
+                SessionCsvPrimera.commitToMasterWide(this);
+            } catch (Exception ignored) {}
+            try {
+                SessionCsvSeguimiento.commitToMasterWide(this);
+            } catch (Exception ignored) {}
 
-            File unificado = CsvMerge.crearMaestroUnificado(this);
-            if (unificado == null || !unificado.exists() || unificado.length() == 0L) {
+            File unificado = new File(getFilesDir(), "csv/encuestas_master_wide.csv");
+            if (!unificado.exists() || unificado.length() == 0L) {
                 Toast.makeText(this, "No hay datos para compartir todavía.", Toast.LENGTH_LONG).show();
                 return;
             }
@@ -132,10 +135,9 @@ public class MainActivity extends AppCompatActivity {
             send.setType("text/csv");
             send.putExtra(Intent.EXTRA_STREAM, uri);
             send.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(Intent.createChooser(send, "Compartir encuestas (unificado)"));
 
-            startActivity(Intent.createChooser(send, "Compartir maestro unificado"));
-            Toast.makeText(this, "Generado:\n" + unificado.getAbsolutePath(), Toast.LENGTH_LONG).show();
-
+            Toast.makeText(this, "Archivo: \n" + unificado.getAbsolutePath(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(this, "Error al compartir: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
