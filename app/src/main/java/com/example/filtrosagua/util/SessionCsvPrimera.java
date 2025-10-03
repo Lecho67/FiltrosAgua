@@ -11,21 +11,18 @@ import java.util.*;
 
 /**
  * Maneja PRIMERA VISITA en formato "long" (staging) y "wide" (maestro por filas).
+ * MODIFICADO: Guarda las filas sin cabecera en el archivo maestro wide.
  *
  * Staging (long):  /files/csv/primeravisita.csv         -> "seccion","campo","valor"
  * Maestro long:    /files/csv/primeravisita_master.csv  -> append long (si ya usas esto)
- * Maestro wide UNIFICADO ahora: /files/csv/encuestas_master_wide.csv -> 1 fila por encuesta (primera y seguimiento)
- *
- * En el maestro wide la fila se guarda así (orden inicial):
- *   timestamp, ubicacion.latitud, ubicacion.altitud, info_responsable.cedula,
- *   ubicacion.municipio, ubicacion.vereda_corregimiento, ubicacion.direccion, ...
+ * Maestro wide UNIFICADO ahora: /files/csv/encuestas_master_wide.csv -> 1 fila por encuesta (primera y seguimiento) SIN CABECERA
  */
 public class SessionCsvPrimera {
 
     /* ====== rutas ====== */
     public static File file(Context ctx)         { return new File(ensureCsvDir(ctx), "primeravisita.csv"); }
     public static File fMaster(Context ctx)      { return new File(ensureCsvDir(ctx), "primeravisita_master.csv"); }
-    // Archivo unificado (mismo que usa seguimiento)
+    // Archivo unificado (mismo que usa seguimiento) - SIN CABECERA
     public static File fMasterWide(Context ctx)  { return new File(ensureCsvDir(ctx), "encuestas_master_wide.csv"); }
 
     private static File ensureCsvDir(Context ctx) {
@@ -52,12 +49,11 @@ public class SessionCsvPrimera {
         if (f.exists()) f.delete();
     }
 
-    /* ====== API "wide": una fila por encuesta ====== */
+    /* ====== API "wide": una fila por encuesta SIN CABECERA ====== */
 
     /**
-     * Commit en formato WIDE al archivo unificado.
-     * Reglas de cabecera (compartida con seguimiento):
-     * BASE_ORDER definida abajo y luego columnas nuevas en orden alfabético
+     * Commit en formato WIDE al archivo unificado SIN CABECERA.
+     * Las columnas siguen el orden definido en BASE_ORDER y luego alfabético.
      */
     public static synchronized void commitToMasterWide(Context ctx) throws Exception {
         File staging = file(ctx);
@@ -81,33 +77,27 @@ public class SessionCsvPrimera {
         ensure(row, "info_basica.cedula"); // quedará vacío en primera visita
 
         File master = fMasterWide(ctx);
-        if (!master.exists() || master.length()==0) {
-            List<String> header = buildHeaderForNewFile(row.keySet());
-            writeMasterWithHeaderAndOneRow(master, header, row);
-        } else {
-            List<String> header = readHeader(master);
-            List<String> merged = mergeHeaderPreservingBase(header, row.keySet());
-            if (!merged.equals(header)) {
-                List<List<String>> oldRows = readRows(master);
-                rewriteMasterWithNewHeader(master, header, merged, oldRows);
-                header = merged;
-            }
-            appendRow(master, header, row);
-        }
+
+        // Siempre determinar el orden de columnas basado en BASE_ORDER + nuevas columnas
+        List<String> columnOrder = buildColumnOrder(row.keySet());
+
+        // Simplemente agregar la fila al archivo (sin cabecera)
+        appendRowNoHeader(master, columnOrder, row);
+
         clearSession(ctx);
     }
 
-    // Cabecera base unificada (mismo orden que en seguimiento adaptado)
+    // Cabecera base unificada (define el orden de las columnas)
     private static final List<String> BASE_ORDER = Arrays.asList(
-        "timestamp_ms",
-        "tipo_formulario",
-        "ubicacion.municipio",
-        "ubicacion.vereda_corregimiento",
-        "ubicacion.direccion",
-        "ubicacion.latitud",
-        "ubicacion.altitud",
-        "info_responsable.cedula",
-        "info_basica.cedula" // quedará vacío aquí
+            "timestamp_ms",
+            "tipo_formulario",
+            "ubicacion.municipio",
+            "ubicacion.vereda_corregimiento",
+            "ubicacion.direccion",
+            "ubicacion.latitud",
+            "ubicacion.altitud",
+            "info_responsable.cedula",
+            "info_basica.cedula" // quedará vacío aquí
     );
 
     /* ====== helpers: de long -> wide row ====== */
@@ -131,95 +121,38 @@ public class SessionCsvPrimera {
         return row;
     }
 
-    /* ====== Soporte cabecera dinámica unificada ====== */
-    private static List<String> buildHeaderForNewFile(Set<String> keys) {
+    /* ====== Funciones simplificadas sin manejo de cabecera ====== */
+
+    /**
+     * Construye el orden de columnas basado en BASE_ORDER + columnas adicionales ordenadas alfabéticamente
+     */
+    private static List<String> buildColumnOrder(Set<String> keys) {
         LinkedHashSet<String> rest = new LinkedHashSet<>(keys);
         rest.removeAll(BASE_ORDER);
         List<String> tail = new ArrayList<>(rest);
         Collections.sort(tail);
-        List<String> header = new ArrayList<>(BASE_ORDER);
-        header.addAll(tail);
-        return header;
+        List<String> columnOrder = new ArrayList<>(BASE_ORDER);
+        columnOrder.addAll(tail);
+        return columnOrder;
     }
-    private static List<String> readHeader(File master) throws Exception {
-        try (BufferedReader br = new BufferedReader(new FileReader(master))) {
-            String first = br.readLine();
-            if (first == null) return new ArrayList<>();
-            return splitCsvLine(first);
-        }
-    }
-    private static List<List<String>> readRows(File master) throws Exception {
-        List<List<String>> rows = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(master))) {
-            String line = br.readLine();
-            while ((line = br.readLine()) != null) rows.add(splitCsvLine(line));
-        }
-        return rows;
-    }
-    private static List<String> splitCsvLine(String line) {
-        List<String> out = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        boolean inQ=false;
-        for (int i=0;i<line.length();i++) {
-            char ch=line.charAt(i);
-            if (ch=='"') {
-                if (inQ && i+1<line.length() && line.charAt(i+1)=='"') { sb.append('"'); i++; }
-                else inQ=!inQ;
-            } else if (ch==',' && !inQ) {
-                out.add(unquote(sb.toString())); sb.setLength(0);
-            } else sb.append(ch);
-        }
-        out.add(unquote(sb.toString()));
-        return out;
-    }
-    private static String unquote(String s){
-        if (s==null) return ""; s=s.trim();
-        if (s.length()>=2 && s.startsWith("\"") && s.endsWith("\""))
-            s = s.substring(1,s.length()-1).replace("\"\"","\"");
-        return s;
-    }
-    private static List<String> mergeHeaderPreservingBase(List<String> existing, Set<String> newKeys) {
-        LinkedHashSet<String> merged = new LinkedHashSet<>();
-        merged.addAll(BASE_ORDER);
-        for (String h: existing) if (!merged.contains(h)) merged.add(h);
-        List<String> missing = new ArrayList<>();
-        for (String k: newKeys) if (!merged.contains(k)) missing.add(k);
-        Collections.sort(missing);
-        merged.addAll(missing);
-        return new ArrayList<>(merged);
-    }
-    private static void rewriteMasterWithNewHeader(File master, List<String> oldHeader, List<String> newHeader, List<List<String>> oldRows) throws Exception {
-        Map<String,Integer> idx = new HashMap<>();
-        for (int i=0;i<oldHeader.size();i++) idx.put(oldHeader.get(i), i);
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(master,false))) {
-            bw.write(String.join(",", newHeader)); bw.newLine();
-            for (List<String> old: oldRows) {
-                List<String> row = new ArrayList<>(newHeader.size());
-                for (String col: newHeader) {
-                    Integer j = idx.get(col);
-                    String v = (j==null || j>=old.size())?"": old.get(j);
-                    row.add(csvQuote(v));
-                }
-                bw.write(String.join(",", row)); bw.newLine();
+
+    /**
+     * Agrega una fila al archivo maestro SIN escribir cabecera
+     */
+    private static void appendRowNoHeader(File master, List<String> columnOrder, Map<String,String> rowMap) throws Exception {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(master, true))) {
+            List<String> cols = new ArrayList<>(columnOrder.size());
+            for (String col : columnOrder) {
+                cols.add(csvQuote(rowMap.getOrDefault(col, "")));
             }
+            bw.write(String.join(",", cols));
+            bw.newLine();
         }
     }
-    private static void writeMasterWithHeaderAndOneRow(File master, List<String> header, Map<String,String> rowMap) throws Exception {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(master,false))) {
-            bw.write(String.join(",", header)); bw.newLine();
-            List<String> cols = new ArrayList<>(header.size());
-            for (String h: header) cols.add(csvQuote(rowMap.getOrDefault(h, "")));
-            bw.write(String.join(",", cols)); bw.newLine();
-        }
+
+    private static void ensure(Map<String,String> m, String k){
+        if(!m.containsKey(k)) m.put(k, "");
     }
-    private static void appendRow(File master, List<String> header, Map<String,String> rowMap) throws Exception {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(master,true))) {
-            List<String> cols = new ArrayList<>(header.size());
-            for (String h: header) cols.add(csvQuote(rowMap.getOrDefault(h, "")));
-            bw.write(String.join(",", cols)); bw.newLine();
-        }
-    }
-    private static void ensure(Map<String,String> m, String k){ if(!m.containsKey(k)) m.put(k, ""); }
 
     private static boolean isHeader(String line) {
         if (line == null) return false;
@@ -334,8 +267,6 @@ public class SessionCsvPrimera {
         return new String[]{out.get(0), out.get(1), out.get(2)};
     }
 
-    // (quoteList ya no usado para cabecera fija, se mantiene compat si se necesitara en otro lado)
-    private static List<String> quoteList(List<String> keys) { List<String> out=new ArrayList<>(keys.size()); for(String k:keys) out.add(csvQuote(k)); return out; }
     private static String csvQuote(String s) {
         if (s == null) s = "";
         if (s.contains(",") || s.contains("\"") || s.contains("\n")) {

@@ -42,9 +42,16 @@
                 android:layout_height="wrap_content"
                 android:text="Fecha:" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:boxBackgroundMode="outline"
                 app:boxBackgroundColor="@android:color/white"
                 app:boxStrokeColor="@android:color/darker_gray">
@@ -53,8 +60,19 @@
                     android:id="@+id/etFechaSeg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false" />
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:hint="MM/dd/yyyy"/>
             </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:id="@+id/btnPvPickDate"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Seleccionar fecha"
+                        android:src="@android:drawable/ic_menu_today"/>
+                </LinearLayout>
 
             <!-- Responsable (solo lectura) -->
             <TextView
@@ -73,8 +91,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etResponsableSeg"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Empresa / Equipo -->
@@ -102,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="No. :" />
+                android:text="No. Cédula:" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -123,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="No. :" />
+                android:text="No. Teléfono:" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

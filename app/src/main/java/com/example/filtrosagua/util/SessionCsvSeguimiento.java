@@ -7,14 +7,10 @@ import java.util.*;
 
 /**
  * STAGING  : /files/csv/seguimiento.csv  (formato "long": seccion,campo,valor)
- * MASTER   : /files/csv/seguimiento_master_wide.csv (formato "wide": una fila por encuesta)
+ * MASTER   : /files/csv/encuestas_master_wide.csv (formato "wide": una fila por encuesta SIN CABECERA)
  *
- * Reglas de cabecera en MASTER (orden obligatorio):
- *   1) timestamp_ms (epoch millis)
- *   2) ubicacion.latitud
- *   3) ubicacion.altitud
- *   4) info_basica.cedula
- *   5) resto de columnas (orden alfabético estable y se preserva si ya existía)
+ * MODIFICADO: Guarda las filas sin cabecera en el archivo maestro wide.
+ * Las columnas siguen el orden definido en BASE_ORDER y luego alfabético.
  */
 public class SessionCsvSeguimiento {
 
@@ -22,17 +18,17 @@ public class SessionCsvSeguimiento {
     // Ahora ambos formularios (primera y seguimiento) apuntan al mismo master unificado
     private static final String MASTER_NAME  = "encuestas_master_wide.csv";
 
-    /** Orden base obligatorio al inicio de la cabecera (unificada para ambos formularios) */
+    /** Orden base obligatorio al inicio de las columnas (unificado para ambos formularios) */
     private static final List<String> BASE_ORDER = Arrays.asList(
-        "timestamp_ms",
-        "tipo_formulario",
-        "ubicacion.municipio",
-        "ubicacion.vereda_corregimiento",
-        "ubicacion.direccion",
-        "ubicacion.latitud",
-        "ubicacion.altitud",
-        "info_responsable.cedula",   // solo primera, quedará vacío en seguimiento
-        "info_basica.cedula"         // seguimiento
+            "timestamp_ms",
+            "tipo_formulario",
+            "ubicacion.municipio",
+            "ubicacion.vereda_corregimiento",
+            "ubicacion.direccion",
+            "ubicacion.latitud",
+            "ubicacion.altitud",
+            "info_responsable.cedula",   // solo primera, quedará vacío en seguimiento
+            "info_basica.cedula"         // seguimiento
     );
 
 
@@ -107,9 +103,8 @@ public class SessionCsvSeguimiento {
     }
 
     /**
-     * Toma TODO lo que haya en STAGING y lo vuelca como UNA FILA en MASTER (wide), con:
-     *   timestamp_ms, ubicacion.latitud, ubicacion.altitud, info_basica.cedula, resto...
-     * Si MASTER no existe, crea cabecera. Si existe y la cabecera difiere, la migra.
+     * Toma TODO lo que haya en STAGING y lo vuelca como UNA FILA en MASTER (wide) SIN CABECERA.
+     * Simplemente agrega una nueva línea al final del archivo con el orden de columnas consistente.
      */
     public static synchronized void commitToMasterWide(Context ctx) throws Exception {
         File staging = stagingFile(ctx);
@@ -118,41 +113,27 @@ public class SessionCsvSeguimiento {
         // 1) Parsear staging -> mapa wide
         Map<String, String> row = parseStagingAsRow(staging);
 
-    row.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
-    row.put("tipo_formulario", "seguimiento");
-    // Asegurar claves base
-    if (!row.containsKey("ubicacion.municipio"))             row.put("ubicacion.municipio", "");
-    if (!row.containsKey("ubicacion.vereda_corregimiento"))  row.put("ubicacion.vereda_corregimiento", "");
-    if (!row.containsKey("ubicacion.direccion"))             row.put("ubicacion.direccion", "");
-    if (!row.containsKey("ubicacion.latitud"))               row.put("ubicacion.latitud", "");
-    if (!row.containsKey("ubicacion.altitud"))               row.put("ubicacion.altitud", "");
-    if (!row.containsKey("info_responsable.cedula"))         row.put("info_responsable.cedula", "");
-    if (!row.containsKey("info_basica.cedula"))              row.put("info_basica.cedula", "");
+        row.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
+        row.put("tipo_formulario", "seguimiento");
 
-
+        // Asegurar claves base
+        if (!row.containsKey("ubicacion.municipio"))             row.put("ubicacion.municipio", "");
+        if (!row.containsKey("ubicacion.vereda_corregimiento"))  row.put("ubicacion.vereda_corregimiento", "");
+        if (!row.containsKey("ubicacion.direccion"))             row.put("ubicacion.direccion", "");
+        if (!row.containsKey("ubicacion.latitud"))               row.put("ubicacion.latitud", "");
+        if (!row.containsKey("ubicacion.altitud"))               row.put("ubicacion.altitud", "");
+        if (!row.containsKey("info_responsable.cedula"))         row.put("info_responsable.cedula", "");
+        if (!row.containsKey("info_basica.cedula"))              row.put("info_basica.cedula", "");
 
         File master = masterFile(ctx);
 
-        if (!master.exists() || master.length() == 0) {
-            // Cabecera nueva en el orden requerido
-            List<String> header = buildHeaderForNewFile(row.keySet());
-            writeMasterWithHeaderAndOneRow(master, header, row);
-        } else {
-            // Asegurar/migrar cabecera si hiciera falta y luego append
-            List<String> header = readHeader(master);
-            List<String> merged = mergeHeaderPreservingBase(header, row.keySet());
+        // Determinar el orden de columnas basado en BASE_ORDER + nuevas columnas
+        List<String> columnOrder = buildColumnOrder(row.keySet());
 
-            if (!merged.equals(header)) {
-                // Migrar archivo a la nueva cabecera
-                List<List<String>> oldRows = readRows(master); // sin cabecera
-                rewriteMasterWithNewHeader(master, header, merged, oldRows);
-                header = merged;
-            }
+        // Simplemente agregar la fila al archivo (sin cabecera)
+        appendRowNoHeader(master, columnOrder, row);
 
-            appendRow(master, header, row);
-        }
-
-        // (opcional) limpiar staging después de consolidar
+        // Limpiar staging después de consolidar
         clearSession(ctx);
     }
 
@@ -218,125 +199,30 @@ public class SessionCsvSeguimiento {
         return s;
     }
 
-    /* ===== Cabecera / lectura-escritura de MASTER ===== */
+    /* ===== Funciones simplificadas sin manejo de cabecera ===== */
 
-    /** Para un archivo nuevo: BASE_ORDER + (resto de claves ordenadas alfabéticamente). */
-    private static List<String> buildHeaderForNewFile(Set<String> keys) {
+    /**
+     * Construye el orden de columnas basado en BASE_ORDER + columnas adicionales ordenadas alfabéticamente
+     */
+    private static List<String> buildColumnOrder(Set<String> keys) {
         LinkedHashSet<String> rest = new LinkedHashSet<>(keys);
         rest.removeAll(BASE_ORDER);
         List<String> tail = new ArrayList<>(rest);
         Collections.sort(tail);
-        List<String> header = new ArrayList<>(BASE_ORDER);
-        header.addAll(tail);
-        return header;
+        List<String> columnOrder = new ArrayList<>(BASE_ORDER);
+        columnOrder.addAll(tail);
+        return columnOrder;
     }
 
-    /** Lee la cabecera actual del MASTER. */
-    private static List<String> readHeader(File master) throws Exception {
-        try (BufferedReader br = new BufferedReader(new FileReader(master))) {
-            String first = br.readLine();
-            if (first == null) return new ArrayList<>();
-            return splitCsvLine(first);
-        }
-    }
-
-    /** Lee todas las filas (sin cabecera). */
-    private static List<List<String>> readRows(File master) throws Exception {
-        List<List<String>> rows = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(master))) {
-            String line = br.readLine(); // cabecera
-            while ((line = br.readLine()) != null) {
-                rows.add(splitCsvLine(line));
-            }
-        }
-        return rows;
-    }
-
-    /** Divide una línea CSV en celdas respetando comillas. */
-    private static List<String> splitCsvLine(String line) {
-        List<String> out = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        boolean inQ = false;
-        for (int i = 0; i < line.length(); i++) {
-            char ch = line.charAt(i);
-            if (ch == '"') {
-                if (inQ && i + 1 < line.length() && line.charAt(i + 1) == '"') { sb.append('"'); i++; }
-                else inQ = !inQ;
-            } else if (ch == ',' && !inQ) {
-                out.add(unquote(sb.toString())); sb.setLength(0);
-            } else {
-                sb.append(ch);
-            }
-        }
-        out.add(unquote(sb.toString()));
-        return out;
-    }
-
-    /** Une cabecera existente con nuevas claves, dejando BASE_ORDER al frente. */
-    private static List<String> mergeHeaderPreservingBase(List<String> existing, Set<String> newKeys) {
-        LinkedHashSet<String> merged = new LinkedHashSet<>();
-
-        // 1) base obligatoria primero
-        merged.addAll(BASE_ORDER);
-
-        // 2) mantener columnas antiguas (sin duplicar base)
-        for (String h : existing) {
-            if (!merged.contains(h)) merged.add(h);
-        }
-
-        // 3) agregar nuevas claves que no estén (al final) en orden alfabético
-        List<String> missing = new ArrayList<>();
-        for (String k : newKeys) {
-            if (!merged.contains(k)) missing.add(k);
-        }
-        Collections.sort(missing);
-        merged.addAll(missing);
-
-        return new ArrayList<>(merged);
-    }
-
-    /** Reescribe el MASTER con nueva cabecera, remapeando filas antiguas. */
-    private static void rewriteMasterWithNewHeader(File master,
-                                                   List<String> oldHeader,
-                                                   List<String> newHeader,
-                                                   List<List<String>> oldRows) throws Exception {
-        Map<String, Integer> idx = new HashMap<>();
-        for (int i = 0; i < oldHeader.size(); i++) idx.put(oldHeader.get(i), i);
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(master, false))) {
-            bw.write(String.join(",", newHeader));
-            bw.newLine();
-
-            for (List<String> old : oldRows) {
-                List<String> row = new ArrayList<>(newHeader.size());
-                for (String col : newHeader) {
-                    Integer j = idx.get(col);
-                    String v = (j == null || j >= old.size()) ? "" : old.get(j);
-                    bw.write(csvQuote(v));
-                    row.add(csvQuote(v));
-                }
-                // Como ya escribimos celda a celda, reescribimos línea correctamente:
-                bw.write(String.join(",", row));
-                bw.newLine();
-            }
-        }
-    }
-
-    private static void writeMasterWithHeaderAndOneRow(File master, List<String> header, Map<String, String> rowMap) throws Exception {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(master, false))) {
-            bw.write(String.join(",", header));
-            bw.newLine();
-            List<String> cols = new ArrayList<>(header.size());
-            for (String h : header) cols.add(csvQuote(rowMap.getOrDefault(h, "")));
-            bw.write(String.join(",", cols));
-            bw.newLine();
-        }
-    }
-
-    private static void appendRow(File master, List<String> header, Map<String, String> rowMap) throws Exception {
+    /**
+     * Agrega una fila al archivo maestro SIN escribir cabecera
+     */
+    private static void appendRowNoHeader(File master, List<String> columnOrder, Map<String, String> rowMap) throws Exception {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(master, true))) {
-            List<String> cols = new ArrayList<>(header.size());
-            for (String h : header) cols.add(csvQuote(rowMap.getOrDefault(h, "")));
+            List<String> cols = new ArrayList<>(columnOrder.size());
+            for (String col : columnOrder) {
+                cols.add(csvQuote(rowMap.getOrDefault(col, "")));
+            }
             bw.write(String.join(",", cols));
             bw.newLine();
         }

@@ -1,10 +1,12 @@
 package com.example.filtrosagua.seguimiento;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -24,6 +27,7 @@ import java.util.Objects;
 public class SeguimientoInfoBasicaActivity extends AppCompatActivity {
 
     private EditText etFechaSeg, etResponsableSeg, etEmpresaSeg, etNumeroSeg, etNumero2Seg;
+    private ImageButton btnPickDate;
 
     private static final String K_FECHA = "seg_info_fecha";
     private static final String K_RESP  = "seg_info_resp";
@@ -43,10 +47,11 @@ public class SeguimientoInfoBasicaActivity extends AppCompatActivity {
         etEmpresaSeg     = require(R.id.etEmpresaSeg);
         etNumeroSeg      = require(R.id.etNumeroSeg);
         etNumero2Seg     = require(R.id.etNumero2Seg);
+        btnPickDate      = require(R.id.btnPvPickDate);
 
         String fechaPref = Prefs.get(this, K_FECHA);
         if (fechaPref.isEmpty()) {
-            String hoy = new SimpleDateFormat("MM/dd/yyyy", new Locale("es", "CO")).format(new Date());
+            String hoy = new SimpleDateFormat("MM/dd/yyyy", Locale.US).format(new Date());
             etFechaSeg.setText(hoy);
         } else {
             etFechaSeg.setText(fechaPref);
@@ -75,6 +80,9 @@ public class SeguimientoInfoBasicaActivity extends AppCompatActivity {
 
         MaterialButton btnAnterior  = require(R.id.btnAnteriorSeg);
         MaterialButton btnSiguiente = require(R.id.btnSiguienteSeg);
+
+        // DatePicker
+        btnPickDate.setOnClickListener(v -> showDatePicker());
 
         btnAnterior.setOnClickListener(v -> { saveSectionNow(); finish(); });
 
@@ -119,6 +127,23 @@ public class SeguimientoInfoBasicaActivity extends AppCompatActivity {
 
     private String t(EditText et) {
         return (et.getText() == null) ? "" : et.getText().toString().trim();
+    }
+
+    private void showDatePicker() {
+        Calendar c = Calendar.getInstance();
+        DatePickerDialog dp = new DatePickerDialog(
+                this,
+                (view, y, m, d) -> {
+                    Calendar sel = Calendar.getInstance();
+                    sel.set(y, m, d);
+                    String fmt = new SimpleDateFormat("MM/dd/yyyy", Locale.US).format(sel.getTime());
+                    etFechaSeg.setText(fmt);
+                },
+                c.get(Calendar.YEAR),
+                c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)
+        );
+        dp.show();
     }
 
     private <T> T require(int id) {
