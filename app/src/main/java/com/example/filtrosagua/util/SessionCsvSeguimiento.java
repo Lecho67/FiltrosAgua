@@ -22,13 +22,13 @@ public class SessionCsvSeguimiento {
     private static final List<String> BASE_ORDER = Arrays.asList(
             "timestamp_ms",
             "tipo_formulario",
+            "ubicacion.departamento",
             "ubicacion.municipio",
             "ubicacion.vereda_corregimiento",
             "ubicacion.direccion",
             "ubicacion.latitud",
             "ubicacion.altitud",
-            "info_responsable.cedula",   // solo primera, quedará vacío en seguimiento
-            "info_basica.cedula"         // seguimiento
+            "info_responsable.cedula"
     );
 
 
@@ -107,58 +107,97 @@ public class SessionCsvSeguimiento {
      * Simplemente agrega una nueva línea al final del archivo con el orden de columnas consistente.
      */
     public static synchronized void commitToMasterWide(Context ctx) throws Exception {
-        File staging = stagingFile(ctx);
-        if (!staging.exists() || staging.length() == 0) return;
+        File staging = stagingFile(ctx); // FIX: antes file(ctx)
+        if (!staging.exists() || staging.length()==0) return;
 
-        // 1) Parsear staging -> mapa wide
-        Map<String, String> row = parseStagingAsRow(staging);
+        List<StagingEntry> entries = readStagingEntries(staging);
+        LinkedHashMap<String,String> orderedMap = new LinkedHashMap<>();
+        for (StagingEntry e : entries) {
+            if (!orderedMap.containsKey(e.key)) {
+                orderedMap.put(e.key, e.value);
+            } else {
+                orderedMap.put(e.key, e.value);
+            }
+        }
 
-        row.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
-        row.put("tipo_formulario", "seguimiento");
+        orderedMap.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
+        orderedMap.put("tipo_formulario", "seguimiento");
 
-        // Asegurar claves base
-        if (!row.containsKey("ubicacion.municipio"))             row.put("ubicacion.municipio", "");
-        if (!row.containsKey("ubicacion.vereda_corregimiento"))  row.put("ubicacion.vereda_corregimiento", "");
-        if (!row.containsKey("ubicacion.direccion"))             row.put("ubicacion.direccion", "");
-        if (!row.containsKey("ubicacion.latitud"))               row.put("ubicacion.latitud", "");
-        if (!row.containsKey("ubicacion.altitud"))               row.put("ubicacion.altitud", "");
-        if (!row.containsKey("info_responsable.cedula"))         row.put("info_responsable.cedula", "");
-        if (!row.containsKey("info_basica.cedula"))              row.put("info_basica.cedula", "");
+        ensure(orderedMap, "ubicacion.departamento");
+        ensure(orderedMap, "ubicacion.municipio");
+        ensure(orderedMap, "ubicacion.vereda_corregimiento");
+        ensure(orderedMap, "ubicacion.direccion");
+        ensure(orderedMap, "ubicacion.latitud");
+        ensure(orderedMap, "ubicacion.altitud");
+        ensure(orderedMap, "info_responsable.cedula");
+        ensure(orderedMap, "info_responsable.telefono"); // nueva columna unificada
 
+        List<String> columnOrder = buildColumnOrder(orderedMap.keySet());
         File master = masterFile(ctx);
-
-        // Determinar el orden de columnas basado en BASE_ORDER + nuevas columnas
-        List<String> columnOrder = buildColumnOrder(row.keySet());
-
-        // Simplemente agregar la fila al archivo (sin cabecera)
-        appendRowNoHeader(master, columnOrder, row);
-
-        // Limpiar staging después de consolidar
+        appendRowNoHeader(master, columnOrder, orderedMap);
         clearSession(ctx);
     }
 
-    /* ================== Internos ================== */
+    // Helpers añadidos (similar a primera)
+    private static void ensure(Map<String,String> m, String k){
+        if(!m.containsKey(k)) m.put(k, "");
+    }
+    private static class StagingEntry {
+        final String key;
+        final String value;
+        StagingEntry(String k, String v){ this.key = k; this.value = v; }
+    }
 
-    private static Map<String, String> parseStagingAsRow(File f) throws Exception {
-        Map<String, String> row = new LinkedHashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-            String line = br.readLine(); // cabecera o primera línea
-            if (line == null) return row;
-            if (!isHeader(line)) {
-                String[] p = splitTriple(line);
-                if (p != null) row.put(p[0] + "." + p[1], p[2]);
+    private static List<StagingEntry> readStagingEntries(File staging) throws Exception {
+        List<StagingEntry> list = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(staging))) {
+            String line = br.readLine();
+            boolean header = isHeader(line);
+            if (!header && line != null) {
+                StagingEntry e = parseTriple(line);
+                if (e != null) list.add(e);
             }
             while ((line = br.readLine()) != null) {
-                String[] p = splitTriple(line);
-                if (p != null) row.put(p[0] + "." + p[1], p[2]);
+                StagingEntry e = parseTriple(line);
+                if (e != null) list.add(e);
             }
         }
-        return row;
+        return list;
+    }
+
+    private static StagingEntry parseTriple(String line) {
+        if (line == null || line.trim().isEmpty()) return null;
+        String[] parts = splitCsvTriple(line);
+        if (parts == null) return null;
+        return new StagingEntry(parts[0] + "." + parts[1], parts[2]);
     }
 
     private static boolean isHeader(String line) {
+        if (line == null) return false;
         String l = line.trim().toLowerCase(Locale.ROOT);
-        return l.equals("seccion,campo,valor") || l.equals("\"seccion\",\"campo\",\"valor\"");
+        return l.equals("\"seccion\",\"campo\",\"valor\"")
+                || l.equals("seccion,campo,valor")
+                || l.startsWith("seccion,campo,valor");
+    }
+
+    private static String[] splitCsvTriple(String line) {
+        List<String> out = new ArrayList<>(3);
+        StringBuilder sb = new StringBuilder();
+        boolean inQ = false;
+        for (int i=0;i<line.length();i++) {
+            char ch = line.charAt(i);
+            if (ch=='"') {
+                if (inQ && i+1<line.length() && line.charAt(i+1)=='"') { sb.append('"'); i++; }
+                else inQ = !inQ;
+            } else if (ch==',' && !inQ) {
+                out.add(sb.toString()); sb.setLength(0);
+            } else {
+                sb.append(ch);
+            }
+        }
+        out.add(sb.toString());
+        if (out.size()!=3) return null;
+        return new String[]{out.get(0), out.get(1), out.get(2)};
     }
 
     /** Divide "a","b","c" en 3 columnas respetando comillas. */

@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import com.example.filtrosagua.util.Prefs;
-import com.example.filtrosagua.util.SessionCsv;
 import com.example.filtrosagua.util.SessionCsvPrimera;
 import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;

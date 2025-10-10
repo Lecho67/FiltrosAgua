@@ -1,15 +1,12 @@
 package com.example.filtrosagua;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.filtrosagua.util.ExportUtils;
 import com.example.filtrosagua.util.Prefs;
-import com.example.filtrosagua.util.SessionCsv;
 import com.example.filtrosagua.util.SessionCsvPrimera;
 import com.example.filtrosagua.util.SessionCsvSeguimiento;
 import com.google.android.material.button.MaterialButton;
@@ -67,8 +64,8 @@ public class HomeActivity extends AppCompatActivity {
             ).show();
 
             // 3) Limpiar archivos de sesión (staging) para próxima encuesta
-            SessionCsv.clearSession(this);      // seguimiento legacy long
             SessionCsvPrimera.clearSession(this); // primera long
+            SessionCsvSeguimiento.clearSession(this); // seguimiento long
 
             // 4) Limpiar autosave
             Prefs.clearAll(this);
@@ -81,46 +78,6 @@ public class HomeActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             Toast.makeText(this, "Error al cerrar sesión: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /** Mismo flujo que en SeguimientoUbicacionActivity.btnEnviar pero exportando */
-    private void cerrarSesionConExport() {
-        try {
-            // 1) Consolidar encuesta en curso -> maestros
-            try { SessionCsvPrimera.commitToMasterWide(this); } catch (Exception ignored) {}
-            try { SessionCsvSeguimiento.commitToMasterWide(this); } catch (Exception ignored) {}
-
-            // 2) Exportar a Descargas/FiltrosAgua el unificado (Android 10+)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                File unificado = new File(getFilesDir(), "csv/encuestas_master_wide.csv");
-                if (unificado.exists() && unificado.length() > 0) {
-                    ExportUtils.exportToDownloads(
-                            this,
-                            unificado,
-                            "encuestas_master_" + System.currentTimeMillis() + ".csv"
-                    );
-                    Toast.makeText(this, "Exportado a Descargas/FiltrosAgua", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(this, "No hay datos unificados para exportar", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            // 3) Dejar ambos stagings limpios para próximas encuestas
-            SessionCsv.clearSession(this);
-            SessionCsvPrimera.clearSession(this);
-
-            // 4) Limpiar autosave
-            Prefs.clearAll(this);
-
-            // 5) Volver al login
-            Intent i = new Intent(this, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-            finish();
-
-        } catch (Exception e) {
-            Toast.makeText(this, "Error al guardar/cerrar sesión: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -34,6 +34,7 @@ public class SessionCsvPrimera {
     /* ====== API "long" ====== */
 
     /** Guardar/actualizar sección en primeravisita.csv (staging temporal, formato long). */
+
     public static void saveSection(Context ctx, String section, Map<String, String> data) throws Exception {
         CsvUtils.upsertSection(file(ctx), section, data);
     }
@@ -60,30 +61,24 @@ public class SessionCsvPrimera {
         if (!staging.exists() || staging.length() == 0) return;
 
         Map<String,String> row = parseStagingToWideRow(staging);
-        // Migración: si quedó un "timestamp" previo lo mapeamos a timestamp_ms sólo si no existe
         if (row.containsKey("timestamp") && !row.containsKey("timestamp_ms")) {
             row.put("timestamp_ms", row.remove("timestamp"));
         }
         row.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
         row.put("tipo_formulario", "primera_visita");
 
-        // Asegurar claves base del bloque unificado
+        ensure(row, "ubicacion.departamento");
         ensure(row, "ubicacion.municipio");
         ensure(row, "ubicacion.vereda_corregimiento");
         ensure(row, "ubicacion.direccion");
         ensure(row, "ubicacion.latitud");
         ensure(row, "ubicacion.altitud");
         ensure(row, "info_responsable.cedula");
-        ensure(row, "info_basica.cedula"); // quedará vacío en primera visita
+        row.remove("info_basica.cedula");
 
         File master = fMasterWide(ctx);
-
-        // Siempre determinar el orden de columnas basado en BASE_ORDER + nuevas columnas
         List<String> columnOrder = buildColumnOrder(row.keySet());
-
-        // Simplemente agregar la fila al archivo (sin cabecera)
         appendRowNoHeader(master, columnOrder, row);
-
         clearSession(ctx);
     }
 
@@ -91,13 +86,13 @@ public class SessionCsvPrimera {
     private static final List<String> BASE_ORDER = Arrays.asList(
             "timestamp_ms",
             "tipo_formulario",
+            "ubicacion.departamento",
             "ubicacion.municipio",
             "ubicacion.vereda_corregimiento",
             "ubicacion.direccion",
             "ubicacion.latitud",
             "ubicacion.altitud",
-            "info_responsable.cedula",
-            "info_basica.cedula" // quedará vacío aquí
+            "info_responsable.cedula"
     );
 
     /* ====== helpers: de long -> wide row ====== */

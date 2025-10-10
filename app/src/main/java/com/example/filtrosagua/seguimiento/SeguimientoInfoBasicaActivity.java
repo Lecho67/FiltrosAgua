@@ -104,8 +104,8 @@ public class SeguimientoInfoBasicaActivity extends AppCompatActivity {
         data.put("fecha",       t(etFechaSeg));
         data.put("responsable", t(etResponsableSeg));
         data.put("empresa",     t(etEmpresaSeg));
-        data.put("numero1",     t(etNumeroSeg));
-        data.put("numero2",     t(etNumero2Seg));
+        data.put("cedula",     t(etNumeroSeg));
+        data.put("telefono",     t(etNumero2Seg));
         return data;
     }
 
@@ -113,7 +113,7 @@ public class SeguimientoInfoBasicaActivity extends AppCompatActivity {
         long now = System.currentTimeMillis();
         if (now - lastSaveMs < 300) return; // anti-rebote opcional
         lastSaveMs = now;
-        try { SessionCsvSeguimiento.saveSection(this, "info_basica", buildData()); } catch (Exception ignored) {}
+        try { SessionCsvSeguimiento.saveSection(this, "info_responsable", buildData()); } catch (Exception ignored) {}
     }
 
     private void attachAutosave(EditText et, String key) {
