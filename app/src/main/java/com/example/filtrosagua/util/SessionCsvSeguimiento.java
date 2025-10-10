@@ -98,8 +98,7 @@ public class SessionCsvSeguimiento {
     /** Limpia el STAGING. */
     public static synchronized void clearSession(Context ctx) {
         File f = stagingFile(ctx);
-        if (f.exists()) //noinspection ResultOfMethodCallIgnored
-            f.delete();
+        if (f.exists()) f.delete();
     }
 
     /**

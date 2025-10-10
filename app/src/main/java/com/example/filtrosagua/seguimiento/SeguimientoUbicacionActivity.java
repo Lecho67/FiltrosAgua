@@ -34,7 +34,7 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
 
     // NUEVOS: dirección y observaciones
     private EditText etDireccion, etObservaciones;
-
+    private boolean submitting = false;
     // combos
     private MaterialAutoCompleteTextView actDepartamentoSeg, actMunicipioSeg, actVeredaSeg;
 
@@ -49,6 +49,7 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_seguimiento_ubicacion);
 
         // refs UI
+
         actDepartamentoSeg = req(R.id.actDepartamentoSeg);
         actMunicipioSeg    = req(R.id.actMunicipioSeg);
         actVeredaSeg       = req(R.id.actVeredaSeg);
@@ -92,6 +93,8 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
 
         btnEnviar.setOnClickListener(v -> {
             try {
+                submitting = true;
+                cts.cancel();
                 saveSectionNow();
                 SessionCsvSeguimiento.commitToMasterWide(this);
                 SessionCsvSeguimiento.clearSession(this);
@@ -106,7 +109,15 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
         });
     }
 
-    @Override protected void onPause() { super.onPause(); saveSectionNow(); }
+    @Override protected void onPause() {
+        super.onPause();
+        if (!submitting) saveSectionNow(); // no escribir staging si estamos enviando
+    }
+
+    @Override protected void onDestroy() {
+        cts.cancel(); // asegurar que no queden callbacks
+        super.onDestroy();
+    }
 
     // ====== GPS ======
     private void ensureLocationAndFill() {
@@ -135,8 +146,7 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
         if (loc == null) return;
         latStr = String.valueOf(loc.getLatitude());
         altStr = String.valueOf(loc.getAltitude());
-        // guardamos de una vez en staging junto con lo que haya
-        saveSectionNow();
+        if (!submitting) saveSectionNow(); // evitar re-escrituras post-clear
     }
 
     @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -147,6 +157,7 @@ public class SeguimientoUbicacionActivity extends AppCompatActivity {
     // ====== CSV ======
     /** Guarda la sección 'ubicacion' con todas las claves canónicas (GPS + texto usuario). */
     private void saveSectionNow() {
+        if (submitting) return; // guardia extra
         try {
             Map<String, String> data = new LinkedHashMap<>();
             data.put("ubicacion.latitud", latStr);
