@@ -60,25 +60,35 @@ public class SessionCsvPrimera {
         File staging = file(ctx);
         if (!staging.exists() || staging.length() == 0) return;
 
+        // 1) Orden de claves según staging (primera aparición)
+        List<String> stagingOrder = getStagingOrder(staging);
+
+        // 2) Mapa de valores (normalizado)
         Map<String,String> row = parseStagingToWideRow(staging);
+
+        // 3) Metadatos y campos base requeridos
         if (row.containsKey("timestamp") && !row.containsKey("timestamp_ms")) {
             row.put("timestamp_ms", row.remove("timestamp"));
         }
         row.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
         row.put("tipo_formulario", "primera_visita");
-
+        ensure(row, "info_responsable.cedula");
         ensure(row, "ubicacion.departamento");
         ensure(row, "ubicacion.municipio");
         ensure(row, "ubicacion.vereda_corregimiento");
         ensure(row, "ubicacion.direccion");
         ensure(row, "ubicacion.latitud");
         ensure(row, "ubicacion.altitud");
-        ensure(row, "info_responsable.cedula");
-        row.remove("info_basica.cedula");
+        row.remove("info_basica.cedula"); // por si quedó en staging
 
+        // 4) Construir orden final: BASE_ORDER + stagingOrder (filtrado)
+        List<String> columnOrder = buildColumnOrderFromStaging(stagingOrder, row.keySet());
+
+        // 5) Escribir sin cabecera
         File master = fMasterWide(ctx);
-        List<String> columnOrder = buildColumnOrder(row.keySet());
         appendRowNoHeader(master, columnOrder, row);
+
+        // 6) Limpiar staging
         clearSession(ctx);
     }
 
@@ -86,34 +96,51 @@ public class SessionCsvPrimera {
     private static final List<String> BASE_ORDER = Arrays.asList(
             "timestamp_ms",
             "tipo_formulario",
+            "info_responsable.cedula",
             "ubicacion.departamento",
             "ubicacion.municipio",
             "ubicacion.vereda_corregimiento",
             "ubicacion.direccion",
             "ubicacion.latitud",
-            "ubicacion.altitud",
-            "info_responsable.cedula"
+            "ubicacion.altitud"
     );
 
     /* ====== helpers: de long -> wide row ====== */
 
-    /** Convierte el staging "long" a un mapa de columnas fijas (wide) para UNA encuesta. */
-    private static Map<String,String> parseStagingToWideRow(File staging) throws Exception {
-        Map<String,String> row = new LinkedHashMap<>();
-        // Lee todo el staging y arma clave "seccion.campo"
+    /** Lee el staging (seccion,campo,valor) y construye un mapa "seccion.campo" -> "valor". */
+    private static Map<String, String> parseStagingToWideRow(File staging) throws Exception {
+        LinkedHashMap<String, String> row = new LinkedHashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(staging))) {
             String line = br.readLine();
-            boolean headerSeen = isHeader(line);
-            if (!headerSeen) {
-                if (line != null) putLine(row, line);
+            boolean header = isHeader(line);
+            if (!header && line != null) {
+                putLine(row, line);
             }
             while ((line = br.readLine()) != null) {
                 putLine(row, line);
             }
         }
-        // Normalización de alias
+        // Normalizar alias/variantes a las claves finales
         normalizeRow(row);
         return row;
+    }
+
+    /** Convierte el staging "long" a un mapa de columnas fijas (wide) para UNA encuesta. */
+    private static List<String> getStagingOrder(File staging) throws Exception {
+        LinkedHashSet<String> order = new LinkedHashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(staging))) {
+            String line = br.readLine();
+            boolean headerSeen = isHeader(line);
+            if (!headerSeen && line != null) {
+                String[] p = splitCsvTriple(line);
+                if (p != null) order.add(p[0] + "." + p[1]);
+            }
+            while ((line = br.readLine()) != null) {
+                String[] p = splitCsvTriple(line);
+                if (p != null) order.add(p[0] + "." + p[1]);
+            }
+        }
+        return new ArrayList<>(order);
     }
 
     /* ====== Funciones simplificadas sin manejo de cabecera ====== */
@@ -121,14 +148,16 @@ public class SessionCsvPrimera {
     /**
      * Construye el orden de columnas basado en BASE_ORDER + columnas adicionales ordenadas alfabéticamente
      */
-    private static List<String> buildColumnOrder(Set<String> keys) {
-        LinkedHashSet<String> rest = new LinkedHashSet<>(keys);
-        rest.removeAll(BASE_ORDER);
-        List<String> tail = new ArrayList<>(rest);
-        Collections.sort(tail);
-        List<String> columnOrder = new ArrayList<>(BASE_ORDER);
-        columnOrder.addAll(tail);
-        return columnOrder;
+    private static List<String> buildColumnOrderFromStaging(List<String> stagingOrder, Set<String> keysPresent) {
+        List<String> out = new ArrayList<>(BASE_ORDER);
+        HashSet<String> seen = new HashSet<>(BASE_ORDER);
+        for (String k : stagingOrder) {
+            if (!seen.contains(k) && keysPresent.contains(k)) {
+                out.add(k);
+                seen.add(k);
+            }
+        }
+        return out;
     }
 
     /**

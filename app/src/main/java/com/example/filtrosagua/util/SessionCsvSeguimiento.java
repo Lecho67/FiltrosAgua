@@ -22,13 +22,13 @@ public class SessionCsvSeguimiento {
     private static final List<String> BASE_ORDER = Arrays.asList(
             "timestamp_ms",
             "tipo_formulario",
+            "info_responsable.cedula",        
             "ubicacion.departamento",
             "ubicacion.municipio",
             "ubicacion.vereda_corregimiento",
             "ubicacion.direccion",
             "ubicacion.latitud",
-            "ubicacion.altitud",
-            "info_responsable.cedula"
+            "ubicacion.altitud"
     );
 
 
@@ -106,12 +106,22 @@ public class SessionCsvSeguimiento {
      * Simplemente agrega una nueva línea al final del archivo con el orden de columnas consistente.
      */
     public static synchronized void commitToMasterWide(Context ctx) throws Exception {
-        File staging = stagingFile(ctx); // FIX: antes file(ctx)
+        File staging = stagingFile(ctx);
         if (!staging.exists() || staging.length()==0) return;
 
+        // 1) Leer staging preservando orden
         List<StagingEntry> entries = readStagingEntries(staging);
         LinkedHashMap<String,String> orderedMap = new LinkedHashMap<>();
+        List<String> stagingOrder = new ArrayList<>();
+        HashSet<String> seen = new HashSet<>();
+
         for (StagingEntry e : entries) {
+            // construir orden de aparición (único)
+            if (!seen.contains(e.key)) {
+                stagingOrder.add(e.key);
+                seen.add(e.key);
+            }
+            // último valor gana, sin cambiar orden
             if (!orderedMap.containsKey(e.key)) {
                 orderedMap.put(e.key, e.value);
             } else {
@@ -119,21 +129,25 @@ public class SessionCsvSeguimiento {
             }
         }
 
+        // 2) Metadatos + base
         orderedMap.put("timestamp_ms", String.valueOf(System.currentTimeMillis()));
         orderedMap.put("tipo_formulario", "seguimiento");
-
+        ensure(orderedMap, "info_responsable.cedula");
         ensure(orderedMap, "ubicacion.departamento");
         ensure(orderedMap, "ubicacion.municipio");
         ensure(orderedMap, "ubicacion.vereda_corregimiento");
         ensure(orderedMap, "ubicacion.direccion");
         ensure(orderedMap, "ubicacion.latitud");
         ensure(orderedMap, "ubicacion.altitud");
-        ensure(orderedMap, "info_responsable.cedula");
-        ensure(orderedMap, "info_responsable.telefono"); // nueva columna unificada
 
-        List<String> columnOrder = buildColumnOrder(orderedMap.keySet());
+        // 3) Orden final: BASE_ORDER + stagingOrder (filtrado por claves presentes)
+        List<String> columnOrder = buildColumnOrderFromStaging(stagingOrder, orderedMap.keySet());
+
+        // 4) Escribir sin cabecera
         File master = masterFile(ctx);
         appendRowNoHeader(master, columnOrder, orderedMap);
+
+        // 5) Limpiar staging
         clearSession(ctx);
     }
 
@@ -242,14 +256,16 @@ public class SessionCsvSeguimiento {
     /**
      * Construye el orden de columnas basado en BASE_ORDER + columnas adicionales ordenadas alfabéticamente
      */
-    private static List<String> buildColumnOrder(Set<String> keys) {
-        LinkedHashSet<String> rest = new LinkedHashSet<>(keys);
-        rest.removeAll(BASE_ORDER);
-        List<String> tail = new ArrayList<>(rest);
-        Collections.sort(tail);
-        List<String> columnOrder = new ArrayList<>(BASE_ORDER);
-        columnOrder.addAll(tail);
-        return columnOrder;
+    private static List<String> buildColumnOrderFromStaging(List<String> stagingOrder, Set<String> keysPresent) {
+        List<String> out = new ArrayList<>(BASE_ORDER);
+        HashSet<String> seen = new HashSet<>(BASE_ORDER);
+        for (String k : stagingOrder) {
+            if (!seen.contains(k) && keysPresent.contains(k)) {
+                out.add(k);
+                seen.add(k);
+            }
+        }
+        return out;
     }
 
     /**
